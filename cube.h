@@ -6,12 +6,12 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/09 18:05:38 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/13 17:36:22 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef CUBE_H
+# define CUBE_H
 
 # include <string.h>
 # include <stdlib.h>
@@ -69,11 +69,11 @@ typedef struct s_data
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_point(t_data img, int linecount, int row);
 //------------legends.c------------//
-int		key_press1(int keypress, t_data *img)
-void	key_press2(int keypress, t_data *img)
-void	key_press3(int keypress, t_data *img)
-void	key_press4(int keypress, t_data *img)
-void	key_press5(int keypress, t_data *img)
+int		key_press1(int keypress, t_data *img);
+void	key_press2(int keypress, t_data *img);
+void	key_press3(int keypress, t_data *img);
+void	key_press4(int keypress, t_data *img);
+void	key_press5(int keypress, t_data *img);
 //------------legends.c------------//
 void	legends1(t_data *img);
 void	legends2(t_data *img);

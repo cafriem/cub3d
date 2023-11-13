@@ -4,7 +4,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -Ofast
 
-SRCS =	cub3d.c	\
+SRCS =	cube3d.c	\
 		DDA.c	\
 		keypress.c\
 		

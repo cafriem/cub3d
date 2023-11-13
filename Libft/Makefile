@@ -39,7 +39,8 @@ SRCS =ft_memset.c		\
 		ft_power.c		\
 		ft_freesplit.c	\
 		ft_strdupfree.c	\
-		ft_strcmp.c
+		ft_strcmp.c		\
+		get_next_line_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 

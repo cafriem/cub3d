@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 18:39:46 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/09 17:10:57 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/13 15:47:03 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strdupfree(char *s1);
 char	*ft_strjoinfree(char *str1, char *str2, int flag);
 char	*ft_strtrim_free(char *s1, char const *set);
+char	*get_next_line(int fd);
 
 #endif
