@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:42:29 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/13 17:35:47 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/14 15:23:08 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,16 @@ char	*readfile(char *filename, int fd)
 
 	text = get_next_line(fd);
 	ntext = get_next_line(fd);
-	while (readfile != NULL)
+	while (ntext != NULL)
 	{
 		text = ft_strjoinfree(text, ntext, 3);
 		ntext = get_next_line(fd);
 	}
-	
+	return (text);
 }
 
-void	openmap(t_data img, char *argv[])
+void	openmap(t_data *img, char *argv[])
 {
-	char	*file;
 	int		fd;
 	int		c;
 
@@ -37,7 +36,7 @@ void	openmap(t_data img, char *argv[])
 	if (fd == -1)
 		error(img, 1);
 	c = 0;
-	file = readfile(argv[1], fd);
+	img->file_map = ft_split(readfile(argv[1], fd), '\n')
 }
 
 int	main(int argc, char *argv[])
@@ -56,7 +55,7 @@ int	main(int argc, char *argv[])
 	// img.img = mlx_new_image(img.mlx, 1080, 720);
 	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
 	// 	&img.line_length, &img.endian);
-	openmap(img, argv);
+	openmap(&img, argv);
 	// mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
 	// legends1(&img);
 	// mlx_hook(img.mlx_win, 2, 1L << 2, key_press1, &img);

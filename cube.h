@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/13 17:36:22 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/14 12:41:30 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 
 typedef struct s_data
 {
+	char	**file_map;
 	char	*t_n;
 	char	*t_s;
 	char	*t_e;

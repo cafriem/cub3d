@@ -5,8 +5,9 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Ofast
 
 SRCS =	cube3d.c	\
-		DDA.c	\
-		keypress.c\
+		DDA.c		\
+		keypress.c	\
+		error.c
 		
 
 OBJS = $(SRCS:.c=.o)
