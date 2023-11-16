@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/14 12:41:30 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/16 12:59:49 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_data
 //------------DDA.c------------//
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_point(t_data img, int linecount, int row);
-//------------legends.c------------//
+//------------key_press.c------------//
 int		key_press1(int keypress, t_data *img);
 void	key_press2(int keypress, t_data *img);
 void	key_press3(int keypress, t_data *img);
@@ -78,5 +78,7 @@ void	key_press5(int keypress, t_data *img);
 //------------legends.c------------//
 void	legends1(t_data *img);
 void	legends2(t_data *img);
+//------------error.c------------//
+void	error(t_data *img, int flag);
 
 #endif

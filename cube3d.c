@@ -6,13 +6,13 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:42:29 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/14 15:23:08 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/16 13:13:43 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-char	*readfile(char *filename, int fd)
+char	*readfile(int fd)
 {
 	char	*ntext;
 	char	*text;
@@ -27,6 +27,45 @@ char	*readfile(char *filename, int fd)
 	return (text);
 }
 
+void	ft_txthex(char *txt)
+{
+	char	**
+}
+
+void	texture_parse(t_data *img)
+{
+	int	c;
+
+	c = 0;
+	while(img->file_map[c])
+	{
+		if (ft_strncmp(img->file_map[c], "NO ./", 4) == 0)
+			img->t_n = ft_strchr(img->file_map[c], '.');
+		if (ft_strncmp(img->file_map[c], "SO ./", 4) == 0)
+			img->t_s = ft_strchr(img->file_map[c], '.');
+		if (ft_strncmp(img->file_map[c], "EA ./", 4) == 0)
+			img->t_e = ft_strchr(img->file_map[c], '.');
+		if (ft_strncmp(img->file_map[c], "WE ./", 4) == 0)
+			img->t_w = ft_strchr(img->file_map[c], '.');
+		if (ft_strncmp(img->file_map[c], "F ", 4) == 0)
+			img->t_w = ft_strchr(img->file_map[c], '.');
+		if (ft_strncmp(img->file_map[c], "C ", 4) == 0)
+			img->t_w = ft_strchr(img->file_map[c], '.');
+		c++;
+	}
+}
+
+void	struck_check(t_data *img)
+{
+	printf("NO texture = %s\n", img->t_n);
+	printf("SO texture = %s\n", img->t_s);
+	printf("EA texture = %s\n", img->t_e);
+	printf("WE texture = %s\n", img->t_w);
+	printf("F = %s\n", img->f);
+	printf("C = %s\n", img->c);
+	
+}
+
 void	openmap(t_data *img, char *argv[])
 {
 	int		fd;
@@ -36,19 +75,20 @@ void	openmap(t_data *img, char *argv[])
 	if (fd == -1)
 		error(img, 1);
 	c = 0;
-	img->file_map = ft_split(readfile(argv[1], fd), '\n')
+	img->file_map = ft_split(readfile(fd), '\n');
+	texture_parse(img);
+	struck_check(img);
 }
 
 int	main(int argc, char *argv[])
 {
 	t_data	img;
 
-	if (argc < 2)
+	if (argc < 2 || argc > 2)
 	{
-		write(2, "Failed", 6);
+		ft_putstr_fd("WRONG AMOUNT OF ARGUEMENTS", 2);
 		exit(1);
 	}
-	img = ft_calloc(1, sizeof(t_data));
 	// img.mlx = mlx_init();
 	// init(&img);
 	// img.mlx_win = mlx_new_window(img.mlx, 1080, 720, argv[1]);
@@ -61,3 +101,6 @@ int	main(int argc, char *argv[])
 	// mlx_hook(img.mlx_win, 2, 1L << 2, key_press1, &img);
 	// mlx_loop(img.mlx);
 }
+
+// A* search algorithm
+// Flood fill Algorithm

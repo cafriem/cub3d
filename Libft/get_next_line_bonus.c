@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 16:13:43 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/13 17:15:06 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/16 10:55:06 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	ft_open(char **old, char *new, int size, int fd)
 		if (size < BUFFER_SIZE)
 		{
 			new[size] = '\0';
-			*old = ft_strjoin_gl(*old, new);
+			*old = ft_strjoin(*old, new);
 			break ;
 		}
-		*old = ft_strjoin_gl(*old, new);
+		*old = ft_strjoin(*old, new);
 	}
 }
 
@@ -88,7 +88,7 @@ char	*get_next_line(int fd)
 		buffer[fd] = NULL;
 		return (NULL);
 	}
-	buffer[fd] = ft_substr_gl(buffer[fd], ft_strlen(line),
+	buffer[fd] = ft_substr(buffer[fd], ft_strlen(line),
 			ft_strlen(buffer[fd]));
 	return (line);
 }

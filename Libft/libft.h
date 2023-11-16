@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 18:39:46 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/13 15:47:03 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/16 10:55:38 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <unistd.h>
 # include <stdint.h>
 # include <math.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4096
+# endif
 
 //----------------------ASCII FUNCTION----------------//
 int		ft_isalpha(int c);
