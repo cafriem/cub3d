@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/17 16:31:00 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/22 13:29:52 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_data
 	void	*img;
 	void	*mlx;
 	char	**file_map;
+	char	**map;
 	int		bits_per_pixel;
 	int		line_length;
 	char	*t_n;

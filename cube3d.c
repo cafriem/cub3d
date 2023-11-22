@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:42:29 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/21 16:03:40 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/22 15:31:15 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,39 @@ char	*readfile(int fd)
 	return (text);
 }
 
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int	get_color(char *line)
+{
+	char	**spl;
+	int		ret;
+
+	spl = ft_split(line, ',');
+	ret = create_trgb(1, ft_atoi(spl[0]), ft_atoi(spl[1]), ft_atoi(spl[2]));
+	ft_freesplit(spl);
+	return (ret);
+}
+
+int	map_start(char *str)
+{
+	int	c;
+
+	c = 0;
+	while (str[c])
+	{
+		if (str)
+		c++;
+	}
+}
+
+void	mapread(t_data *img, int c);
+{
+	
+}
+
 void	texture_parse(t_data *img)
 {
 	int	c;
@@ -42,17 +75,14 @@ void	texture_parse(t_data *img)
 			img->t_e = ft_strchr(img->file_map[c], '.');
 		if (ft_strncmp(ft_strtrim(img->file_map[c], " "), "WE", 2) == 0)
 			img->t_w = ft_strchr(img->file_map[c], '.');
-		// if (ft_strncmp(img->file_map[c], "F ", 4) == 0)
-		// 	img->t_w = ft_strchr(img->file_map[c], '.');
-		// if (ft_strncmp(img->file_map[c], "C ", 4) == 0)
-		// 	img->t_w = ft_strchr(img->file_map[c], '.');
+		if (ft_strncmp(ft_strtrim(img->file_map[c], " "), "F", 1) == 0)
+			img->f = get_color(ft_substr((img->file_map[c]), 1, ft_strlen(img->file_map[c])));
+		if (ft_strncmp(ft_strtrim(img->file_map[c], " "), "C", 1) == 0)
+			img->c = get_color(ft_substr((img->file_map[c]), 1, ft_strlen(img->file_map[c])));
+		// if (img->c && img->f && img->t_n && img->t_s && img->t_e && img->t_w)
+		// 	mapread(img, c);
 		c++;
 	}
-}
-
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
 }
 
 void	struck_check(t_data *img)
@@ -61,9 +91,8 @@ void	struck_check(t_data *img)
 	printf("SO texture = %s\n", img->t_s);
 	printf("EA texture = %s\n", img->t_e);
 	printf("WE texture = %s\n", img->t_w);
-	printf("t = %d\n", create_trgb(1, 220, 100, 0));
-	// printf("F = %s\n", img->f);
-	// printf("C = %s\n", img->c);
+	printf("F = %d\n", img->f);
+	printf("C = %d\n", img->c);
 }
 
 void	openmap(t_data *img, char *argv[])
