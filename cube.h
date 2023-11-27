@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/25 10:28:51 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/27 20:03:25 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ typedef struct s_data
 	char	*t_s;
 	char	*t_e;
 	char	*t_w;
-	int		c;
 	int		f;
+	int		c;
 	
 }	t_data;
 
