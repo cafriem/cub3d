@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:42:29 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/22 15:31:15 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/25 13:29:40 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,90 @@ int	get_color(char *line)
 	return (ret);
 }
 
-int	map_start(char *str)
+// int	map_start(char *str)
+// {
+// 	int	c;
+
+// 	c = 0;
+// 	while (str[c])
+// 	{
+// 		if (str)
+// 		c++;
+// 	}
+// }
+
+int	check_updown(t_data *img, int row, int colom)
+{
+	int	vertical;
+
+	vertical = row;
+	while (img->map[vertical][colom] != '1') //checks up
+	{
+		vertical--;
+		if (vertical == -1)
+			return (0);
+	}
+	vertical = row;
+	while (img->map[vertical][colom] != '1') //checks down
+	{
+		vertical++;
+		if (vertical )
+			return (0);
+	}
+}
+
+void	check_valid(t_data *img, int row, int colom)
+{
+	check_updown();
+	check_left();
+	check_right();
+}
+
+void	map_checker(t_data *img)
+{
+	int	row;
+	int colom;
+
+	row = 0;
+	while (img->map[row])
+	{
+		colom = 0;
+		while (img->map[row][colom])
+		{
+			if (img->map[row][colom] == '0')
+				check_valid(img, row, colom);
+			colom++;
+		}
+	}
+}
+
+map_size(t_data *img)
 {
 	int	c;
 
 	c = 0;
-	while (str[c])
-	{
-		if (str)
+	while (img->map[c])
 		c++;
-	}
+	img->map_height = c;
 }
 
-void	mapread(t_data *img, int c);
+void	mapread(t_data *img, int start)
 {
-	
+	int		c;
+	char	*str;
+
+	c = start;
+	str = ft_strdup(img->file_map[c]);
+	while (img->file_map[c])
+	{
+		c++;
+		str = ft_strjoinfree(str, img->file_map[c], 1);
+		str = ft_strjoinfree(str, "\n", 1);
+	}
+	str = ft_strtrim_free(str, "\n");
+	img->map = ft_split(str, '\n');
+	map_size(img);
+	map_checker(img);
 }
 
 void	texture_parse(t_data *img)
@@ -79,8 +148,20 @@ void	texture_parse(t_data *img)
 			img->f = get_color(ft_substr((img->file_map[c]), 1, ft_strlen(img->file_map[c])));
 		if (ft_strncmp(ft_strtrim(img->file_map[c], " "), "C", 1) == 0)
 			img->c = get_color(ft_substr((img->file_map[c]), 1, ft_strlen(img->file_map[c])));
-		// if (img->c && img->f && img->t_n && img->t_s && img->t_e && img->t_w)
-		// 	mapread(img, c);
+		if (img->c && img->f && img->t_n && img->t_s && img->t_e && img->t_w)
+			mapread(img, c);
+		c++;
+	}
+}
+
+void	print_map(t_data *img)
+{
+	int	c;
+
+	c = 0;
+	while (img->map[c])
+	{
+		printf("mapline = %d |%s|", c, img->map[c]);
 		c++;
 	}
 }
@@ -93,17 +174,16 @@ void	struck_check(t_data *img)
 	printf("WE texture = %s\n", img->t_w);
 	printf("F = %d\n", img->f);
 	printf("C = %d\n", img->c);
+	print_map(img);
 }
 
 void	openmap(t_data *img, char *argv[])
 {
 	int		fd;
-	int		c;
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		error(img, 1);
-	c = 0;
 	img->file_map = ft_split(readfile(fd), '\n');
 	texture_parse(img);
 	struck_check(img);
