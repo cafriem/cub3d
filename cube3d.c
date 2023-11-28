@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:42:29 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/27 14:37:52 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/28 17:44:08 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,11 +131,75 @@ void	map_checker(t_data *img)
 void	map_size(t_data *img)
 {
 	int	c;
+	int	c1;
 
 	c = 0;
+	c1 = 0;
+	c1 = ft_strlen(img->map[c]);
 	while (img->map[c])
+	{
+		if ((int)ft_strlen(img->map[c]) > c1)
+			c1 = ft_strlen(img->map[c]);
 		c++;
+	}
+	img->map_width = c1;
 	img->map_height = c;
+}
+
+char	*get_pl(t_data *img, int c)
+{
+	int		counter;
+	char	*str;
+
+	counter = 0;
+	if (ft_strchr(img->map[c], 'N') != NULL)
+	{
+		str = ft_strchr(img->map[c], 'N');
+		counter++;
+	}
+	if (ft_strchr(img->map[c], 'S') != NULL)
+	{
+		str = ft_strchr(img->map[c], 'S');
+		counter++;
+	}
+	if (ft_strchr(img->map[c], 'E') != NULL)
+	{
+		str = ft_strchr(img->map[c], 'E');
+		counter++;
+	}
+	if (ft_strchr(img->map[c], 'W') != NULL)
+	{
+		str = ft_strchr(img->map[c], 'W');
+		counter++;
+	}
+	if (counter > 1)
+		error(img, 3);
+	return (str);
+}
+
+void	player_info(t_data *img)
+{
+	char	*str;
+	int		c;
+	int		leter_count;
+
+	c = 0;
+	leter_count = 0;
+	while (img->map[c])
+	{
+		if (ft_strchr(img->map[c], 'N') != NULL || ft_strchr(img->map[c], 'S') != NULL ||
+			ft_strchr(img->map[c], 'E') != NULL || ft_strchr(img->map[c], 'W') != NULL)
+		{
+			str = get_pl(img, c);
+			img->NEWS = str[0];
+			img->p_row = c;
+			img->p_colom = img->map_width - ft_strlen(str);
+			leter_count++;
+		}
+		c++;
+	}
+	if (leter_count > 1)
+		error(img, 3);
 }
 
 void	mapread(t_data *img, int start)
@@ -155,6 +219,7 @@ void	mapread(t_data *img, int start)
 	img->map = ft_split(str, '\n');
 	map_size(img);
 	// map_checker(img);
+	player_info(img);
 }
 
 void	texture_parse(t_data *img)
@@ -225,6 +290,8 @@ void	struck_check(t_data *img)
 	printf("WE texture = %s\n", img->t_w);
 	printf("F = %d\n", img->f);
 	printf("C = %d\n", img->c);
+	printf("player facing = %c\n", img->NEWS);
+	printf("player location = %d, %d\n", img->p_row, img->p_colom);
 	print_map(img);
 }
 
