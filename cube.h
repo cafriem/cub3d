@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/28 11:54:41 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/29 12:59:20 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_data
 	char	*t_w;
 	int		f;
 	int		c;
-	char	NEWS; // player dacing which direction
+	char	NEWS;
 	int		p_row;
 	int		p_colom;
 }	t_data;

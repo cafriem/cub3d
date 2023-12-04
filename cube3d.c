@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:42:29 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/28 17:44:08 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/29 15:06:07 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ char	*get_pl(t_data *img, int c)
 		str = ft_strchr(img->map[c], 'W');
 		counter++;
 	}
-	if (counter > 1)
+	if (counter > 1 || (counter == 1 && (ft_strlen(str) != ft_strlen(ft_strrchr(str, str[0])))))
 		error(img, 3);
 	return (str);
 }
@@ -187,8 +187,8 @@ void	player_info(t_data *img)
 	leter_count = 0;
 	while (img->map[c])
 	{
-		if (ft_strchr(img->map[c], 'N') != NULL || ft_strchr(img->map[c], 'S') != NULL ||
-			ft_strchr(img->map[c], 'E') != NULL || ft_strchr(img->map[c], 'W') != NULL)
+		if (ft_strchr(img->map[c], 'N') != NULL || ft_strchr(img->map[c], 'S') != NULL
+			|| ft_strchr(img->map[c], 'E') != NULL || ft_strchr(img->map[c], 'W') != NULL)
 		{
 			str = get_pl(img, c);
 			img->NEWS = str[0];
