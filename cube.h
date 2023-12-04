@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/29 12:59:20 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/04 18:20:12 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,41 @@ typedef struct s_data
 	int		p_colom;
 }	t_data;
 
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}		t_data;
+
+typedef struct map {
+	char	**points;
+	char	**file_map;
+}		t_map;
+
+typedef struct cub3d {
+	int		width;
+	int		height;
+	void	*mlx;
+	void	*mlx_window;
+	t_data	*img;
+	t_map	map;
+}		t_cub3d;
+
 //------------DDA.c------------//
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_point(t_data img, int linecount, int row);
 //------------key_press.c------------//
-int		key_press1(int keypress, t_data *img);
-void	key_press2(int keypress, t_data *img);
-void	key_press3(int keypress, t_data *img);
-void	key_press4(int keypress, t_data *img);
-void	key_press5(int keypress, t_data *img);
+int		key_press1(int keypress, t_cub3d cub3d);
+void	key_press2(int keypress, t_cub3d cub3d);
+void	key_press3(int keypress, t_cub3d cub3d);
+void	key_press4(int keypress, t_cub3d cub3d);
+void	key_press5(int keypress, t_cub3d cub3d);
 //------------legends.c------------//
-void	legends1(t_data *img);
-void	legends2(t_data *img);
+void	legends1(t_cub3d cub3d);
+void	legends2(t_cub3d cub3d);
 //------------error.c------------//
-void	error(t_data *img, int flag);
+void	error(t_cub3d cub3d, int flag);
 
 #endif

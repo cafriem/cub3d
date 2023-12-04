@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   john.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:10:59 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/04 18:06:06 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/04 18:18:32 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@
 //structs
 
 typedef struct s_data {
-	void	*img;
+	void	*cub3d;
 	char	*addr;
 	int		bpp;
 	int		line_length;
@@ -81,7 +81,7 @@ typedef struct cub3d {
 	int		height;
 	void	*mlx;
 	void	*mlx_window;
-	t_data	*img;
+	t_data	*cub3d;
 	t_map	map;
 }		t_cub3d;
 
