@@ -1,0 +1,39 @@
+NAME = cube3d
+
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror -Ofast
+
+SRCS =	cub3d.c	\
+		DDA.c		\
+		keypress.c	\
+		error.c
+		
+
+OBJS = $(SRCS:.c=.o)
+
+CC = gcc
+
+%.o: %.c
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+
+LIBS =	libft/libft.a
+
+$(NAME): $(OBJS)
+	make -C libft
+	make -C MLX
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
+all: $(NAME)
+
+clean:
+	make -C MLX clean
+	rm -f $(OBJS)
+	make -C libft clean
+
+fclean: clean
+	rm -f $(NAME)
+	rm -f *.dylib
+	make -C libft fclean
+
+re: fclean all
