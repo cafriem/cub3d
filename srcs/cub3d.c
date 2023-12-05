@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.c                                           :+:      :+:    :+:   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:42:29 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/05 15:40:27 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:32:55 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	get_color(char *line)
 	return (ret);
 }
 
-int	check_updown(t_cub3d *cub3d, int row, int colom)
+void	check_updown(t_cub3d *cub3d, int row, int colom)
 {
 	int	vertical;
 
@@ -51,57 +51,49 @@ int	check_updown(t_cub3d *cub3d, int row, int colom)
 	while (cub3d->map.points[vertical][colom] != '1') //checks up
 	{
 		vertical--;
-		if (vertical == 0)
-			return (0);
+		if (vertical < 0)
+			error(cub3d, 2);
 	}
 	vertical = row;
 	while (cub3d->map.points[vertical][colom] != '1') //checks down
 	{
 		vertical++;
-		if (vertical < cub3d->map.height)
-			return (0);
+		if (vertical > cub3d->map.height)
+			error(cub3d, 2);
+	}
+}
+
+int	check_leftright(t_cub3d *cub3d, int row, int colom)
+{
+	int	horizontal;
+
+	horizontal = colom;
+	while (cub3d->map.points[row][horizontal] != '1') //checks left
+	{
+		horizontal--;
+		if (horizontal < 0)
+			error(cub3d, 2);
+	}
+	horizontal = colom;
+	while (cub3d->map.points[row][horizontal] != '1') //checks right
+	{
+		horizontal++;
+		if (horizontal > cub3d->map.width)
+			error(cub3d, 2);
 	}
 	return (1);
 }
 
-// int	check_leftright(t_cub3d *cub3d, int row, int colom)
-// {
-// 	int	horizontal;
-
-// 	horizontal = colom;
-// 	while (cub3d->map[row][horizontal] != '1') //checks left
-// 	{
-// 		horizontal--;
-// 		if (horizontal == 0)
-// 			return (0);
-// 	}
-// 	horizontal = colom;
-// 	while (cub3d->map[row][horizontal] != '1') //checks right
-// 	{
-// 		horizontal++;
-// 		if (horizontal < cub3d->map_height)
-// 			return (0);
-// 	}
-// 	return (1);
-// }
-
 void	check_valid(t_cub3d *cub3d, int row, int colom)
 {
-	int	c;
-
-	c = 1;
-	c = check_updown(cub3d, row, colom);
-	if (c == 0)
-		error(cub3d, 2);
-	// c = check_leftright(cub3d, row, colom);
-	// if (c == 0)
-	// 	error(cub3d, 2);
+	check_updown(cub3d, row, colom);
+	check_leftright(cub3d, row, colom);
 }
 
 void	map_checker(t_cub3d *cub3d)
 {
 	int	row;
-	int colom;
+	int	colom;
 
 	row = 0;
 	while (cub3d->map.points[row])
@@ -113,6 +105,7 @@ void	map_checker(t_cub3d *cub3d)
 				check_valid(cub3d, row, colom);
 			colom++;
 		}
+		row++;
 	}
 }
 
@@ -206,7 +199,7 @@ void	mapread(t_cub3d *cub3d, int start)
 	str = ft_strtrim_free(str, "\n");
 	cub3d->map.points = ft_split(str, '\n');
 	map_size(cub3d);
-	// map_checker(cub3d);
+	map_checker(cub3d);
 	player_info(cub3d);
 }
 
