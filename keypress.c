@@ -6,11 +6,11 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/04 18:18:32 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/05 11:41:55 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// int	key_press1(int keypress, t_cub3d cub3d)
+// int	key_press1(int keypress, t_cub3d *cub3d)
 // {
 // 	mlx_clear_window(cub3d->mlx, cub3d->mlx_win);
 // 	if (keypress == ESC)
@@ -39,7 +39,7 @@
 	// return (0);
 // }
 
-// void	key_press2(int keypress, t_cub3d cub3d)
+// void	key_press2(int keypress, t_cub3d *cub3d)
 // {
 // 	if (keypress == LEFT)
 // 		cub3d->leftright -= 2;
@@ -62,7 +62,7 @@
 // 	key_press3(keypress, cub3d);
 // }
 
-// void	key_press3(int keypress, t_cub3d cub3d)
+// void	key_press3(int keypress, t_cub3d *cub3d)
 // {
 // 	if (keypress == D)
 // 	{
@@ -87,7 +87,7 @@
 // 	key_press4(keypress, cub3d);
 // }
 
-// void	key_press4(int keypress, t_cub3d cub3d)
+// void	key_press4(int keypress, t_cub3d *cub3d)
 // {
 // 	if (keypress == I)
 // 	{
@@ -113,7 +113,7 @@
 // 	key_press5(keypress, cub3d);
 // }
 
-// void	key_press5(int keypress, t_cub3d cub3d)
+// void	key_press5(int keypress, t_cub3d *cub3d)
 // {
 // 	if (keypress == L)
 // 	{

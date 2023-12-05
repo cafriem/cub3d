@@ -6,11 +6,11 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:00:23 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/04 18:18:32 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/05 11:41:55 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	legends1(t_cub3d cub3d)
+void	legends1(t_cub3d *cub3d)
 {
 	mlx_string_put(cub3d->mlx, cub3d->mlx_win, 10, 10, cub3d->colour, "Controls : ");
 	mlx_string_put(cub3d->mlx, cub3d->mlx_win, 30, 50, cub3d->colour,
@@ -32,7 +32,7 @@ void	legends1(t_cub3d cub3d)
 	legends2(cub3d);
 }
 
-void	legends2(t_cub3d cub3d)
+void	legends2(t_cub3d *cub3d)
 {
 	mlx_string_put(cub3d->mlx, cub3d->mlx_win, 30, 190, cub3d->colour,
 		"Top View = K");

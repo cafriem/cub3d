@@ -6,13 +6,13 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:20:49 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/04 18:18:32 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/05 11:41:55 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	error(t_cub3d cub3d, int flag)
+void	error(t_cub3d *cub3d, int flag)
 {
 	if (flag == 1)
 	{
