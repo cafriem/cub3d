@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/05 15:43:51 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:47:19 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stdint.h>
 # include <signal.h>
-# include "Libft/libft.h"
+# include "../libft/libft.h"
 # include <mlx.h>
 # include <stdio.h>
 # include <fcntl.h>
