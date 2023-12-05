@@ -6,11 +6,12 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:42:29 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/05 15:57:16 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:29:04 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+#include <complex.h>
 
 char	*readfile(int fd)
 {
@@ -297,24 +298,22 @@ void	openmap(t_cub3d *cub3d, char *argv[])
 
 int	main(int argc, char *argv[])
 {
-		t_cub3d	cub3d;
+	int		i;
+	t_cub3d	cube;
 
 	if (argc != 2)
 	{
 		ft_putstr_fd("WRONG AMOUNT OF ARGUEMENTS", 2);
 		exit(1);
 	}
-	// cub3d.mlx = mlx_init();
-	// init(&cub3d);
-	// cub3d.mlx_win = mlx_new_window(cub3d.mlx, 1080, 720, argv[1]);
-	// cub3d.cub3d = mlx_new_image(cub3d.mlx, 1080, 720);
-	// cub3d.addr = mlx_get_data_addr(cub3d.cub3d, &cub3d.bits_per_pixel,
-	// 	&cub3d.line_length, &cub3d.endian);
-	openmap(&cub3d, argv);
-	// mlx_put_image_to_window(cub3d.mlx, cub3d.mlx_win, cub3d.cub3d, 0, 0);
-	// legends1(&cub3d);
-	// mlx_hook(cub3d.mlx_win, 2, 1L << 2, key_press1, &cub3d);
-	// mlx_loop(cub3d.mlx);
+	openmap(&cube, argv);
+	create_map(&cube);
+	i = 0;
+	while (cube.map.points[i])
+		printf("%s\n", cube.map.points[i++]);
+	mlx_hook(cube.mlx_window, 17, 0, close_x, &cube);
+	mlx_hook(cube.mlx_window, 2, (1L << 0), close_esc, &cube);
+	mlx_loop(cube.mlx);
 }
 
 // A* search algorithm

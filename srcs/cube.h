@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/05 15:57:31 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:18:26 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 # include <stdint.h>
 # include <signal.h>
 # include "../libft/libft.h"
-# include <mlx.h>
+// # include <mlx.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include "../mlx-linux/mlx.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
@@ -83,7 +84,7 @@ typedef struct cub3d {
 	int		height;
 	void	*mlx;
 	void	*mlx_window;
-	t_data	*img;
+	t_data	img;
 	t_map	map;
 }		t_cub3d;
 
@@ -101,5 +102,10 @@ void	legends1(t_cub3d *cub3d);
 void	legends2(t_cub3d *cub3d);
 //------------error.c------------//
 void	error(t_cub3d *cub3d, int flag);
+//functions:
+void	create_map(t_cub3d *cube);
+int		close_x(t_cub3d *cube);
+int		close_esc(int keycode, t_cub3d *cube);
+void	pixel_put(t_data *data, int x, int y, int color);
 
 #endif
