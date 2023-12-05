@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:03:16 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/16 10:51:41 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/04 18:18:32 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@
 // 	}
 // }
 
-// void	draw_point(t_data img, int linecount, int row)
+// void	draw_point(t_data cub3d, int linecount, int row)
 // {
 // 	float	dy;
 // 	float	dx;
 // 	float	c;
 // 	int		i;
 
-// 	dx = (img.x1 - img.x0);
-// 	dy = (img.y1 - img.y0);
+// 	dx = (cub3d.x1 - cub3d.x0);
+// 	dy = (cub3d.y1 - cub3d.y0);
 // 	if (fabs(dx) > fabs(dy))
 // 		c = fabs(dx);
 // 	else
@@ -48,9 +48,9 @@
 // 	dy /= c;
 // 	while (i <= c)
 // 	{
-// 		my_mlx_pixel_put(&img, img.x0, img.y0, img.colours[linecount][row]);
-// 		img.y0 += dy;
-// 		img.x0 += dx;
+// 		my_mlx_pixel_put(&cub3d, cub3d.x0, cub3d.y0, cub3d.colours[linecount][row]);
+// 		cub3d.y0 += dy;
+// 		cub3d.x0 += dx;
 // 		i++;
 // 	}
 // }
