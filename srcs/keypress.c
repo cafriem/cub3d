@@ -6,130 +6,130 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/05 11:41:55 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/11/16 10:52:21 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// int	key_press1(int keypress, t_cub3d *cub3d)
+// int	key_press1(int keypress, t_data *img)
 // {
-// 	mlx_clear_window(cub3d->mlx, cub3d->mlx_win);
+// 	mlx_clear_window(img->mlx, img->mlx_win);
 // 	if (keypress == ESC)
 // 	{
-// 		mlx_destroy_window(cub3d->mlx, cub3d->mlx_win);
-// 		free_points(cub3d);
+// 		mlx_destroy_window(img->mlx, img->mlx_win);
+// 		free_points(img);
 // 		exit(0);
 // 	}
 	// if (keypress == H)
-	// 	cub3d->help += 1;
+	// 	img->help += 1;
 	// if (keypress == PLUS)
 	// {
-	// 	cub3d->space += 1;
-	// 	cub3d->height += 1;
+	// 	img->space += 1;
+	// 	img->height += 1;
 	// }
 	// if (keypress == MINUS)
 	// {
-	// 	cub3d->space -= 1;
-	// 	cub3d->height -= 1;
+	// 	img->space -= 1;
+	// 	img->height -= 1;
 	// }
 	// if (keypress == UP)
-	// 	cub3d->updown -= 2;
+	// 	img->updown -= 2;
 	// if (keypress == DOWN)
-	// 	cub3d->updown += 2;
-	// key_press2(keypress, cub3d);
+	// 	img->updown += 2;
+	// key_press2(keypress, img);
 	// return (0);
 // }
 
-// void	key_press2(int keypress, t_cub3d *cub3d)
+// void	key_press2(int keypress, t_data *img)
 // {
 // 	if (keypress == LEFT)
-// 		cub3d->leftright -= 2;
+// 		img->leftright -= 2;
 // 	if (keypress == RIGHT)
-// 		cub3d->leftright += 2;
+// 		img->leftright += 2;
 // 	if (keypress == R)
-// 		cub3d->height += 1;
+// 		img->height += 1;
 // 	if (keypress == F)
-// 		cub3d->height -= 1;
+// 		img->height -= 1;
 // 	if (keypress == S)
 // 	{
-// 		cub3d->rotation = 1;
-// 		cub3d->x += 5 * (PIE / 180.0f);
+// 		img->rotation = 1;
+// 		img->x += 5 * (PIE / 180.0f);
 // 	}
 // 	if (keypress == W)
 // 	{
-// 		cub3d->rotation = 1;
-// 		cub3d->x -= 5 * (PIE / 180.0f);
+// 		img->rotation = 1;
+// 		img->x -= 5 * (PIE / 180.0f);
 // 	}
-// 	key_press3(keypress, cub3d);
+// 	key_press3(keypress, img);
 // }
 
-// void	key_press3(int keypress, t_cub3d *cub3d)
+// void	key_press3(int keypress, t_data *img)
 // {
 // 	if (keypress == D)
 // 	{
-// 		cub3d->rotation = 1;
-// 		cub3d->y += 5 * (PIE / 180.0f);
+// 		img->rotation = 1;
+// 		img->y += 5 * (PIE / 180.0f);
 // 	}
 // 	if (keypress == A)
 // 	{
-// 		cub3d->rotation = 1;
-// 		cub3d->y -= 5 * (PIE / 180.0f);
+// 		img->rotation = 1;
+// 		img->y -= 5 * (PIE / 180.0f);
 // 	}
 // 	if (keypress == E)
 // 	{
-// 		cub3d->rotation = 1;
-// 		cub3d->z += 5 * (PIE / 180.0f);
+// 		img->rotation = 1;
+// 		img->z += 5 * (PIE / 180.0f);
 // 	}
 // 	if (keypress == Q)
 // 	{
-// 		cub3d->rotation = 1;
-// 		cub3d->z -= 5 * (PIE / 180.0f);
+// 		img->rotation = 1;
+// 		img->z -= 5 * (PIE / 180.0f);
 // 	}
-// 	key_press4(keypress, cub3d);
+// 	key_press4(keypress, img);
 // }
 
-// void	key_press4(int keypress, t_cub3d *cub3d)
+// void	key_press4(int keypress, t_data *img)
 // {
 // 	if (keypress == I)
 // 	{
-// 		cub3d->rotation = 1;
-// 		cub3d->y = 0;
-// 		cub3d->x = 1.482778;
-// 		cub3d->z = 0.785000;
+// 		img->rotation = 1;
+// 		img->y = 0;
+// 		img->x = 1.482778;
+// 		img->z = 0.785000;
 // 	}
 // 	if (keypress == K)
 // 	{
-// 		cub3d->rotation = 1;
-// 		cub3d->y = 0;
-// 		cub3d->x = -0.348889;
-// 		cub3d->z = 0.785000;
+// 		img->rotation = 1;
+// 		img->y = 0;
+// 		img->x = -0.348889;
+// 		img->z = 0.785000;
 // 	}
 // 	if (keypress == J)
 // 	{
-// 		cub3d->rotation = 1;
-// 		cub3d->x = 0;
-// 		cub3d->y = -0.348889;
-// 		cub3d->z = -0.785000;
+// 		img->rotation = 1;
+// 		img->x = 0;
+// 		img->y = -0.348889;
+// 		img->z = -0.785000;
 // 	}
-// 	key_press5(keypress, cub3d);
+// 	key_press5(keypress, img);
 // }
 
-// void	key_press5(int keypress, t_cub3d *cub3d)
+// void	key_press5(int keypress, t_data *img)
 // {
 // 	if (keypress == L)
 // 	{
-// 		cub3d->rotation = 1;
-// 		cub3d->x = 0;
-// 		cub3d->y = 0.348889;
-// 		cub3d->z = 2.355000;
+// 		img->rotation = 1;
+// 		img->x = 0;
+// 		img->y = 0.348889;
+// 		img->z = 2.355000;
 // 	}
 // 	if (keypress == C)
-// 		cub3d->colour = 0x00F3D6D3;
-// 	mlx_destroy_image(cub3d->mlx, cub3d->cub3d);
-// 	cub3d->cub3d = mlx_new_image(cub3d->mlx, 1080, 720);
-// 	cub3d->addr = mlx_get_data_addr(cub3d->cub3d, &cub3d->bits_per_pixel,
-// 			&cub3d->line_length, &cub3d->endian);
-// 	points_on_grid(*cub3d);
-// 	mlx_put_image_to_window(cub3d->mlx, cub3d->mlx_win, cub3d->cub3d, 0, 0);
-// 	if (cub3d->help % 2 == 0)
-// 		legends1(cub3d);
+// 		img->colour = 0x00F3D6D3;
+// 	mlx_destroy_image(img->mlx, img->img);
+// 	img->img = mlx_new_image(img->mlx, 1080, 720);
+// 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+// 			&img->line_length, &img->endian);
+// 	points_on_grid(*img);
+// 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
+// 	if (img->help % 2 == 0)
+// 		legends1(img);
 // }
