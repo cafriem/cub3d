@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/05 12:37:36 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/05 15:20:21 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stdint.h>
 # include <signal.h>
-# include "Libft/libft.h"
+# include "../libft/libft.h"
 # include <mlx.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -54,52 +54,42 @@
 # define COS046 0.89438856137
 # define SIN046 0.4472908464
 
-typedef struct s_data {
-	void	*img;
+typedef struct s_data
+{
+	void	*mlx_win;
 	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}		t_data;
-
-typedef struct map {
-	char	**points;
+	void	*img;
+	void	*mlx;
 	char	**file_map;
-	int		width;
-	int		height;
+	char	**map;
+	int		map_width;
+	int		map_height;
+	int		bits_per_pixel;
+	int		line_length;
 	char	*t_n;
 	char	*t_s;
 	char	*t_e;
 	char	*t_w;
+	int		f;
+	int		c;
 	char	NEWS;
 	int		p_row;
 	int		p_colom;
-	int		f;
-	int		c;
-}		t_map;
-
-typedef struct cub3d {
-	int		width;
-	int		height;
-	void	*mlx;
-	void	*mlx_window;
-	t_data	*img;
-	t_map	map;
-}		t_cub3d;
+}	t_data;
 
 //------------DDA.c------------//
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_point(t_data img, int linecount, int row);
 //------------key_press.c------------//
-int		key_press1(int keypress, t_cub3d *cub3d);
-void	key_press2(int keypress, t_cub3d *cub3d);
-void	key_press3(int keypress, t_cub3d *cub3d);
-void	key_press4(int keypress, t_cub3d *cub3d);
-void	key_press5(int keypress, t_cub3d *cub3d);
+int		key_press1(int keypress, t_data *img);
+void	key_press2(int keypress, t_data *img);
+void	key_press3(int keypress, t_data *img);
+void	key_press4(int keypress, t_data *img);
+void	key_press5(int keypress, t_data *img);
 //------------legends.c------------//
-void	legends1(t_cub3d *cub3d);
-void	legends2(t_cub3d *cub3d);
+void	legends1(t_data *img);
+void	legends2(t_data *img);
 //------------error.c------------//
-void	error(t_cub3d *cub3d, int flag);
+void	error(t_data *img, int flag);
 
 #endif
