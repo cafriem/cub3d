@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/06 16:19:07 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:43:36 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_x(int i, int j, t_cub3d *cube)
 	b = (j + 1) * 16;
 	while (a < b)
 	{
-		pixel_put(&cube->img, a, i * 16, 0xFFFFFFFF);
+		pixel_put(&cube->img, a, i * 16, 0x00000000);
 		a++;
 	}
 }
@@ -35,7 +35,7 @@ void	draw_y(int i, int j, t_cub3d *cube)
 	b = (i + 1) * 16;
 	while (a < b)
 	{
-		pixel_put(&cube->img, j * 16, a, 0xFFFFFFFF);
+		pixel_put(&cube->img, j * 16, a, 0x00000000);
 		a++;
 	}
 }
@@ -50,12 +50,12 @@ void	draw_square(int i, int j, t_cub3d *cube)
 	b = (j + 1) * 16;
 	i *= 16;
 	hold = j * 16;
-	while (i < a)
+	while (i < a - 1)
 	{
 		j = hold;
-		while (j < b)
+		while (j < b - 1)
 		{
-			pixel_put(&cube->img, j, i, 0xFFFFFFFF);
+			pixel_put(&cube->img, j, i, 0x00FFFFFF);
 			j++;
 		}
 		i++;
@@ -66,7 +66,18 @@ void	draw_player(int i, int j, t_cub3d *cube)
 {
 	i = (16 * (i + (i + 1))) / 2;
 	j = (16 * (j + (j + 1))) / 2;
-	pixel_put(&cube->img, j, i, 0xFFFF0000);
+	int c = i;
+	int c2;
+	while (c < i + 2)
+	{
+		c2 = j;
+		while (c2 < j + 2)
+		{
+			pixel_put(&cube->img, c2, c, 0x00FF0000);
+			c2++;
+		}
+		c++;
+	}
 }
 
 void	draw_map(t_cub3d *cube)
