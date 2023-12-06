@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/06 18:33:32 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:04:00 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,12 @@ void	draw_square(int i, int j, t_cub3d *cube)
 
 void	draw_player(t_cub3d *cube)
 {
-	printf("player pos: %d, %d\n", cube->map.p_posx, cube->map.p_posy);
-	pixel_put(&cube->img, cube->map.p_posy, cube->map.p_posx, 0xFFFF0000);
+	printf("player pos: %d, %d\n", cube->player.p_x, cube->player.p_y);
+	pixel_put(&cube->img, cube->player.p_y, cube->player.p_x, 0x00FF0000);
+	pixel_put(&cube->img, cube->player.p_y + 1, cube->player.p_x, 0x00FF0000);
+	pixel_put(&cube->img, cube->player.p_y, cube->player.p_x + 1, 0x00FF0000);
+	pixel_put(&cube->img, cube->player.p_y + 1, cube->player.p_x + 1, 0x00FF0000);
+
 }
 
 void	draw_map(t_cub3d *cube)

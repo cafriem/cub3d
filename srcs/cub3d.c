@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/06 18:51:38 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/06 18:58:09 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,6 @@ void	player_info(t_cub3d *cub3d)
 			|| ft_strchr(cub3d->map.points[c], 'E') != NULL || ft_strchr(cub3d->map.points[c], 'W') != NULL)
 		{
 			str = get_pl(cub3d, c);
-			cub3d->map.p_init = str[0];
 			cub3d->map.p_row = c;
 			cub3d->map.p_colom = cub3d->map.width - ft_strlen(str);
 			leter_count++;
@@ -276,7 +275,7 @@ void	struck_check(t_cub3d *cub3d)
 	printf("WE texture = %s\n", cub3d->map.t_w);
 	printf("F = %d\n", cub3d->map.f);
 	printf("C = %d\n", cub3d->map.c);
-	printf("player facing = %c\n", cub3d->map.p_init);
+	printf("player facing = %d\n", cub3d->player.p_direction);
 	printf("player location = %d, %d\n", cub3d->map.p_row, cub3d->map.p_colom);
 	print_map(cub3d);
 }
@@ -310,8 +309,8 @@ void	set_player_position(t_cub3d *cube)
 				&& cube->map.points[i][j] != ' '
 				&& cube->map.points[i][j] != '1')
 			{
-				cube->map.p_posx = (16 * (i + (i + 1))) / 2;
-				cube->map.p_posy = (16 * (j + (j + 1))) / 2;
+				cube->player.p_x = (16 * (i + (i + 1))) / 2;
+				cube->player.p_y = (16 * (j + (j + 1))) / 2;
 			}
 		}
 	}

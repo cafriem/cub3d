@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/06 18:54:19 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/06 19:05:17 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,20 @@
 
 int	move(t_cub3d *cube)
 {
-	printf("W: %c, S: %c, A: %c, D: %c\n", cube->dir.w ? 'T' : 'F',
-		cube->dir.s ? 'T' : 'F',
-		cube->dir.a ? 'T' : 'F',
-		cube->dir.d ? 'T' : 'F');
 	if ((cube->dir.w && cube->dir.s) || (cube->dir.a && cube->dir.d))
 		return (0);
 	if (cube->dir.w)
-		cube->map.p_posx--;
+		cube->player.p_x--;
 	if (cube->dir.s)
-		cube->map.p_posx++;
+		cube->player.p_x++;
 	if (cube->dir.a)
-		cube->map.p_posy--;
+		cube->player.p_y--;
 	if (cube->dir.d)
-		cube->map.p_posy++;
+		cube->player.p_y++;
 	if (cube->dir.left)
-		cube->map.p_posy += ;
+		cube->player.p_direction -= 5 * (PIE / 180);
 	if (cube->dir.right)
-		cube->map.p_posy ;
+		cube->player.p_direction += 5 * (PIE / 180);
 	draw_map(cube);
 	return (0);
 }
