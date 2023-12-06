@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:42:29 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/06 14:48:56 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:14:11 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,21 +137,25 @@ char	*get_pl(t_cub3d *cub3d, int c)
 	if (ft_strchr(cub3d->map.points[c], 'N') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'N');
+		cub3d->player.p_direction = 0;
 		counter++;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'S') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'S');
+		cub3d->player.p_direction = 180;
 		counter++;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'E') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'E');
+		cub3d->player.p_direction = 90;
 		counter++;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'W') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'W');
+		cub3d->player.p_direction = 270;
 		counter++;
 	}
 	if (counter > 1 || (counter == 1 && (ft_strlen(str) != ft_strlen(ft_strrchr(str, str[0])))))
@@ -287,6 +291,8 @@ void	openmap(t_cub3d *cub3d, char *argv[])
 	cub3d->map.file_map = ft_split(readfile(fd), '\n');
 	texture_parse(cub3d);
 	struck_check(cub3d);
+	cub3d->player.p_x = cub3d->map.p_colom * 64 + 32;
+	cub3d->player.p_y = cub3d->map.p_row * 64 + 32;
 }
 
 int	main(int argc, char *argv[])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/06 14:59:42 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:05:36 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,21 @@ typedef struct map {
 	int		c;
 }		t_map;
 
+typedef struct player {
+	int	p_direction;
+	int	p_y;
+	int	p_x;
+}		t_player;
+
+
 typedef struct cub3d {
-	int		width;
-	int		height;
-	void	*mlx;
-	void	*mlx_window;
-	t_data	img;
-	t_map	map;
+	int			width;
+	int			height;
+	void		*mlx;
+	void		*mlx_window;
+	t_data		img;
+	t_map		map;
+	t_player	player;
 }		t_cub3d;
 
 typedef struct point {
