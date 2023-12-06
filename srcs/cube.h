@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/05 16:18:26 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:59:42 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct map {
 	char	*t_s;
 	char	*t_e;
 	char	*t_w;
-	char	NEWS;
+	char	p_init;
 	int		p_row;
 	int		p_colom;
 	int		f;
@@ -87,6 +87,11 @@ typedef struct cub3d {
 	t_data	img;
 	t_map	map;
 }		t_cub3d;
+
+typedef struct point {
+	int	x;
+	int	y;
+}		t_point;
 
 //------------DDA.c------------//
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

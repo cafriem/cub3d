@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:42:29 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/05 16:29:04 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:48:56 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void	player_info(t_cub3d *cub3d)
 			|| ft_strchr(cub3d->map.points[c], 'E') != NULL || ft_strchr(cub3d->map.points[c], 'W') != NULL)
 		{
 			str = get_pl(cub3d, c);
-			cub3d->map.NEWS = str[0];
+			cub3d->map.p_init = str[0];
 			cub3d->map.p_row = c;
 			cub3d->map.p_colom = cub3d->map.width - ft_strlen(str);
 			leter_count++;
@@ -272,7 +272,7 @@ void	struck_check(t_cub3d *cub3d)
 	printf("WE texture = %s\n", cub3d->map.t_w);
 	printf("F = %d\n", cub3d->map.f);
 	printf("C = %d\n", cub3d->map.c);
-	printf("player facing = %c\n", cub3d->map.NEWS);
+	printf("player facing = %c\n", cub3d->map.p_init);
 	printf("player location = %d, %d\n", cub3d->map.p_row, cub3d->map.p_colom);
 	print_map(cub3d);
 }
