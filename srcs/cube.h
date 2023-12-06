@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/06 18:13:37 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:32:18 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,21 @@ typedef struct directions {
 	bool	d;
 }		t_dir;
 
+typedef struct player {
+	int	p_direction;
+	int	p_y;
+	int	p_x;
+}		t_player;
+
+
 typedef struct cub3d {
-	int		width;
-	int		height;
-	void	*mlx;
-	void	*mlx_window;
-	t_data	img;
-	t_map	map;
+	int			width;
+	int			height;
+	void		*mlx;
+	void		*mlx_window;
+	t_data		img;
+	t_map		map;
+	t_player	player;
 	t_dir	dir;
 }		t_cub3d;
 
