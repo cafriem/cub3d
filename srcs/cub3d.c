@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/06 18:31:40 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:51:38 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,6 +319,8 @@ void	set_player_position(t_cub3d *cube)
 	cube->dir.s = false;
 	cube->dir.a = false;
 	cube->dir.d = false;
+	cube->dir.left = false;
+	cube->dir.right = false;
 }
 
 

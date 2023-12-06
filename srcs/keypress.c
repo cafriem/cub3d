@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/06 18:23:58 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:54:19 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	move(t_cub3d *cube)
 		cube->map.p_posy--;
 	if (cube->dir.d)
 		cube->map.p_posy++;
+	if (cube->dir.left)
+		cube->map.p_posy += ;
+	if (cube->dir.right)
+		cube->map.p_posy ;
 	draw_map(cube);
 	return (0);
 }
@@ -43,6 +47,10 @@ int	keydown(int keycode, t_cub3d *cube)
 		cube->dir.s = true;
 	else if (keycode == D)
 		cube->dir.d = true;
+	else if (keycode == LEFT)
+		cube->dir.left = true;
+	else if (keycode == RIGHT)
+		cube->dir.right = true;
 	move(cube);
 	return (0);
 }
@@ -59,6 +67,10 @@ int	keyup(int keycode, t_cub3d *cube)
 		cube->dir.s = false;
 	else if (keycode == D)
 		cube->dir.d = false;
+	else if (keycode == LEFT)
+		cube->dir.left = false;
+	else if (keycode == RIGHT)
+		cube->dir.right = false;
 	move(cube);
 	return (0);
 }
