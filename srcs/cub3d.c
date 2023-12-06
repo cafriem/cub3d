@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 16:42:29 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/06 18:14:11 by cafriem          ###   ########.fr       */
+/*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
+/*   Updated: 2023/12/06 18:31:40 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,9 +295,35 @@ void	openmap(t_cub3d *cub3d, char *argv[])
 	cub3d->player.p_y = cub3d->map.p_row * 64 + 32;
 }
 
+void	set_player_position(t_cub3d *cube)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (cube->map.points[++i])
+	{
+		j = -1;
+		while (cube->map.points[i][++j])
+		{
+			if (cube->map.points[i][j] != '0'
+				&& cube->map.points[i][j] != ' '
+				&& cube->map.points[i][j] != '1')
+			{
+				cube->map.p_posx = (16 * (i + (i + 1))) / 2;
+				cube->map.p_posy = (16 * (j + (j + 1))) / 2;
+			}
+		}
+	}
+	cube->dir.w = false;
+	cube->dir.s = false;
+	cube->dir.a = false;
+	cube->dir.d = false;
+}
+
+
 int	main(int argc, char *argv[])
 {
-	int		i;
 	t_cub3d	cube;
 
 	if (argc != 2)
@@ -306,12 +332,11 @@ int	main(int argc, char *argv[])
 		exit(1);
 	}
 	openmap(&cube, argv);
+	set_player_position(&cube);
 	create_map(&cube);
-	i = 0;
-	while (cube.map.points[i])
-		printf("%s\n", cube.map.points[i++]);
 	mlx_hook(cube.mlx_window, 17, 0, close_x, &cube);
-	mlx_hook(cube.mlx_window, 2, (1L << 0), close_esc, &cube);
+	mlx_hook(cube.mlx_window, 2, (1L << 0), keydown, &cube);
+	mlx_hook(cube.mlx_window, 3, (1L << 1), keyup, &cube);
 	mlx_loop(cube.mlx);
 }
 

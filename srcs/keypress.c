@@ -3,12 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/16 10:52:21 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/06 18:23:58 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "cube.h"
+
+int	move(t_cub3d *cube)
+{
+	printf("W: %c, S: %c, A: %c, D: %c\n", cube->dir.w ? 'T' : 'F',
+		cube->dir.s ? 'T' : 'F',
+		cube->dir.a ? 'T' : 'F',
+		cube->dir.d ? 'T' : 'F');
+	if ((cube->dir.w && cube->dir.s) || (cube->dir.a && cube->dir.d))
+		return (0);
+	if (cube->dir.w)
+		cube->map.p_posx--;
+	if (cube->dir.s)
+		cube->map.p_posx++;
+	if (cube->dir.a)
+		cube->map.p_posy--;
+	if (cube->dir.d)
+		cube->map.p_posy++;
+	draw_map(cube);
+	return (0);
+}
+
+int	keydown(int keycode, t_cub3d *cube)
+{
+	printf("%d\n", keycode);
+	if (keycode == W)
+		cube->dir.w = true;
+	else if (keycode == A)
+		cube->dir.a = true;
+	else if (keycode == S)
+		cube->dir.s = true;
+	else if (keycode == D)
+		cube->dir.d = true;
+	move(cube);
+	return (0);
+}
+
+int	keyup(int keycode, t_cub3d *cube)
+{
+	if (keycode == ESC)
+		return (close_esc(keycode, cube));
+	else if (keycode == W)
+		cube->dir.w = false;
+	else if (keycode == A)
+		cube->dir.a = false;
+	else if (keycode == S)
+		cube->dir.s = false;
+	else if (keycode == D)
+		cube->dir.d = false;
+	move(cube);
+	return (0);
+}
 
 // int	key_press1(int keypress, t_data *img)
 // {
