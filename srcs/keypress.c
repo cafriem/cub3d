@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/06 18:23:58 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:41:53 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	move(t_cub3d *cube)
 	if ((cube->dir.w && cube->dir.s) || (cube->dir.a && cube->dir.d))
 		return (0);
 	if (cube->dir.w)
-		cube->map.p_posx--;
+		cube->player.p_x--;
 	if (cube->dir.s)
-		cube->map.p_posx++;
+		cube->player.p_x++;
 	if (cube->dir.a)
-		cube->map.p_posy--;
+		cube->player.p_y--;
 	if (cube->dir.d)
-		cube->map.p_posy++;
+		cube->player.p_y++;
 	draw_map(cube);
 	return (0);
 }

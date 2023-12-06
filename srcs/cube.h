@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/06 18:32:18 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:39:50 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,8 @@ typedef struct map {
 	char	*t_s;
 	char	*t_e;
 	char	*t_w;
-	char	p_init;
 	int		p_row;
 	int		p_colom;
-	int		p_posx;
-	int		p_posy;
 	int		f;
 	int		c;
 }		t_map;
@@ -122,7 +119,7 @@ typedef struct cub3d {
 	t_data		img;
 	t_map		map;
 	t_player	player;
-	t_dir	dir;
+	t_dir		dir;
 }		t_cub3d;
 
 //------------DDA.c------------//
