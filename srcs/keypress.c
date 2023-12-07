@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/07 21:17:28 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/07 21:20:50 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,17 +210,3 @@ int	keyup(int keycode, t_cub3d *cube)
 // 		legends1(img);
 // }
 
-	printf("player pos: %f, %f\n", cube3d->player.p_x, cube3d->player.p_y);
-	pixel_put(&cube3d->img, cube3d->player.p_y - 1, cube3d->player.p_x, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y, cube3d->player.p_x - 1, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y - 1, cube3d->player.p_x - 1, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y + 1, cube3d->player.p_x - 1, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y - 1, cube3d->player.p_x + 1, 0x00FF0000);
-
-	pixel_put(&cube3d->img, cube3d->player.p_y, cube3d->player.p_x, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y + 1, cube3d->player.p_x, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y, cube3d->player.p_x + 1, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y + 1, cube3d->player.p_x + 1, 0x00FF0000);
-	cube3d->player.p_dx += cube3d->player.p_x;
-	cube3d->player.p_dy += cube3d->player.p_y;
-	draw_angle(cube3d);
