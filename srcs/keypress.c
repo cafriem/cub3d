@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/06 19:05:17 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/07 14:30:26 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	move(t_cub3d *cube)
 {
-	if ((cube->dir.w && cube->dir.s) || (cube->dir.a && cube->dir.d))
-		return (0);
 	if (cube->dir.w)
 		cube->player.p_x--;
 	if (cube->dir.s)
@@ -25,16 +23,16 @@ int	move(t_cub3d *cube)
 	if (cube->dir.d)
 		cube->player.p_y++;
 	if (cube->dir.left)
-		cube->player.p_direction -= 5 * (PIE / 180);
+		cube->player.p_direction -= 5;
 	if (cube->dir.right)
-		cube->player.p_direction += 5 * (PIE / 180);
+		cube->player.p_direction += 5;
 	draw_map(cube);
 	return (0);
 }
 
 int	keydown(int keycode, t_cub3d *cube)
 {
-	printf("%d\n", keycode);
+	printf("keydown: %d\n", keycode);
 	if (keycode == W)
 		cube->dir.w = true;
 	else if (keycode == A)
@@ -53,6 +51,7 @@ int	keydown(int keycode, t_cub3d *cube)
 
 int	keyup(int keycode, t_cub3d *cube)
 {
+	printf("keyup: %d\n", keycode);
 	if (keycode == ESC)
 		return (close_esc(keycode, cube));
 	else if (keycode == W)

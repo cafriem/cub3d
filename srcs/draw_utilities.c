@@ -38,65 +38,65 @@ void	dda(t_point x1, t_point x2, t_cub3d *cube, int color)
 			color);
 }
 
-void	loop_2(t_big *big)
-{
-	int		i;
-	int		j;
-	t_point	hold;
+// void	loop_2(t_big *big)
+// {
+// 	int		i;
+// 	int		j;
+// 	t_point	hold;
 
-	j = -1;
-	while (++j < big->array.y)
-	{
-		i = -1;
-		while (++i < big->array.x)
-		{
-			angle_z(j * big->point.size, i * big->point.size, big);
-			angle_x(j * big->point.size, i * big->point.size, big);
-			angle_y(big);
-			big->point.x += (big->img.x);
-			big->point.y += (big->img.y);
-			if (i > 0)
-				dda(hold, big->point, big, set_color(i, j, big));
-			hold.x = big->point.x;
-			hold.y = big->point.y;
-		}
-	}
-}
+// 	j = -1;
+// 	while (++j < big->array.y)
+// 	{
+// 		i = -1;
+// 		while (++i < big->array.x)
+// 		{
+// 			angle_z(j * big->point.size, i * big->point.size, big);
+// 			angle_x(j * big->point.size, i * big->point.size, big);
+// 			angle_y(big);
+// 			big->point.x += (big->img.x);
+// 			big->point.y += (big->img.y);
+// 			if (i > 0)
+// 				dda(hold, big->point, big, set_color(i, j, big));
+// 			hold.x = big->point.x;
+// 			hold.y = big->point.y;
+// 		}
+// 	}
+// }
 
-void	write_to_img(t_big *big)
-{
-	int		i;
-	int		j;
-	t_point	hold;
+// void	write_to_img(t_big *big)
+// {
+// 	int		i;
+// 	int		j;
+// 	t_point	hold;
 
-	i = -1;
-	while (++i < big->array.x)
-	{
-		j = -1;
-		while (++j < big->array.y)
-		{
-			angle_z(j * big->point.size, i * big->point.size, big);
-			angle_x(j * big->point.size, i * big->point.size, big);
-			angle_y(big);
-			big->point.x += (big->img.x);
-			big->point.y += (big->img.y);
-			if (j > 0)
-				dda(hold, big->point, big, set_color(i, j, big));
-			hold.x = big->point.x;
-			hold.y = big->point.y;
-		}
-	}
-	loop_2(big);
-}
+// 	i = -1;
+// 	while (++i < big->array.x)
+// 	{
+// 		j = -1;
+// 		while (++j < big->array.y)
+// 		{
+// 			angle_z(j * big->point.size, i * big->point.size, big);
+// 			angle_x(j * big->point.size, i * big->point.size, big);
+// 			angle_y(big);
+// 			big->point.x += (big->img.x);
+// 			big->point.y += (big->img.y);
+// 			if (j > 0)
+// 				dda(hold, big->point, big, set_color(i, j, big));
+// 			hold.x = big->point.x;
+// 			hold.y = big->point.y;
+// 		}
+// 	}
+// 	loop_2(big);
+// }
 
-int	str_color(char *str, t_big *big, int n, int j)
-{
-	int	i;
+// int	str_color(char *str, t_big *big, int n, int j)
+// {
+// 	int	i;
 
-	i = 0;
-	big->array.colors[n][j - 1] = ft_atohex(&str[i + 1]);
-	i += 3;
-	while (str[i] && (ft_isdigit(str[i]) || ishex(str[i])))
-		i++;
-	return (i);
-}
+// 	i = 0;
+// 	big->array.colors[n][j - 1] = ft_atohex(&str[i + 1]);
+// 	i += 3;
+// 	while (str[i] && (ft_isdigit(str[i]) || ishex(str[i])))
+// 		i++;
+// 	return (i);
+// }

@@ -6,7 +6,7 @@
 #    By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/02 22:13:13 by jadithya          #+#    #+#              #
-#    Updated: 2023/12/06 15:35:42 by jadithya         ###   ########.fr        #
+#    Updated: 2023/12/07 11:40:05 by jadithya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS = $(SRCDIR)/cub3d.c \
 		$(SRCDIR)/error.c \
 		$(SRCDIR)/map.c \
 		$(SRCDIR)/window_management.c \
+		$(SRCDIR)/draw_utilities.c \
 
 CC = cc
 
