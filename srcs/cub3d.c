@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/06 18:58:09 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/07 14:02:59 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void	player_info(t_cub3d *cub3d)
 		{
 			str = get_pl(cub3d, c);
 			cub3d->map.p_row = c;
-			cub3d->map.p_colom = cub3d->map.width - ft_strlen(str);
+			cub3d->map.p_colom = ft_strlen(cub3d->map.points[c]) - ft_strlen(str);
 			leter_count++;
 		}
 		c++;
@@ -290,8 +290,8 @@ void	openmap(t_cub3d *cub3d, char *argv[])
 	cub3d->map.file_map = ft_split(readfile(fd), '\n');
 	texture_parse(cub3d);
 	struck_check(cub3d);
-	cub3d->player.p_x = cub3d->map.p_colom * 64 + 32;
-	cub3d->player.p_y = cub3d->map.p_row * 64 + 32;
+	cub3d->player.p_y = cub3d->map.p_colom * 64 + 32;
+	cub3d->player.p_x = cub3d->map.p_row * 64 + 32;
 }
 
 void	set_player_position(t_cub3d *cube)
@@ -309,8 +309,8 @@ void	set_player_position(t_cub3d *cube)
 				&& cube->map.points[i][j] != ' '
 				&& cube->map.points[i][j] != '1')
 			{
-				cube->player.p_x = (16 * (i + (i + 1))) / 2;
-				cube->player.p_y = (16 * (j + (j + 1))) / 2;
+				// cube->player.p_x = (64 * (i + (i + 1))) / 2;
+				// cube->player.p_y = (64 * (j + (j + 1))) / 2;
 			}
 		}
 	}
