@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/07 13:39:02 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:04:50 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,26 +67,35 @@ void	draw_player(t_cub3d *cube)
 	dda(x1, x2, cube, 0x00FF0000);
 }
 
-// void	draw_rays(t_cub3d *cube)
-// {
-// 	int	depth;
-// 	int	ray_y;
-// 	int	ray_x;
-// 	int	x_off;
-// 	int	y_off;
+void	draw_rays(t_cub3d *cube)
+{
+	int		depth;
+	int		ray_y;
+	int		ray_x;
+	int		x_off;
+	int		y_off;
+	t_point	player;
+	t_point	rayend;
 
+	depth = 0;
+	ray_y = (cube->player.p_y / 64);
+	ray_x = ((cube->player.p_y / 64 - ray_y)
+			* (-1 / tan(cube->player.p_direction))) + cube->player.p_x / 64;
+	y_off = -64;
+	x_off = -y_off * (-1 / tan(cube->player.p_direction));
+	(void) x_off;
+	(void) depth;
+	// while (depth < 8)
+	// {
 
-// 	depth = 0;
-// 	ray_y = (cube->player.p_y / 16) * 16;
-// 	ray_x = ((cube->player.p_y - ray_y)
-// 			* (-1 / tan(cube->player.p_direction))) + cube->player.p_x;
-// 	y_off = -64;
-// 	x_off = -y_off * (-1 / tan(cube->player.p_direction));
-// 	while (depth < 8)
-// 	{
-
-// 	}
-// }
+	// }
+	player.x = cube->player.p_y;
+	player.y = cube->player.p_x;
+	rayend.x = ray_y;
+	rayend.y = ray_x;
+	printf("raypoints: %d, %d\n", rayend.x, rayend.y);
+	dda(player, rayend, cube, 0x000000FF);
+}
 
 void	draw_map(t_cub3d *cube)
 {
@@ -110,6 +119,7 @@ void	draw_map(t_cub3d *cube)
 	}
 	printf("max pos: %d, %d\n", i * 16, j * 16);
 	draw_player(cube);
+	draw_rays(cube);
 	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img.img, 0, 0);
 	mlx_destroy_image(cube->mlx, cube->img.img);
 }
