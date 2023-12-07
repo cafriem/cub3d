@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/07 21:19:26 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/07 21:58:35 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,7 +277,7 @@ void	struck_check(t_cub3d *cub3d)
 	printf("C = %d\n", cub3d->map.c);
 	printf("player facing = %f\n", cub3d->player.p_angle);
 	printf("player location = %d, %d\n", cub3d->map.p_row, cub3d->map.p_colom);
-	print_map(cub3d);
+	// print_map(cub3d);
 }
 
 void	openmap(t_cub3d *cub3d, char *argv[])
@@ -292,6 +292,8 @@ void	openmap(t_cub3d *cub3d, char *argv[])
 	struck_check(cub3d);
 	cub3d->player.p_x = cub3d->map.p_colom * 64 + 32;
 	cub3d->player.p_y = cub3d->map.p_row * 64 + 32;
+	cub3d->player.p_dx = cos(cub3d->player.p_angle) * 24;
+	cub3d->player.p_dy = sin(cub3d->player.p_angle) * 24;
 	cub3d->player.p_angle = 0;
 }
 

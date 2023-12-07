@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/07 21:20:50 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/07 22:01:57 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	move(t_cub3d *cube)
 	if ((cube->dir.w && cube->dir.s) || (cube->dir.a && cube->dir.d))
 		return (0);
 	if (cube->dir.left)
-		cube->player.p_angle += 0.1;
-	if (cube->dir.right)
 		cube->player.p_angle -= 0.1;
-	cube->player.p_dx = cos(cube->player.p_angle) * 8;
-	cube->player.p_dy = sin(cube->player.p_angle) * 8;
+	if (cube->dir.right)
+		cube->player.p_angle += 0.1;
+	cube->player.p_dx = cos(cube->player.p_angle) * 24;
+	cube->player.p_dy = sin(cube->player.p_angle) * 24;
 	if (cube->dir.w)
 	{
 		cube->player.p_x += 5 * (cos(cube->player.p_angle));
@@ -34,13 +34,13 @@ int	move(t_cub3d *cube)
 	}
 	if (cube->dir.a)
 	{
-		cube->player.p_x -= 5 * (sin(cube->player.p_angle));
-		cube->player.p_y += 5 * (cos(cube->player.p_angle));
+		cube->player.p_x += 5 * (sin(cube->player.p_angle));
+		cube->player.p_y -= 5 * (cos(cube->player.p_angle));
 	}
 	if (cube->dir.d)
 	{
-		cube->player.p_x += 5 * (sin(cube->player.p_angle));
-		cube->player.p_y -= 5 * (cos(cube->player.p_angle));
+		cube->player.p_x -= 5 * (sin(cube->player.p_angle));
+		cube->player.p_y += 5 * (cos(cube->player.p_angle));
 	}
 	draw_map(cube);
 	return (0);
