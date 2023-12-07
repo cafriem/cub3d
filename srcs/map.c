@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/07 21:20:59 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/07 21:32:43 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,6 @@ double	deg2rad(double degrees)
 	return (degrees * (PIE / 180.0));
 }
 
-double	deg2rad(double degrees)
-{
-	return (degrees * (PIE / 180.0));
-}
-
 void	draw_angle(t_cub3d *cube3d)
 {
 	float	dy;
@@ -65,7 +60,7 @@ void	draw_angle(t_cub3d *cube3d)
 	dy /= c;
 	while (i <= c)
 	{
-		pixel_put(&cube3d->img, cube3d->player.p_dy, cube3d->player.p_dx, 0x00FF0000);
+		pixel_put(&cube3d->img, cube3d->player.p_dy / 4, cube3d->player.p_dx / 4, 0x00FF0000);
 		cube3d->player.p_dy += dy;
 		cube3d->player.p_dx += dx;
 		i++;
@@ -74,17 +69,17 @@ void	draw_angle(t_cub3d *cube3d)
 
 void	draw_player(t_cub3d *cube3d)
 {
-	printf("player pos: %f, %f\n", cube3d->player.p_x, cube3d->player.p_y);
-	pixel_put(&cube3d->img, cube3d->player.p_y - 1, cube3d->player.p_x, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y, cube3d->player.p_x - 1, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y - 1, cube3d->player.p_x - 1, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y + 1, cube3d->player.p_x - 1, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y - 1, cube3d->player.p_x + 1, 0x00FF0000);
+	printf("player pos: %f, %f\n", cube3d->player.p_x / 4, cube3d->player.p_y / 4);
+	pixel_put(&cube3d->img, cube3d->player.p_y / 4 - 1, cube3d->player.p_x / 4, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y / 4, cube3d->player.p_x / 4 - 1, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y / 4 - 1, cube3d->player.p_x / 4 - 1, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y / 4 + 1, cube3d->player.p_x / 4 - 1, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y / 4 - 1, cube3d->player.p_x / 4 + 1, 0x00FF0000);
 
-	pixel_put(&cube3d->img, cube3d->player.p_y, cube3d->player.p_x, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y + 1, cube3d->player.p_x, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y, cube3d->player.p_x + 1, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y + 1, cube3d->player.p_x + 1, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y / 4, cube3d->player.p_x / 4, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y / 4 + 1, cube3d->player.p_x / 4, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y / 4, cube3d->player.p_x / 4 + 1, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y / 4 + 1, cube3d->player.p_x / 4 + 1, 0x00FF0000);
 	cube3d->player.p_dx += cube3d->player.p_x;
 	cube3d->player.p_dy += cube3d->player.p_y;
 	draw_angle(cube3d);

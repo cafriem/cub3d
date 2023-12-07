@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/07 21:11:56 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/07 21:26:39 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,33 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
-# include "../mlx-linux/mlx.h"
 
 # define PIE 3.14
 # define COS046 0.89438856137
 # define SIN046 0.4472908464
 // # ifdef OSX
-#  define ESC 53
-#  define PLUS 24
-#  define MINUS 27
-#  define W 13
-#  define A 0
-#  define S 1
-#  define D 2
-# define LEFT 123
-# define RIGHT 124
-# define DOWN 125
-# define UP 126
-# define R 15
-# define F 3
-# define X 7
-# define Q 12
-# define E 14
-# define H 4
-# define K 40
-# define I 34
-# define J 38
-# define L 37
-# define C 8
+// #  define ESC 53
+// #  define PLUS 24
+// #  define MINUS 27
+// #  define W 13
+// #  define A 0
+// #  define S 1
+// #  define D 2
+// # define LEFT 123
+// # define RIGHT 124
+// # define DOWN 125
+// # define UP 126
+// # define R 15
+// # define F 3
+// # define X 7
+// # define Q 12
+// # define E 14
+// # define H 4
+// # define K 40
+// # define I 34
+// # define J 38
+// # define L 37
+// # define C 8
 // # elif LINUX
 # include "../mlx-linux/mlx.h"
 # define ESC 65307
