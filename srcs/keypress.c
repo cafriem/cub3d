@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/07 21:08:04 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/07 21:17:28 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	move(t_cub3d *cube)
 
 int	keydown(int keycode, t_cub3d *cube)
 {
-	printf("%d\n", keycode);
+	printf("keydown: %d\n", keycode);
 	if (keycode == W)
 		cube->dir.w = true;
 	else if (keycode == A)
@@ -67,6 +67,7 @@ int	keydown(int keycode, t_cub3d *cube)
 
 int	keyup(int keycode, t_cub3d *cube)
 {
+	printf("keyup: %d\n", keycode);
 	if (keycode == ESC)
 		return (close_esc(keycode, cube));
 	else if (keycode == W)
@@ -208,3 +209,18 @@ int	keyup(int keycode, t_cub3d *cube)
 // 	if (img->help % 2 == 0)
 // 		legends1(img);
 // }
+
+	printf("player pos: %f, %f\n", cube3d->player.p_x, cube3d->player.p_y);
+	pixel_put(&cube3d->img, cube3d->player.p_y - 1, cube3d->player.p_x, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y, cube3d->player.p_x - 1, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y - 1, cube3d->player.p_x - 1, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y + 1, cube3d->player.p_x - 1, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y - 1, cube3d->player.p_x + 1, 0x00FF0000);
+
+	pixel_put(&cube3d->img, cube3d->player.p_y, cube3d->player.p_x, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y + 1, cube3d->player.p_x, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y, cube3d->player.p_x + 1, 0x00FF0000);
+	pixel_put(&cube3d->img, cube3d->player.p_y + 1, cube3d->player.p_x + 1, 0x00FF0000);
+	cube3d->player.p_dx += cube3d->player.p_x;
+	cube3d->player.p_dy += cube3d->player.p_y;
+	draw_angle(cube3d);

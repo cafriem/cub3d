@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/07 19:18:27 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/07 21:19:26 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void	player_info(t_cub3d *cub3d)
 		{
 			str = get_pl(cub3d, c);
 			cub3d->map.p_row = c;
-			cub3d->map.p_colom = cub3d->map.width - ft_strlen(str);
+			cub3d->map.p_colom = ft_strlen(cub3d->map.points[c]) - ft_strlen(str);
 			leter_count++;
 		}
 		c++;
@@ -310,8 +310,8 @@ void	set_player_position(t_cub3d *cube)
 				&& cube->map.points[i][j] != ' '
 				&& cube->map.points[i][j] != '1')
 			{
-				cube->player.p_x = (16 * (i + (i + 1))) / 2;
-				cube->player.p_y = (16 * (j + (j + 1))) / 2;
+				// cube->player.p_x = (64 * (i + (i + 1))) / 2;
+				// cube->player.p_y = (64 * (j + (j + 1))) / 2;
 			}
 		}
 	}

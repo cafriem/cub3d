@@ -6,13 +6,13 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/07 20:40:33 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/07 21:18:10 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	draw_square(int i, int j, t_cub3d *cube)
+void	draw_square(int i, int j, t_cub3d *cube, int color)
 {
 	int	a;
 	int	b;
@@ -22,16 +22,29 @@ void	draw_square(int i, int j, t_cub3d *cube)
 	b = (j + 1) * 16;
 	i *= 16;
 	hold = j * 16;
-	while (i < a - 1)
+	while (i < a)
 	{
 		j = hold;
-		while (j < b - 1)
+		while (j < b)
 		{
-			pixel_put(&cube->img, j, i, 0x00FFFFFF);
+			if (i == a - 1 || j == b - 1)
+				pixel_put(&cube->img, j, i, 0x00DDDDDD);
+			else
+				pixel_put(&cube->img, j, i, color);
 			j++;
 		}
 		i++;
 	}
+}
+
+double	deg2rad(double degrees)
+{
+	return (degrees * (PIE / 180.0));
+}
+
+double	deg2rad(double degrees)
+{
+	return (degrees * (PIE / 180.0));
 }
 
 void	draw_angle(t_cub3d *cube3d)
@@ -61,21 +74,49 @@ void	draw_angle(t_cub3d *cube3d)
 
 void	draw_player(t_cub3d *cube3d)
 {
-	printf("player pos: %f, %f\n", cube3d->player.p_x, cube3d->player.p_y);
-	pixel_put(&cube3d->img, cube3d->player.p_y - 1, cube3d->player.p_x, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y, cube3d->player.p_x - 1, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y - 1, cube3d->player.p_x - 1, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y + 1, cube3d->player.p_x - 1, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y - 1, cube3d->player.p_x + 1, 0x00FF0000);
+	int		i;
+	t_point	x1;
+	t_point	x2;
 
-	pixel_put(&cube3d->img, cube3d->player.p_y, cube3d->player.p_x, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y + 1, cube3d->player.p_x, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y, cube3d->player.p_x + 1, 0x00FF0000);
-	pixel_put(&cube3d->img, cube3d->player.p_y + 1, cube3d->player.p_x + 1, 0x00FF0000);
-	cube3d->player.p_dx += cube3d->player.p_x;
-	cube3d->player.p_dy += cube3d->player.p_y;
-	draw_angle(cube3d);
+	printf("player pos: %d, %d\nplayer dir: %d\n", cube->player.p_x / 4,
+		cube->player.p_y / 4, cube->player.p_direction);
+	i = -1;
+	while (i < 2)
+	{
+		x1.x = cube->player.p_y / 4 + i;
+		x1.y = cube->player.p_x / 4 - 1;
+		x2.x = cube->player.p_y / 4 + i;
+		x2.y = cube->player.p_x / 4 + 1;
+		dda(x1, x2, cube, 0x00FF0000);
+		i++;
+	}
+	x1.x = cube->player.p_y / 4;
+	x1.y = cube->player.p_x / 4;
+	x2.x = cube->player.p_y / 4 + 10 * cos(deg2rad(cube->player.p_direction - 90));
+	x2.y = cube->player.p_x / 4 + 10 * sin(deg2rad(cube->player.p_direction - 90));
+	dda(x1, x2, cube, 0x00FF0000);
 }
+
+// void	draw_rays(t_cub3d *cube)
+// {
+// 	int	depth;
+// 	int	ray_y;
+// 	int	ray_x;
+// 	int	x_off;
+// 	int	y_off;
+
+
+// 	depth = 0;
+// 	ray_y = (cube->player.p_y / 16) * 16;
+// 	ray_x = ((cube->player.p_y - ray_y)
+// 			* (-1 / tan(cube->player.p_direction))) + cube->player.p_x;
+// 	y_off = -64;
+// 	x_off = -y_off * (-1 / tan(cube->player.p_direction));
+// 	while (depth < 8)
+// 	{
+
+// 	}
+// }
 
 void	draw_map(t_cub3d *cube)
 {
@@ -90,8 +131,12 @@ void	draw_map(t_cub3d *cube)
 	{
 		j = -1;
 		while (cube->map.points[i][++j])
+		{
 			if (cube->map.points[i][j] == '1')
-				draw_square(i, j, cube);
+				draw_square(i, j, cube, 0x00FFFFFF);
+			// else
+			// 	draw_square(i, j, cube, 0x00000000);
+		}
 	}
 	printf("max pos: %d, %d\n", i * 16, j * 16);
 	draw_player(cube);
