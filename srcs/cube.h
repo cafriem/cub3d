@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/06 19:02:35 by cafriem          ###   ########.fr       */
+/*   Updated: 2023/12/07 17:48:45 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,21 @@
 #  define A 0
 #  define S 1
 #  define D 2
-# define LEFT 123
-# define RIGHT 124
-# define DOWN 125
-# define UP 126
-# define R 15
-# define F 3
-# define X 7
-# define Q 12
-# define E 14
-# define H 4
-# define K 40
-# define I 34
-# define J 38
-# define L 37
-# define C 8
+#  define LEFT 123
+#  define RIGHT 124
+#  define DOWN 125
+#  define UP 126
+#  define R 15
+#  define F 3
+#  define X 7
+#  define Q 12
+#  define E 14
+#  define H 4
+#  define K 40
+#  define I 34
+#  define J 38
+#  define L 37
+#  define C 8
 // # elif LINUX
 // # include "../mlx-linux/mlx.h"
 // # define ESC 65307
@@ -97,7 +97,7 @@ typedef struct map {
 	int		c;
 }		t_map;
 
-typedef struct directions {
+typedef struct angles {
 	bool	w;
 	bool	s;
 	bool	a;
@@ -107,11 +107,12 @@ typedef struct directions {
 }		t_dir;
 
 typedef struct player {
-	int	p_direction;
-	int	p_y;
-	int	p_x;
+	float	p_angle;
+	float	p_dy;
+	float	p_dx;
+	float	p_y;
+	float	p_x;
 }		t_player;
-
 
 typedef struct cub3d {
 	int			width;
@@ -126,7 +127,7 @@ typedef struct cub3d {
 
 //------------DDA.c------------//
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	draw_point(t_data img, int linecount, int row);
+void	draw_point(t_cub3d *cube3d);
 //------------key_press.c------------//
 int		key_press1(int keypress, t_cub3d *cub3d);
 void	key_press2(int keypress, t_cub3d *cub3d);
