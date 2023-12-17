@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/07 14:02:59 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:58:35 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,25 +137,25 @@ char	*get_pl(t_cub3d *cub3d, int c)
 	if (ft_strchr(cub3d->map.points[c], 'N') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'N');
-		cub3d->player.p_direction = 0;
+		cub3d->player.p_angle = 0;
 		counter++;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'S') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'S');
-		cub3d->player.p_direction = 180;
+		cub3d->player.p_angle = 0;
 		counter++;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'E') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'E');
-		cub3d->player.p_direction = 90;
+		cub3d->player.p_angle = 0;
 		counter++;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'W') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'W');
-		cub3d->player.p_direction = 270;
+		cub3d->player.p_angle = 0;
 		counter++;
 	}
 	if (counter > 1 || (counter == 1 && (ft_strlen(str) != ft_strlen(ft_strrchr(str, str[0])))))
@@ -275,9 +275,9 @@ void	struck_check(t_cub3d *cub3d)
 	printf("WE texture = %s\n", cub3d->map.t_w);
 	printf("F = %d\n", cub3d->map.f);
 	printf("C = %d\n", cub3d->map.c);
-	printf("player facing = %d\n", cub3d->player.p_direction);
+	printf("player facing = %f\n", cub3d->player.p_angle);
 	printf("player location = %d, %d\n", cub3d->map.p_row, cub3d->map.p_colom);
-	print_map(cub3d);
+	// print_map(cub3d);
 }
 
 void	openmap(t_cub3d *cub3d, char *argv[])
@@ -290,8 +290,11 @@ void	openmap(t_cub3d *cub3d, char *argv[])
 	cub3d->map.file_map = ft_split(readfile(fd), '\n');
 	texture_parse(cub3d);
 	struck_check(cub3d);
-	cub3d->player.p_y = cub3d->map.p_colom * 64 + 32;
-	cub3d->player.p_x = cub3d->map.p_row * 64 + 32;
+	cub3d->player.p_x = cub3d->map.p_colom * 64 + 32;
+	cub3d->player.p_y = cub3d->map.p_row * 64 + 32;
+	cub3d->player.p_dx = cos(cub3d->player.p_angle) * 24;
+	cub3d->player.p_dy = sin(cub3d->player.p_angle) * 24;
+	cub3d->player.p_angle = 0;
 }
 
 void	set_player_position(t_cub3d *cube)

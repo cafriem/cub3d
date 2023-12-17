@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/07 14:05:10 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:26:39 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
-# include "../mlx-linux/mlx.h"
 
 # define PIE 3.14
 # define COS046 0.89438856137
@@ -97,7 +96,7 @@ typedef struct map {
 	int		c;
 }		t_map;
 
-typedef struct directions {
+typedef struct angles {
 	bool	w;
 	bool	s;
 	bool	a;
@@ -107,11 +106,12 @@ typedef struct directions {
 }		t_dir;
 
 typedef struct player {
-	int	p_direction;
-	int	p_y;
-	int	p_x;
+	float	p_angle;
+	float	p_dy;
+	float	p_dx;
+	float	p_y;
+	float	p_x;
 }		t_player;
-
 
 typedef struct cub3d {
 	int			width;
@@ -131,7 +131,7 @@ typedef struct point {
 
 //------------DDA.c------------//
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	draw_point(t_data img, int linecount, int row);
+void	draw_point(t_cub3d *cube3d);
 //------------key_press.c------------//
 int		key_press1(int keypress, t_cub3d *cub3d);
 void	key_press2(int keypress, t_cub3d *cub3d);
