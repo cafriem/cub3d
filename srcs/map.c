@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/17 14:41:43 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:48:19 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	draw_angle(t_cub3d *cube3d)
 
 	dx = (cube3d->player.p_x - cube3d->player.p_dx);
 	dy = (cube3d->player.p_y - cube3d->player.p_dy);
-	printf("issues: %f", cube3d->player.p_x);
-	printf(", %f\n", cube3d->player.p_dx);
+	printf("issues: %f", cube3d->player.p_dx);
+	printf(", %f\n", cube3d->player.p_dy);
 	if (fabs(dx) > fabs(dy))
 		c = fabs(dx);
 	else
@@ -72,7 +72,7 @@ void	draw_angle(t_cub3d *cube3d)
 
 void	draw_player(t_cub3d *cube3d)
 {
-	printf("player pos: %f, %f\n", cube3d->player.p_x / 4, cube3d->player.p_y / 4);
+	printf("player pos: %f, %f, %f\n", cube3d->player.p_x / 4, cube3d->player.p_y / 4, cube3d->player.p_angle);
 	pixel_put(&cube3d->img, cube3d->player.p_x / 4 - 1, cube3d->player.p_y / 4, 0x00FF0000);
 	pixel_put(&cube3d->img, cube3d->player.p_x / 4, cube3d->player.p_y / 4 - 1, 0x00FF0000);
 	pixel_put(&cube3d->img, cube3d->player.p_x / 4 - 1, cube3d->player.p_y / 4 - 1, 0x00FF0000);
@@ -88,10 +88,12 @@ void	draw_player(t_cub3d *cube3d)
 	draw_angle(cube3d);
 }
 
-void	draw_rays(t_cub3d *cube)
-{
-
-}
+//void	draw_rays(t_cub3d *cube)
+//{
+//	float	posX = cube->player.p_x;
+//	float	posY = cube->player.p_y;
+//	float	dirX = cube->player.p_angle;
+//}
 
 void	draw_map(t_cub3d *cube)
 {
