@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/20 18:54:02 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/27 13:38:32 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,8 +292,8 @@ void	openmap(t_cub3d *cub3d, char *argv[])
 	struck_check(cub3d);
 	cub3d->player.p_x = cub3d->map.p_colom * 64 + 32;
 	cub3d->player.p_y = cub3d->map.p_row * 64 + 32;
-	cub3d->player.p_dx = cos(cub3d->player.p_angle) * 64;
-	cub3d->player.p_dy = sin(cub3d->player.p_angle) * 64;
+	cub3d->player.p_dx = cos(cub3d->player.p_angle) * 1;
+	cub3d->player.p_dy = sin(cub3d->player.p_angle) * 1;
 	cub3d->player.p_angle = 0;
 }
 
@@ -341,6 +341,7 @@ int	main(int argc, char *argv[])
 	mlx_hook(cube.mlx_window, 17, 0, close_x, &cube);
 	mlx_hook(cube.mlx_window, 2, (1L << 0), keydown, &cube);
 	mlx_hook(cube.mlx_window, 3, (1L << 1), keyup, &cube);
+	mlx_loop_hook(cube.mlx, move, &cube);
 	mlx_loop(cube.mlx);
 }
 
