@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/27 15:21:19 by jadithya         ###   ########.fr       */
+/*   Updated: 2023/12/28 15:23:25 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ int	move(t_cub3d *cube)
 		cube->player.p_angle -= 1;
 	if (cube->dir.right)
 		cube->player.p_angle += 1;
+	if (cube->player.p_angle < -180)
+		cube->player.p_angle = 179;
+	else if (cube->player.p_angle > 180)
+		cube->player.p_angle = -179;
 	if (!cube->dir.shift)
 	{
 		cube->player.p_dx = cos(deg2rad(cube->player.p_angle)) * 1;
@@ -56,7 +60,7 @@ int	move(t_cub3d *cube)
 
 int	keydown(int keycode, t_cub3d *cube)
 {
-	printf("keydown: %d\n", keycode);
+	// printf("keydown: %d\n", keycode);
 	if (keycode == W)
 		cube->dir.w = true;
 	else if (keycode == A)
@@ -76,7 +80,7 @@ int	keydown(int keycode, t_cub3d *cube)
 
 int	keyup(int keycode, t_cub3d *cube)
 {
-	printf("keyup: %d\n", keycode);
+	// printf("keyup: %d\n", keycode);
 	if (keycode == ESC)
 		return (close_esc(keycode, cube));
 	else if (keycode == W)
