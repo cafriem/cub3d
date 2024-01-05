@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/05 23:52:47 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/06 00:32:06 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define PIE 3.14
 # define COS046 0.89438856137
 # define SIN046 0.4472908464
-# define DOF 20
+# define DOF 50
 // # ifdef OSX
 // # include <mlx.h>
 // # define ESC 53
