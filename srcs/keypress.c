@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/28 15:23:25 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/04 18:05:06 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ int	move(t_cub3d *cube)
 	if ((cube->dir.w && cube->dir.s) || (cube->dir.a && cube->dir.d))
 		return (0);
 	if (cube->dir.left)
-		cube->player.p_angle -= 1;
-	if (cube->dir.right)
 		cube->player.p_angle += 1;
-	if (cube->player.p_angle < -180)
-		cube->player.p_angle = 179;
-	else if (cube->player.p_angle > 180)
-		cube->player.p_angle = -179;
+	if (cube->dir.right)
+		cube->player.p_angle -= 1;
+	if (cube->player.p_angle < 0)
+		cube->player.p_angle = 359.9;
+	else if (cube->player.p_angle >= 360)
+		cube->player.p_angle = 0;
 	if (!cube->dir.shift)
 	{
-		cube->player.p_dx = cos(deg2rad(cube->player.p_angle)) * 1;
+		cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 1;
 		cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 1;
 	}
 	else
 	{
-		cube->player.p_dx = cos(deg2rad(cube->player.p_angle)) * 2;
+		cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 2;
 		cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 2;
 	}
 	if (cube->dir.w)

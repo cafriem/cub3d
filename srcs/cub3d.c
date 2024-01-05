@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/27 15:20:34 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:40:03 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,19 +143,19 @@ char	*get_pl(t_cub3d *cub3d, int c)
 	if (ft_strchr(cub3d->map.points[c], 'S') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'S');
-		cub3d->player.p_angle = 0;
+		cub3d->player.p_angle = 180;
 		counter++;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'E') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'E');
-		cub3d->player.p_angle = 0;
+		cub3d->player.p_angle = 90;
 		counter++;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'W') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'W');
-		cub3d->player.p_angle = 0;
+		cub3d->player.p_angle = 270;
 		counter++;
 	}
 	if (counter > 1 || (counter == 1 && (ft_strlen(str) != ft_strlen(ft_strrchr(str, str[0])))))
@@ -294,7 +294,6 @@ void	openmap(t_cub3d *cub3d, char *argv[])
 	cub3d->player.p_y = cub3d->map.p_row * 64 + 32;
 	cub3d->player.p_dx = cos(cub3d->player.p_angle) * 1;
 	cub3d->player.p_dy = sin(cub3d->player.p_angle) * 1;
-	cub3d->player.p_angle = 0;
 }
 
 void	set_player_position(t_cub3d *cube)

@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/30 14:20:38 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:53:25 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,66 +90,220 @@ void	draw_player(t_cub3d *cube3d)
 
 bool	is_wall(t_cub3d *cube, t_point ray)
 {
-	if (cube->map.points[ray.y / 16][ray.x / 16] == '1')
-		return (true);
+	// return (true);
+	if (cube->player.p_angle <= -135 || cube->player.p_angle >= 135)
+	{
+		if (cube->map.points[(ray.y / 16)][(ray.x / 16)] == '1')
+			return (true);
+	}
+	else if (cube->player.p_angle > -135 && cube->player.p_angle <= -45)
+	{
+		if (cube->map.points[(ray.y / 16)][(ray.x / 16)] == '1')
+			return (true);
+	}
+	else if (cube->player.p_angle > -45 && cube->player.p_angle <= 45)
+	{
+		if (cube->map.points[(ray.y / 16)][(ray.x / 16)] == '1')
+			return (true);
+	}
+	else
+	{
+		if (cube->map.points[(ray.y / 16)][(ray.x / 16)] == '1')
+			return (true);
+	}
 	return (false);
+}
+
+// void	draw_rays(t_cub3d *cube)
+// {
+// 	int		current_col;
+// 	int		current_row;
+// 	t_point	player;
+// 	t_point	ray;
+// 	float	x;
+// 	float	y;
+// 	float	x_o;
+// 	float	y_o;
+
+// 	current_col = cube->player.p_x / 64;
+// 	current_row = cube->player.p_y / 64;
+// 	(void) current_col;
+// 	(void) current_row;
+// 	if (cube->player.p_angle >= -45 && cube->player.p_angle < 45)
+// 	{
+// 		y = (ceil(cube->player.p_x / 64));
+// 		x = (sin(deg2rad(cube->player.p_angle)) * 0.5) + (cube->player.p_y / 64);
+// 		y_o = 64;
+// 		x_o = y_o * tan(deg2rad(cube->player.p_angle));
+// 	}
+// 	else if (cube->player.p_angle >= 45 && cube->player.p_angle < 135)
+// 	{
+// 		x = ceil(cube->player.p_y / 64);
+// 		y = (cos(deg2rad(cube->player.p_angle - 45))) + (cube->player.p_x / 64) - 0.5;
+// 		x_o = 64;
+// 		y_o = x_o * (1 / tan(deg2rad(cube->player.p_angle)));
+// 	}
+// 	else if (cube->player.p_angle >= 135 || cube->player.p_angle < -135)
+// 	{
+// 		y = floor(cube->player.p_x / 64);
+// 		x = (sin(deg2rad(cube->player.p_angle)) * 0.5) + (cube->player.p_y / 64);
+// 		y_o = -64;
+// 		x_o = y_o * tan(deg2rad(cube->player.p_angle));
+// 	}
+// 	else
+// 	{
+// 		x = floor(cube->player.p_y / 64);
+// 		y = (cos(deg2rad(cube->player.p_angle - 45))) + (cube->player.p_x / 64) + 0.5;
+// 		x_o = -64;
+// 		y_o = x_o * (1 / tan(deg2rad(cube->player.p_angle)));
+// 	}
+// 	ray.x = y * 16;
+// 	ray.y = x * 16;
+// 	player.x = cube->player.p_x / 4;
+// 	player.y = cube->player.p_y / 4;
+// 	printf("player: %d, %d   angle: %f\nrayyyy: %d, %d\n", current_col, current_row, cube->player.p_angle, ray.x / 16, ray.y / 16);
+// 	// while (!is_wall(cube, ray))
+// 	// {
+// 	// 	ray.x += (y_o / 4);
+// 	// 	ray.y += (x_o / 4);
+// 	// 	printf("player: %d, %d   angle: %f\nrayyyy: %d, %d\n", current_col, current_row, cube->player.p_angle, ray.x / 16, ray.y / 16);
+// 	// }
+// 	dda(player, ray, cube, 0x00FFFFFF);
+// }
+
+float	dist(t_point player, t_point ray, float angle)
+{
+	(void) angle;
+	printf("angle: %f\n\n", angle);
+	return (sqrt(
+			((ray.x - player.x) * (ray.x - player.x))
+			+ ((ray.y - player.y) * (ray.y - player.y))
+		));
 }
 
 void	draw_rays(t_cub3d *cube)
 {
-	int		current_col;
-	int		current_row;
+	int		rays;
+	int		dof;
+	float	distv;
+	float	disth;
+	t_point	rayh;
+	t_point	rayv;
+	t_point	off;
 	t_point	player;
-	t_point	ray;
-	float	x;
-	float	y;
-	float	x_o;
-	float	y_o;
 
-	current_col = cube->player.p_x / 64;
-	current_row = cube->player.p_y / 64;
-	(void) current_col;
-	(void) current_row;
-	if (cube->player.p_angle >= -45 && cube->player.p_angle < 45)
+	rays = 0;
+	(void) disth;
+	(void) distv;
+	player.x = cube->player.p_x;
+	player.y = cube->player.p_y;
+	while (rays++ < 1)
 	{
-		y = (cube->player.p_x / 64) + 0.5;
-		x = (sin(deg2rad(cube->player.p_angle)) * 0.5) + (cube->player.p_y / 64);
-		y_o = 16;
-		x_o = y_o * tan(deg2rad(cube->player.p_angle));
+		dof = 0;
+		if (cube->player.p_angle > 180)
+		{
+			rayh.y = (((int) cube->player.p_y >> 6) << 6) - 0.0001;
+			rayh.x = (cube->player.p_y - rayh.y) * (1 / tan(deg2rad(cube->player.p_angle))) + cube->player.p_x;
+			off.y = -64;
+			off.x = -off.y * (1 / tan(deg2rad(cube->player.p_angle)));
+		}
+		if ((int) cube->player.p_angle == 0 || (int) cube->player.p_angle == 180)
+		{
+			rayh.x = cube->player.p_x;
+			rayh.y = cube->player.p_y;
+			dof = DOF;
+			disth = 100000;
+		}
+		if (cube->player.p_angle < 180)
+		{
+			rayh.y = (((int) cube->player.p_y >> 6) << 6) + 64;
+			rayh.x = ((cube->player.p_y - rayh.y) * (1 / tan(deg2rad(cube->player.p_angle)))) + cube->player.p_x;
+			off.y = 64;
+			off.x = -off.y * (1 / tan(deg2rad(cube->player.p_angle)));
+		}
+		while (dof < DOF)
+		{
+			disth = 100000;
+			if (rayh.y / 64 < cube->map.height && rayh.y / 64 >= 0
+				&& rayh.x / 64 < cube->map.width && rayh.x / 64 >= 0
+				&& cube->map.points[rayh.y / 64][rayh.x / 64] == '1')
+			{
+				disth = dist(player, rayh, cube->player.p_angle);
+				dof = DOF;
+			}
+			else
+			{
+				rayh.x += off.x;
+				rayh.y += off.y;
+			}
+			dof++;
+		}
+		if (rayh.x <= 0)
+			rayh.x = 0;
+		if (rayh.y <= 0)
+			rayh.y = 0;
+		dof = 0;
+		if (cube->player.p_angle > 90 && cube->player.p_angle < 270)
+		{
+			rayv.x = (((int) cube->player.p_x >> 6) << 6) + 64;
+			rayv.y = ((cube->player.p_x - rayv.x) * (tan(deg2rad(cube->player.p_angle)))) + cube->player.p_y;
+			off.x = 64;
+			off.y = -off.x * (tan(deg2rad(cube->player.p_angle)));
+		}
+		else if ((int) cube->player.p_angle == 90 || (int) cube->player.p_angle == 270)
+		{
+			rayv.x = cube->player.p_x;
+			rayv.y = cube->player.p_y;
+			dof = DOF;
+			distv = 100000;
+		}
+		else
+		{
+			rayv.x = (((int) cube->player.p_x >> 6) << 6) - 0.0001;
+			rayv.y = ((cube->player.p_x - rayv.x) * (tan(deg2rad(cube->player.p_angle)))) + cube->player.p_y;
+			off.x = -64;
+			off.y = -off.x * (tan(deg2rad(cube->player.p_angle)));
+		}
+		while (dof < DOF)
+		{
+			distv = 100000;
+			if (rayv.x / 64 > 0 && rayv.y / 64 > 0
+				&& rayv.y / 64 < cube->map.height
+				&& rayv.x / 64 < cube->map.width
+				&& cube->map.points[rayv.y / 64][rayv.x / 64] == '1')
+			{
+				distv = dist(player, rayv, cube->player.p_angle);
+				dof = DOF;
+			}
+			else
+			{
+				rayv.x += off.x;
+				rayv.y += off.y;
+				// if (rayv.x <= 0)
+				// 	rayv.x = 0;
+				// if (rayv.y <= 0)
+				// 	rayv.y = 0;
+			}
+			dof++;
+		}
+		player.x /= 4;
+		player.y /= 4;
+		rayv.x /= 4;
+		rayv.y /= 4;
+		rayh.x /= 4;
+		rayh.y /= 4;
+		printf("p: %d, %d\nv: %d, %d (%f)\nh: %d, %d (%f)\n%f\n\n", player.x, player.y, rayv.x, rayv.y, distv, rayh.x, rayh.y, disth, cube->player.p_angle);
+		if (distv <= disth)
+		{
+			dda(player, rayv, cube, 0x0055FFFF);
+		}
+		else
+		{
+			dda(player, rayh, cube, 0x0055FFFF);
+		}
 	}
-	else if (cube->player.p_angle >= 45 && cube->player.p_angle < 135)
-	{
-		x = (cube->player.p_y / 64) + 0.5;
-		y = (cos(deg2rad(cube->player.p_angle - 45))) + (cube->player.p_x / 64) - 0.5;
-		x_o = 16;
-		y_o = x_o * (1 / tan(deg2rad(cube->player.p_angle)));
-	}
-	else if (cube->player.p_angle >= 135 || cube->player.p_angle < -135)
-	{
-		y = (cube->player.p_x / 64) - 0.5;
-		x = (sin(deg2rad(cube->player.p_angle)) * 0.5) + (cube->player.p_y / 64);
-		y_o = -16;
-		x_o = y_o * tan(deg2rad(cube->player.p_angle));
-	}
-	else
-	{
-		x = (cube->player.p_y / 64) - 0.5;
-		y = (cos(deg2rad(cube->player.p_angle - 45))) + (cube->player.p_x / 64) + 0.5;
-		x_o = -16;
-		y_o = x_o * (1 / tan(deg2rad(cube->player.p_angle)));
-	}
-	ray.x = y * 16;
-	ray.y = x * 16;
-	player.x = cube->player.p_x / 4;
-	player.y = cube->player.p_y / 4;
-	while (!is_wall(cube, ray))
-	{
-		ray.x += y_o;
-		ray.y += x_o;
-	}
-	dda(player, ray, cube, 0x00FFFFFF);
-	printf("%d - %d : %f\n", (int) (y * 64) / 64, (int) (x * 64) / 64, cube->player.p_angle);
 }
+
 
 void	draw_map(t_cub3d *cube)
 {
