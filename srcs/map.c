@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/06 01:51:26 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:12:51 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,154 +117,182 @@ bool	is_wall(t_cub3d *cube, t_point ray)
 float	dist(t_point player, t_point ray, float angle)
 {
 	(void) angle;
-	// printf("angle: %f\n\n", angle);
 	return (sqrt(
 			((ray.x - player.x) * (ray.x - player.x))
 			+ ((ray.y - player.y) * (ray.y - player.y))
 		));
 }
 
+void	initialize_cast(t_cast *cast, t_cub3d *cube)
+{
+	cast->rays = 0;
+	cast->r_angle = cube->player.p_angle - 30;
+	if (cast->r_angle < 0)
+		cast->r_angle += 360;
+	cast->lines.x = 800;
+	cast->lines.y = 0;
+	cast->height.x = 800;
+}
+
+void	set_horizontals(t_cub3d *cube, t_cast *cast)
+{
+	cast->player.x = cube->player.p_x;
+	cast->player.y = cube->player.p_y;
+	cast->dof = 0;
+	if (cast->r_angle > 180)
+	{
+		cast->rayh.y = (((int) cube->player.p_y >> 6) << 6) - 0.0001;
+		cast->rayh.x = (cube->player.p_y - cast->rayh.y)
+			* (1 / tan(deg2rad(cast->r_angle))) + cube->player.p_x;
+		cast->off.y = -64;
+		cast->off.x = -cast->off.y * (1 / tan(deg2rad(cast->r_angle)));
+		return ;
+	}
+	if ((int) cast->r_angle == 0 || (int) cast->r_angle == 180)
+	{
+		cast->rayh.x = cube->player.p_x;
+		cast->rayh.y = cube->player.p_y;
+		cast->dof = DOF;
+		cast->disth = 100000;
+		return ;
+	}
+	cast->rayh.y = (((int) cube->player.p_y >> 6) << 6) + 64;
+	cast->rayh.x = ((cube->player.p_y - cast->rayh.y)
+			* (1 / tan(deg2rad(cast->r_angle)))) + cube->player.p_x;
+	cast->off.y = 64;
+	cast->off.x = -cast->off.y * (1 / tan(deg2rad(cast->r_angle)));
+}
+
+void	set_rayh(t_cub3d *cube, t_cast *cast)
+{
+	while (cast->dof < DOF)
+	{
+		cast->disth = 100000;
+		if (cast->rayh.y / 64 < cube->map.height && cast->rayh.y / 64 >= 0
+			&& cast->rayh.x / 64 < cube->map.width && cast->rayh.x / 64 >= 0
+			&& cube->map.points[cast->rayh.y / 64][cast->rayh.x / 64] == '1')
+		{
+			cast->disth = dist(cast->player, cast->rayh, cast->r_angle);
+			cast->dof = DOF;
+		}
+		else
+		{
+			if (cube->player.p_angle == 0 || cube->player.p_angle == 180)
+				break ;
+			cast->rayh.x += cast->off.x;
+			cast->rayh.y += cast->off.y;
+		}
+		cast->dof++;
+	}
+	if (cast->rayh.x <= 0)
+		cast->rayh.x = 0;
+	if (cast->rayh.y <= 0)
+		cast->rayh.y = 0;
+}
+
+void	set_verticals(t_cub3d *cube, t_cast *cast)
+{
+	cast->dof = 0;
+	if (cast->r_angle > 90 && cast->r_angle < 270)
+	{
+		cast->rayv.x = (((int) cube->player.p_x >> 6) << 6) + 64;
+		cast->rayv.y = ((cube->player.p_x - cast->rayv.x)
+				* (tan(deg2rad(cast->r_angle)))) + cube->player.p_y;
+		cast->off.x = 64;
+		cast->off.y = -cast->off.x * (tan(deg2rad(cast->r_angle)));
+		return ;
+	}
+	if ((int) cast->r_angle == 90 || (int) cast->r_angle == 270)
+	{
+		cast->rayv.x = cube->player.p_x;
+		cast->rayv.y = cube->player.p_y;
+		cast->dof = DOF;
+		cast->distv = 100000;
+		return ;
+	}
+	cast->rayv.x = (((int) cube->player.p_x >> 6) << 6) - 0.0001;
+	cast->rayv.y = ((cube->player.p_x - cast->rayv.x)
+			* (tan(deg2rad(cast->r_angle)))) + cube->player.p_y;
+	cast->off.x = -64;
+	cast->off.y = -cast->off.x * (tan(deg2rad(cast->r_angle)));
+}
+
+void	set_rayv(t_cub3d *cube, t_cast *cast)
+{
+	while (cast->dof < DOF)
+	{
+		cast->distv = 100000;
+		if (cast->rayv.x / 64 >= 0 && cast->rayv.y / 64 >= 0
+			&& cast->rayv.y / 64 < cube->map.height
+			&& cast->rayv.x / 64 < cube->map.width
+			&& cube->map.points[cast->rayv.y / 64][cast->rayv.x / 64] == '1')
+		{
+			cast->distv = dist(cast->player, cast->rayv, cast->r_angle);
+			cast->dof = DOF;
+		}
+		else
+		{
+			if (cube->player.p_angle == 90 || cube->player.p_angle == 270)
+				break ;
+			cast->rayv.x += cast->off.x;
+			cast->rayv.y += cast->off.y;
+			if (cast->rayv.x < 0)
+				cast->rayv.x = 0;
+			if (cast->rayv.y < 0)
+				cast->rayv.y = 0;
+		}
+		cast->dof++;
+	}
+}
+
+void	cast_n_project(t_cub3d *cube, t_cast *cast)
+{
+	if (cast->distv <= cast->disth)
+		cast->distt = cast->distv;
+	else
+		cast->distt = cast->disth;
+	cast->height.y = 64 * 400 / cast->distt;
+	if (cast->height.y > 800)
+		cast->height.y = 800;
+	cast->lines.y = 400 - (cast->height.y / 2);
+	cast->height.y += cast->lines.y;
+	if (cast->distv <= cast->disth)
+		dda(cast->height, cast->lines, cube, 0x00669999);
+	else
+		dda(cast->height, cast->lines, cube, 0x0044FF88);
+	cast->height.x -= 1;
+	cast->lines.x -= 1;
+	if (cast->distv <= cast->disth)
+		dda(cast->player, cast->rayv, cube, 0x0055FFFF);
+	else
+		dda(cast->player, cast->rayh, cube, 0x0055FFFF);
+	cast->r_angle += 0.075;
+	if (cast->r_angle < 0)
+		cast->r_angle += 360;
+	else if (cast->r_angle >= 360)
+		cast->r_angle -= 360;
+}
+
+		// printf("p: %d, %d\nv: %d, %d (%f)\nh: %d, %d (%f)\n%f\n\n", player.x, player.y, rayv.x, rayv.y, distv, rayh.x, rayh.y, disth, cube->player.p_angle);
+
 void	draw_rays(t_cub3d *cube)
 {
-	int		rays;
-	int		dof;
-	float	distv;
-	float	disth;
-	float	distt;
-	float	r_angle;
-	t_point	rayh;
-	t_point	rayv;
-	t_point	off;
-	t_point	player;
-	t_point	lines;
-	t_point	height;
+	t_cast	cast;
 
-	rays = 0;
-	r_angle = cube->player.p_angle - 30;
-	if (r_angle < 0)
-		r_angle += 360;
-	lines.x = 800;
-	lines.y = 0;
-	height.x = 800;
-	while (rays++ < 600)
+	initialize_cast(&cast, cube);
+	while (cast.rays++ < 800)
 	{
-		player.x = cube->player.p_x;
-		player.y = cube->player.p_y;
-		dof = 0;
-		if (r_angle > 180)
-		{
-			rayh.y = (((int) cube->player.p_y >> 6) << 6) - 0.0001;
-			rayh.x = (cube->player.p_y - rayh.y) * (1 / tan(deg2rad(r_angle))) + cube->player.p_x;
-			off.y = -64;
-			off.x = -off.y * (1 / tan(deg2rad(r_angle)));
-		}
-		if ((int) r_angle == 0 || (int) r_angle == 180)
-		{
-			rayh.x = cube->player.p_x;
-			rayh.y = cube->player.p_y;
-			dof = DOF;
-			disth = 100000;
-		}
-		if (r_angle < 180)
-		{
-			rayh.y = (((int) cube->player.p_y >> 6) << 6) + 64;
-			rayh.x = ((cube->player.p_y - rayh.y) * (1 / tan(deg2rad(r_angle)))) + cube->player.p_x;
-			off.y = 64;
-			off.x = -off.y * (1 / tan(deg2rad(r_angle)));
-		}
-		while (dof < DOF)
-		{
-			disth = 100000;
-			if (rayh.y / 64 < cube->map.height && rayh.y / 64 >= 0
-				&& rayh.x / 64 < cube->map.width && rayh.x / 64 >= 0
-				&& cube->map.points[rayh.y / 64][rayh.x / 64] == '1')
-			{
-				disth = dist(player, rayh, r_angle);
-				dof = DOF;
-			}
-			else
-			{
-				rayh.x += off.x;
-				rayh.y += off.y;
-			}
-			dof++;
-		}
-		if (rayh.x <= 0)
-			rayh.x = 0;
-		if (rayh.y <= 0)
-			rayh.y = 0;
-		dof = 0;
-		if (r_angle > 90 && r_angle < 270)
-		{
-			rayv.x = (((int) cube->player.p_x >> 6) << 6) + 64;
-			rayv.y = ((cube->player.p_x - rayv.x) * (tan(deg2rad(r_angle)))) + cube->player.p_y;
-			off.x = 64;
-			off.y = -off.x * (tan(deg2rad(r_angle)));
-		}
-		else if ((int) r_angle == 90 || (int) r_angle == 270)
-		{
-			rayv.x = cube->player.p_x;
-			rayv.y = cube->player.p_y;
-			dof = DOF;
-			distv = 100000;
-		}
-		else
-		{
-			rayv.x = (((int) cube->player.p_x >> 6) << 6) - 0.0001;
-			rayv.y = ((cube->player.p_x - rayv.x) * (tan(deg2rad(r_angle)))) + cube->player.p_y;
-			off.x = -64;
-			off.y = -off.x * (tan(deg2rad(r_angle)));
-		}
-		while (dof < DOF)
-		{
-			distv = 100000;
-			if (rayv.x / 64 > 0 && rayv.y / 64 > 0
-				&& rayv.y / 64 < cube->map.height
-				&& rayv.x / 64 < cube->map.width
-				&& cube->map.points[rayv.y / 64][rayv.x / 64] == '1')
-			{
-				distv = dist(player, rayv, r_angle);
-				dof = DOF;
-			}
-			else
-			{
-				rayv.x += off.x;
-				rayv.y += off.y;
-				if (rayv.x < 0)
-					rayv.x = 0;
-				if (rayv.y < 0)
-					rayv.y = 0;
-			}
-			dof++;
-		}
-		player.x /= 4;
-		player.y /= 4;
-		rayv.x /= 4;
-		rayv.y /= 4;
-		rayh.x /= 4;
-		rayh.y /= 4;
-		// printf("p: %d, %d\nv: %d, %d (%f)\nh: %d, %d (%f)\n%f\n\n", player.x, player.y, rayv.x, rayv.y, distv, rayh.x, rayh.y, disth, cube->player.p_angle);
-		if (distv <= disth)
-			distt = distv;
-		else
-			distt = disth;
-		height.y = 64 * 400 / distt;
-		if (height.y > 800)
-			height.y = 800;
-		lines.y = 400 - (height.y / 2);
-		height.y += lines.y;
-		dda(height, lines, cube, 0x00669999 + (20 * distt / 100));
-		height.x -= 800 / 600;
-		lines.x -= 800 / 600;
-		if (distv <= disth)
-			dda(player, rayv, cube, 0x0055FFFF);
-		else
-			dda(player, rayh, cube, 0x0055FFFF);
-		r_angle += 0.1;
-		if (r_angle < 0)
-			r_angle += 360;
-		else if (r_angle >= 360)
-			r_angle -= 360;
+		set_horizontals(cube, &cast);
+		set_rayh(cube, &cast);
+		set_verticals(cube, &cast);
+		set_rayv(cube, &cast);
+		cast.player.x /= 4;
+		cast.player.y /= 4;
+		cast.rayv.x /= 4;
+		cast.rayv.y /= 4;
+		cast.rayh.x /= 4;
+		cast.rayh.y /= 4;
+		cast_n_project(cube, &cast);
 	}
 }
 

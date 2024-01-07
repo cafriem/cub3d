@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/06 00:32:06 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/07 15:05:25 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,21 @@ typedef struct point {
 	int	x;
 	int	y;
 }		t_point;
+
+typedef struct casting {
+	int		rays;
+	int		dof;
+	float	distv;
+	float	disth;
+	float	distt;
+	float	r_angle;
+	t_point	rayh;
+	t_point	rayv;
+	t_point	off;
+	t_point	player;
+	t_point	lines;
+	t_point	height;
+}		t_cast;
 
 //------------DDA.c------------//
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
