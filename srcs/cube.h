@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/07 21:26:39 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:32:54 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdint.h>
 # include <signal.h>
 # include "../libft/libft.h"
-// # include <mlx.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
@@ -28,14 +27,16 @@
 # define PIE 3.14
 # define COS046 0.89438856137
 # define SIN046 0.4472908464
+# define DOF 50
 // # ifdef OSX
-// #  define ESC 53
-// #  define PLUS 24
-// #  define MINUS 27
-// #  define W 13
-// #  define A 0
-// #  define S 1
-// #  define D 2
+// # include <mlx.h>
+// # define ESC 53
+// # define PLUS 24
+// # define MINUS 27
+// # define W 13
+// # define A 0
+// # define S 1
+// # define D 2
 // # define LEFT 123
 // # define RIGHT 124
 // # define DOWN 125
@@ -70,7 +71,8 @@
 # define DOWN 65364
 # define LEFT 65361
 # define RIGHT 65363
-# define SHIFT 65307
+# define SHIFT 65505
+# define M 109
 // # endif
 
 typedef struct s_data {
@@ -103,6 +105,7 @@ typedef struct angles {
 	bool	d;
 	bool	left;
 	bool	right;
+	bool	shift;
 }		t_dir;
 
 typedef struct player {
@@ -122,6 +125,7 @@ typedef struct cub3d {
 	t_map		map;
 	t_player	player;
 	t_dir		dir;
+	bool		m;
 }		t_cub3d;
 
 typedef struct point {
@@ -129,10 +133,26 @@ typedef struct point {
 	int	y;
 }		t_point;
 
+typedef struct casting {
+	int		rays;
+	int		dof;
+	float	distv;
+	float	disth;
+	float	distt;
+	float	r_angle;
+	t_point	rayh;
+	t_point	rayv;
+	t_point	off;
+	t_point	player;
+	t_point	lines;
+	t_point	height;
+}		t_cast;
+
 //------------DDA.c------------//
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_point(t_cub3d *cube3d);
 //------------key_press.c------------//
+int		move(t_cub3d *cube);
 int		key_press1(int keypress, t_cub3d *cub3d);
 void	key_press2(int keypress, t_cub3d *cub3d);
 void	key_press3(int keypress, t_cub3d *cub3d);

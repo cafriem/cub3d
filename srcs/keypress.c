@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/07 22:01:57 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:34:47 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,42 @@ int	move(t_cub3d *cube)
 	if ((cube->dir.w && cube->dir.s) || (cube->dir.a && cube->dir.d))
 		return (0);
 	if (cube->dir.left)
-		cube->player.p_angle -= 0.1;
+		cube->player.p_angle += 1;
 	if (cube->dir.right)
-		cube->player.p_angle += 0.1;
-	cube->player.p_dx = cos(cube->player.p_angle) * 24;
-	cube->player.p_dy = sin(cube->player.p_angle) * 24;
+		cube->player.p_angle -= 1;
+	if (cube->player.p_angle < 0)
+		cube->player.p_angle = 359.9;
+	else if (cube->player.p_angle >= 360)
+		cube->player.p_angle = 0;
+	if (!cube->dir.shift)
+	{
+		cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 1;
+		cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 1;
+	}
+	else
+	{
+		cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 2;
+		cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 2;
+	}
 	if (cube->dir.w)
 	{
-		cube->player.p_x += 5 * (cos(cube->player.p_angle));
-		cube->player.p_y += 5 * (sin(cube->player.p_angle));
+		cube->player.p_x += cube->player.p_dx;
+		cube->player.p_y += cube->player.p_dy;
 	}
 	if (cube->dir.s)
 	{
-		cube->player.p_x -= 5 * (cos(cube->player.p_angle));
-		cube->player.p_y -= 5 * (sin(cube->player.p_angle));
+		cube->player.p_x -= cube->player.p_dx;
+		cube->player.p_y -= cube->player.p_dy;
 	}
 	if (cube->dir.a)
 	{
-		cube->player.p_x += 5 * (sin(cube->player.p_angle));
-		cube->player.p_y -= 5 * (cos(cube->player.p_angle));
+		cube->player.p_x += cube->player.p_dy;
+		cube->player.p_y -= cube->player.p_dx;
 	}
 	if (cube->dir.d)
 	{
-		cube->player.p_x -= 5 * (sin(cube->player.p_angle));
-		cube->player.p_y += 5 * (cos(cube->player.p_angle));
+		cube->player.p_x -= cube->player.p_dy;
+		cube->player.p_y += cube->player.p_dx;
 	}
 	draw_map(cube);
 	return (0);
@@ -48,7 +60,7 @@ int	move(t_cub3d *cube)
 
 int	keydown(int keycode, t_cub3d *cube)
 {
-	printf("keydown: %d\n", keycode);
+	// printf("keydown: %d\n", keycode);
 	if (keycode == W)
 		cube->dir.w = true;
 	else if (keycode == A)
@@ -61,13 +73,16 @@ int	keydown(int keycode, t_cub3d *cube)
 		cube->dir.left = true;
 	else if (keycode == RIGHT)
 		cube->dir.right = true;
-	move(cube);
+	else if (keycode == SHIFT)
+		cube->dir.shift = true;
+	else if (keycode == M)
+		cube->m = !cube->m;
 	return (0);
 }
 
 int	keyup(int keycode, t_cub3d *cube)
 {
-	printf("keyup: %d\n", keycode);
+	// printf("keyup: %d\n", keycode);
 	if (keycode == ESC)
 		return (close_esc(keycode, cube));
 	else if (keycode == W)
@@ -82,7 +97,8 @@ int	keyup(int keycode, t_cub3d *cube)
 		cube->dir.left = false;
 	else if (keycode == RIGHT)
 		cube->dir.right = false;
-	move(cube);
+	else if (keycode == SHIFT)
+		cube->dir.shift = false;
 	return (0);
 }
 
