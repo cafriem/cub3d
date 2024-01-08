@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/07 15:05:25 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:32:54 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@
 # define LEFT 65361
 # define RIGHT 65363
 # define SHIFT 65505
+# define M 109
 // # endif
 
 typedef struct s_data {
@@ -124,6 +125,7 @@ typedef struct cub3d {
 	t_map		map;
 	t_player	player;
 	t_dir		dir;
+	bool		m;
 }		t_cub3d;
 
 typedef struct point {

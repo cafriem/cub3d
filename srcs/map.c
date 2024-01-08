@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/07 18:12:51 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:35:34 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,9 +257,9 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 	cast->lines.y = 400 - (cast->height.y / 2);
 	cast->height.y += cast->lines.y;
 	if (cast->distv <= cast->disth)
-		dda(cast->height, cast->lines, cube, 0x00669999);
+		dda(cast->height, cast->lines, cube, 0x005F6344);
 	else
-		dda(cast->height, cast->lines, cube, 0x0044FF88);
+		dda(cast->height, cast->lines, cube, 0x00A5633C);
 	cast->height.x -= 1;
 	cast->lines.x -= 1;
 	if (cast->distv <= cast->disth)
@@ -296,6 +296,33 @@ void	draw_rays(t_cub3d *cube)
 	}
 }
 
+void	draw_floor_ceiling(t_cub3d *cube)
+{
+	t_point	start;
+	t_point	end;
+
+	start.x = 0;
+	start.y = 0;
+	end.x = 800;
+	end.y = 0;
+	while (end.y < 400)
+	{
+		dda(start, end, cube, 0x000C1445);
+		end.y++;
+		start.y++;
+	}
+	start.x = 0;
+	start.y = 400;
+	end.x = 800;
+	end.y = 400;
+	while (end.y < 800)
+	{
+		dda(start, end, cube, 0x00D5CFCF);
+		end.y++;
+		start.y++;
+	}
+}
+
 void	draw_map(t_cub3d *cube)
 {
 	int	i;
@@ -305,8 +332,9 @@ void	draw_map(t_cub3d *cube)
 	cube->img.addr = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
 			&cube->img.line_length, &cube->img.endian);
 	i = -1;
+	draw_floor_ceiling(cube);
 	draw_rays(cube);
-	while (cube->map.points[++i])
+	while (cube->m && cube->map.points[++i])
 	{
 		j = -1;
 		while (cube->map.points[i][++j])
@@ -316,7 +344,8 @@ void	draw_map(t_cub3d *cube)
 		}
 	}
 	// printf("max pos: %d, %d\n", i * 16, j * 16);
-	draw_player(cube);
+	if (cube->m)
+		draw_player(cube);
 	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img.img, 0, 0);
 	mlx_destroy_image(cube->mlx, cube->img.img);
 }

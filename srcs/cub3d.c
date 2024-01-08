@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/04 15:40:03 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:35:13 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,6 +322,7 @@ void	set_player_position(t_cub3d *cube)
 	cube->dir.d = false;
 	cube->dir.left = false;
 	cube->dir.right = false;
+	cube->m = true;
 }
 
 int	main(int argc, char *argv[])
