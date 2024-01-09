@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/07 18:32:54 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:53:22 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,58 @@ typedef struct casting {
 	t_point	lines;
 	t_point	height;
 }		t_cast;
+
+void	create_map(t_cub3d *cube);
+
+// map utils:
+char	*readfile(int fd);
+int		create_trgb(int t, int r, int g, int b);
+int		get_color(char *line);
+void	check_updown(t_cub3d *cub3d, int row, int colom);
+int		check_leftright(t_cub3d *cub3d, int row, int colom);
+
+// map valid:
+void	check_valid(t_cub3d *cub3d, int row, int colom);
+void	map_checker(t_cub3d *cub3d);
+void	map_size(t_cub3d *cub3d);
+char	*get_pl(t_cub3d *cub3d, int c, char *str);
+void	mapread(t_cub3d *cub3d, int start);
+
+// more map items:
+void	player_info(t_cub3d *cub3d);
+void	texture_parse(t_cub3d *cub3d);
+void	openmap(t_cub3d *cub3d, char *argv[]);
+void	set_booleans(t_cub3d *cube);
+
+// keypresses:
+void	change_angle(t_cub3d *cube);
+void	change_position(t_cub3d *cube);
+int		move(t_cub3d *cube);
+int		keydown(int keycode, t_cub3d *cube);
+int		keyup(int keycode, t_cub3d *cube);
+
+// drawing:
+void	draw_square(int i, int j, t_cub3d *cube, int color);
+void	draw_angle(t_cub3d *cube3d);
+void	draw_player(t_cub3d *cube3d);
+double	deg2rad(double degrees);
+bool	is_wall(t_cub3d *cube, t_point ray);
+
+// dda:
+void	dda(t_point x1, t_point x2, t_cub3d *cube, int color);
+
+// casting:
+void	draw_floor_ceiling(t_cub3d *cube);
+void	set_horizontals(t_cub3d *cube, t_cast *cast);
+void	set_rayh(t_cub3d *cube, t_cast *cast);
+void	set_verticals(t_cub3d *cube, t_cast *cast);
+void	set_rayv(t_cub3d *cube, t_cast *cast);
+
+// map:
+float	dist(t_point player, t_point ray, float angle);
+void	initialize_cast(t_cast *cast, t_cub3d *cube);
+void	cast_n_project(t_cub3d *cube, t_cast *cast);
+void	draw_rays(t_cub3d *cube);
 
 //------------DDA.c------------//
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:20:49 by cafriem           #+#    #+#             */
-/*   Updated: 2023/12/05 15:54:15 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/09 17:40:51 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	error(t_cub3d *cub3d, int flag)
 	if (flag == 3)
 	{
 		ft_putstr_fd("Failed : Wrong number of players\n", 2);
-		// free (cub3d);
 	}
 	exit(1);
 }
