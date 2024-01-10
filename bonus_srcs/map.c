@@ -6,11 +6,11 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/10 02:46:41 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:30:44 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cube_bonus.h"
 
 float	dist(t_point player, t_point ray, float angle)
 {

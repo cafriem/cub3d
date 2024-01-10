@@ -6,11 +6,11 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/10 02:54:29 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:30:25 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cube_bonus.h"
 
 void	change_angle(t_cub3d *cube)
 {

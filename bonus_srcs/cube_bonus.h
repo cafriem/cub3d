@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/09 21:11:52 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:31:15 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct cub3d {
 	void		*mlx;
 	void		*mlx_window;
 	t_data		img;
+	t_data		hud;
 	t_map		map;
 	t_player	player;
 	t_dir		dir;
@@ -140,6 +141,7 @@ typedef struct casting {
 	float	disth;
 	float	distt;
 	float	r_angle;
+	float	angle_diff;
 	t_point	rayh;
 	t_point	rayv;
 	t_point	off;
@@ -174,8 +176,6 @@ void	set_booleans(t_cub3d *cube);
 void	change_angle(t_cub3d *cube);
 void	change_position(t_cub3d *cube);
 int		move(t_cub3d *cube);
-int		keydown(int keycode, t_cub3d *cube);
-int		keyup(int keycode, t_cub3d *cube);
 
 // drawing:
 void	draw_square(int i, int j, t_cub3d *cube, int color);
@@ -199,6 +199,11 @@ float	dist(t_point player, t_point ray, float angle);
 void	initialize_cast(t_cast *cast, t_cub3d *cube);
 void	cast_n_project(t_cub3d *cube, t_cast *cast);
 void	draw_rays(t_cub3d *cube);
+
+// bonus utiLs:
+void	draw_hud(t_cub3d *cube);
+int		keydown(int keycode, t_cub3d *cube);
+int		keyup(int keycode, t_cub3d *cube);
 
 //------------DDA.c------------//
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

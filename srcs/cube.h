@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/09 17:53:22 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/09 23:29:44 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ typedef struct casting {
 	float	disth;
 	float	distt;
 	float	r_angle;
+	float	angle_diff;
 	t_point	rayh;
 	t_point	rayv;
 	t_point	off;

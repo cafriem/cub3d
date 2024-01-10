@@ -6,11 +6,11 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:03:16 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/10 02:52:09 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:30:08 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cube_bonus.h"
 
 void	dda(t_point x1, t_point x2, t_cub3d *cube, int color)
 {

@@ -6,12 +6,11 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:11:15 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/09 22:28:58 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:20:07 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube_bonus.h"
-#include <stdbool.h>
 
 void	change_angle(t_cub3d *cube)
 {
@@ -41,7 +40,8 @@ void	change_position(t_cub3d *cube)
 
 bool	condition(t_cub3d *cube)
 {
-	if (cube->map.points[(int) 
+	printf("%d, %d\n", (int) cube->player.p_y / 64, (int) cube->player.p_x / 64);
+	if (cube->map.points[(int)
 			cube->player.p_y / 64][(int) cube->player.p_x / 64] == '1')
 		return (true);
 	return (false);
@@ -93,47 +93,5 @@ int	move(t_cub3d *cube)
 	}
 	check_boundaries(cube);
 	draw_map(cube);
-	return (0);
-}
-
-int	keydown(int keycode, t_cub3d *cube)
-{
-	if (keycode == W)
-		cube->dir.w = true;
-	else if (keycode == A)
-		cube->dir.a = true;
-	else if (keycode == S)
-		cube->dir.s = true;
-	else if (keycode == D)
-		cube->dir.d = true;
-	else if (keycode == LEFT)
-		cube->dir.left = true;
-	else if (keycode == RIGHT)
-		cube->dir.right = true;
-	else if (keycode == SHIFT)
-		cube->dir.shift = true;
-	else if (keycode == M)
-		cube->m = !cube->m;
-	return (0);
-}
-
-int	keyup(int keycode, t_cub3d *cube)
-{
-	if (keycode == ESC)
-		return (close_esc(keycode, cube));
-	else if (keycode == W)
-		cube->dir.w = false;
-	else if (keycode == A)
-		cube->dir.a = false;
-	else if (keycode == S)
-		cube->dir.s = false;
-	else if (keycode == D)
-		cube->dir.d = false;
-	else if (keycode == LEFT)
-		cube->dir.left = false;
-	else if (keycode == RIGHT)
-		cube->dir.right = false;
-	else if (keycode == SHIFT)
-		cube->dir.shift = false;
 	return (0);
 }

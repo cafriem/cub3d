@@ -1,69 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keypress.c                                         :+:      :+:    :+:   */
+/*   bonus_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/10 02:54:29 by jadithya         ###   ########.fr       */
+/*   Created: 2024/01/10 12:56:22 by jadithya          #+#    #+#             */
+/*   Updated: 2024/01/10 13:47:20 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cube_bonus.h"
 
-void	change_angle(t_cub3d *cube)
+void	draw_hud(t_cub3d *cube)
 {
-	if (cube->dir.left)
-		cube->player.p_angle += 1;
-	if (cube->dir.right)
-		cube->player.p_angle -= 1;
-	if (cube->player.p_angle < 0)
-		cube->player.p_angle = 359.9;
-	else if (cube->player.p_angle >= 360)
-		cube->player.p_angle = 0;
-}
-
-void	change_position(t_cub3d *cube)
-{
-	if (!cube->dir.shift)
-	{
-		cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 1;
-		cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 1;
-	}
-	else
-	{
-		cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 2;
-		cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 2;
-	}
-}
-
-int	move(t_cub3d *cube)
-{
-	change_angle(cube);
-	change_position(cube);
-	if (cube->dir.w)
-	{
-		cube->player.p_x += cube->player.p_dx;
-		cube->player.p_y += cube->player.p_dy;
-	}
-	if (cube->dir.s)
-	{
-		cube->player.p_x -= cube->player.p_dx;
-		cube->player.p_y -= cube->player.p_dy;
-	}
-	if (cube->dir.a)
-	{
-		cube->player.p_x += cube->player.p_dy;
-		cube->player.p_y -= cube->player.p_dx;
-	}
-	if (cube->dir.d)
-	{
-		cube->player.p_x -= cube->player.p_dy;
-		cube->player.p_y += cube->player.p_dx;
-	}
-	draw_map(cube);
-	return (0);
+	cube->hud.img = mlx_new_image(cube->mlx, cube->width, cube->height);
+	cube->hud.addr = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
+			&cube->img.line_length, &cube->img.endian);
+	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->hud.img, 0, 0);
+	mlx_destroy_image(cube->mlx, cube->hud.img);
 }
 
 int	keydown(int keycode, t_cub3d *cube)
