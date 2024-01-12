@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/02 22:13:13 by jadithya          #+#    #+#              #
-#    Updated: 2023/12/07 11:40:05 by jadithya         ###   ########.fr        #
+#    Updated: 2024/01/12 16:28:26 by cafriem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = $(SRCDIR)/cub3d.c \
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
 OS:= ${shell uname}
 ifeq (${OS},Darwin)

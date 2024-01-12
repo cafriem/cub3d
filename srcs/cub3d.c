@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/07 21:58:35 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:25:20 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,8 +312,8 @@ void	set_player_position(t_cub3d *cube)
 				&& cube->map.points[i][j] != ' '
 				&& cube->map.points[i][j] != '1')
 			{
-				// cube->player.p_x = (64 * (i + (i + 1))) / 2;
-				// cube->player.p_y = (64 * (j + (j + 1))) / 2;
+				cube->player.p_x = (64 * (i + (i + 1))) / 2;
+				cube->player.p_y = (64 * (j + (j + 1))) / 2;
 			}
 		}
 	}
