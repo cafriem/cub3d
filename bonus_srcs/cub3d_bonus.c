@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/04 13:25:20 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/10 14:29:57 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cube_bonus.h"
 
 // void	print_map(t_cub3d *cub3d)
 // {
@@ -60,32 +60,19 @@ void	create_map(t_cub3d *cube)
 	draw_map(cube);
 }
 
-void	set_player_position(t_cub3d *cube)
+int	mouse(int x, int y, t_cub3d *cube)
 {
-	int	i;
-	int	j;
-
-	i = -1;
-	while (cube->map.points[++i])
-	{
-		j = -1;
-		while (cube->map.points[i][++j])
-		{
-			if (cube->map.points[i][j] != '0'
-				&& cube->map.points[i][j] != ' '
-				&& cube->map.points[i][j] != '1')
-			{
-				cube->player.p_x = (64 * (i + (i + 1))) / 2;
-				cube->player.p_y = (64 * (j + (j + 1))) / 2;
-			}
-		}
-	}
-	cube->dir.w = false;
-	cube->dir.s = false;
-	cube->dir.a = false;
-	cube->dir.d = false;
-	cube->dir.left = false;
-	cube->dir.right = false;
+	(void) cube;
+	printf("%d, %d\n", x, y);
+	if (x < 400)
+		cube->player.p_angle += 1;
+	else if (x >= 400)
+		cube->player.p_angle -= 1;
+	if (cube->player.p_angle <= 0)
+		cube->player.p_angle += 360;
+	else if (cube->player.p_angle >= 360)
+		cube->player.p_angle -= 360;
+	return (0);
 }
 
 int	main(int argc, char *argv[])
@@ -104,6 +91,7 @@ int	main(int argc, char *argv[])
 	mlx_hook(cube.mlx_window, 17, 0, close_x, &cube);
 	mlx_hook(cube.mlx_window, 2, (1L << 0), keydown, &cube);
 	mlx_hook(cube.mlx_window, 3, (1L << 1), keyup, &cube);
+	mlx_hook(cube.mlx_window, 6,(1L << 6), mouse, &cube);
 	mlx_loop_hook(cube.mlx, move, &cube);
 	mlx_loop(cube.mlx);
 }

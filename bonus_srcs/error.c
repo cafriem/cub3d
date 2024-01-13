@@ -6,11 +6,11 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:20:49 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/09 17:40:51 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:30:20 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cube_bonus.h"
 
 void	error(t_cub3d *cub3d, int flag)
 {

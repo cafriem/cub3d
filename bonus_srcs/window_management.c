@@ -6,11 +6,11 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 20:17:52 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/20 19:00:05 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:30:48 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cube_bonus.h"
 
 void	close_free(t_cub3d *cube)
 {

@@ -12,13 +12,32 @@
 
 NAME = cub3D
 
+BONUSNAME = bonus_cub3D
+
 SRCS = $(SRCDIR)/cub3d.c \
 		$(SRCDIR)/DDA.c \
 		$(SRCDIR)/keypress.c \
 		$(SRCDIR)/error.c \
 		$(SRCDIR)/map.c \
 		$(SRCDIR)/window_management.c \
-		$(SRCDIR)/draw_utilities.c \
+		$(SRCDIR)/map_utils.c \
+		$(SRCDIR)/map_more.c \
+		$(SRCDIR)/map_valid.c \
+		$(SRCDIR)/drawing.c \
+		$(SRCDIR)/casting.c \
+
+BONUS = $(BONUSDIR)/cub3d_bonus.c \
+		$(BONUSDIR)/DDA.c \
+		$(BONUSDIR)/bonus_move.c \
+		$(BONUSDIR)/error.c \
+		$(BONUSDIR)/map.c \
+		$(BONUSDIR)/window_management.c \
+		$(BONUSDIR)/map_utils.c \
+		$(BONUSDIR)/map_more.c \
+		$(BONUSDIR)/map_valid.c \
+		$(BONUSDIR)/drawing.c \
+		$(BONUSDIR)/casting.c \
+		$(BONUSDIR)/bonus_utils.c \
 
 CC = cc
 
@@ -37,9 +56,15 @@ else
 
 SRCDIR = srcs
 
+BONUSDIR = bonus_srcs
+
 OBJDIR = objs
 
+B_OBJDIR = bonus_objs
+
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+
+BONUS_OBJS = $(BONUS:$(BONUSDIR)/%.c=$(B_OBJDIR)/%.o)
 
 LIB = libft/libft.a
 
@@ -48,94 +73,38 @@ all: $(NAME)
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -I$(MLXDIR) -c $< -o $@
 
+$(B_OBJDIR)/%.o: $(BONUSDIR)/%.c
+	$(CC) $(CFLAGS) -I$(MLXDIR) -c $< -o $@
+
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
+
+$(B_OBJDIR):
+	mkdir -p $(B_OBJDIR)
 
 $(NAME): $(OBJDIR) $(OBJS)
 	make -C libft
 	make -C $(MLXDIR)
 	$(CC) $(OBJS) $(CFLAGS) -L$(MLXDIR) -lmlx -lm -march=native $(MLXFLG) -o $(NAME) $(LIB)
 
-bonus: 
+bonus: $(BONUSNAME)
+
+$(BONUSNAME): $(B_OBJDIR) $(BONUS_OBJS)
+	make -C libft
+	make -C $(MLXDIR)
+	$(CC) $(BONUS_OBJS) $(CFLAGS) -L$(MLXDIR) -lmlx -lm -march=native $(MLXFLG) -o $(BONUSNAME) $(LIB)
 
 norm: 
 	@python3 -m norminette
 
 clean:
-	rm -rf $(OBJS) $(OBJDIR)
+	rm -rf $(OBJS) $(BONUS_OBJS) $(OBJDIR) $(B_OBJDIR)
 	make clean -C libft
 	make clean -C $(MLXDIR)
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(BONUSNAME)
 	rm -f libft/libft.a
 
-valgrind: $(NAME)
-	valgrind --leak-check=full ./fdf sample_tests/10-2.fdf
-	valgrind --leak-check=full ./fdf sample_tests/10-70.fdf
-	valgrind --leak-check=full ./fdf sample_tests/20-60.fdf
-	valgrind --leak-check=full ./fdf sample_tests/50-4.fdf
-	valgrind --leak-check=full ./fdf sample_tests/100-6.fdf
-	valgrind --leak-check=full ./fdf sample_tests/42.fdf
-	valgrind --leak-check=full ./fdf sample_tests/amogus.fdf
-	valgrind --leak-check=full ./fdf sample_tests/amogus_hd.fdf
-	valgrind --leak-check=full ./fdf sample_tests/basictest.fdf
-	valgrind --leak-check=full ./fdf sample_tests/elem-col.fdf
-	valgrind --leak-check=full ./fdf sample_tests/elem-fract.fdf
-	valgrind --leak-check=full ./fdf sample_tests/elem.fdf
-	valgrind --leak-check=full ./fdf sample_tests/elem2.fdf
-	valgrind --leak-check=full ./fdf sample_tests/julia.fdf
-	valgrind --leak-check=full ./fdf sample_tests/mars.fdf
-	valgrind --leak-check=full ./fdf sample_tests/pentenegpos.fdf
-	valgrind --leak-check=full ./fdf sample_tests/plat.fdf
-	valgrind --leak-check=full ./fdf sample_tests/pnp_flat.fdf
-	valgrind --leak-check=full ./fdf sample_tests/pylone.fdf
-	valgrind --leak-check=full ./fdf sample_tests/pyra.fdf
-	valgrind --leak-check=full ./fdf sample_tests/pyramide.fdf
-	valgrind --leak-check=full ./fdf sample_tests/t1.fdf
-	valgrind --leak-check=full ./fdf sample_tests/t2.fdf
-	valgrind --leak-check=full ./fdf sample_tests/zeroes.fdf
-	
-tests: $(NAME)
-	./fdf sample_tests/10-2.fdf
-	./fdf sample_tests/10-70.fdf
-	./fdf sample_tests/20-60.fdf
-	./fdf sample_tests/50-4.fdf
-	./fdf sample_tests/100-6.fdf
-	./fdf sample_tests/42.fdf
-	./fdf sample_tests/amogus.fdf
-	./fdf sample_tests/amogus_hd.fdf
-	./fdf sample_tests/basictest.fdf
-	./fdf sample_tests/elem-col.fdf
-	./fdf sample_tests/elem-fract.fdf
-	./fdf sample_tests/elem.fdf
-	./fdf sample_tests/elem2.fdf
-	./fdf sample_tests/julia.fdf
-	./fdf sample_tests/mars.fdf
-	./fdf sample_tests/pentenegpos.fdf
-	./fdf sample_tests/plat.fdf
-	./fdf sample_tests/pnp_flat.fdf
-	./fdf sample_tests/pylone.fdf
-	./fdf sample_tests/pyra.fdf
-	./fdf sample_tests/pyramide.fdf
-	./fdf sample_tests/t1.fdf
-	./fdf sample_tests/t2.fdf
-	./fdf sample_tests/zeroes.fdf
-
-fail: $(NAME)
-	./fdf sample_tests/empty.fdf
-	./fdf sample_tests/test.fdf
-	./fdf sample_tests/test.fdf.fdf
-	./fdf sample_tests/wrongfilename
-	./fdf
-	./fdf sample_tests/wrong.fdf
-
-valfail: $(NAME)
-	valgrind --leak-check=full ./fdf sample_tests/empty.fdf
-	valgrind --leak-check=full ./fdf sample_tests/test.fdf
-	valgrind --leak-check=full ./fdf sample_tests/test.fdf.fdf
-	valgrind --leak-check=full ./fdf sample_tests/wrongfilename
-	valgrind --leak-check=full ./fdf
-	valgrind --leak-check=full ./fdf sample_tests/wrong.fdf
-	
 re: fclean all
