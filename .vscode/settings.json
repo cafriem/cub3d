@@ -4,6 +4,8 @@
 		"istream": "c",
 		"locale": "c",
 		"ostream": "c",
-		"__string": "c"
+		"__string": "c",
+		"mlx.h": "c",
+		"system_error": "c"
 	}
 }
