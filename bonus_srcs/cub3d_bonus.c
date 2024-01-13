@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/10 14:29:57 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:51:38 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,17 @@ void	create_map(t_cub3d *cube)
 	cube->height = 800;
 	cube->mlx = mlx_init();
 	cube->mlx_window = mlx_new_window(cube->mlx, cube->width, cube->height, "");
+	cube->doors.img.img = mlx_xpm_file_to_image(cube->mlx,
+			"textures/castledoors.xpm", &cube->doors.width, &cube->doors.height);
+	cube->doors.img.addr = mlx_get_data_addr(cube->doors.img.img, &cube->doors.img.bpp,
+			&cube->doors.img.line_length, &cube->doors.img.endian);
 	draw_map(cube);
 }
 
 int	mouse(int x, int y, t_cub3d *cube)
 {
 	(void) cube;
-	printf("%d, %d\n", x, y);
+	(void) y;
 	if (x < 400)
 		cube->player.p_angle += 1;
 	else if (x >= 400)

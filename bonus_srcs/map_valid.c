@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:29:37 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/10 14:30:40 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:04:14 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,22 @@ char	*get_pl(t_cub3d *cub3d, int c, char *str)
 	if (ft_strchr(cub3d->map.points[c], 'N') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'N');
-		cub3d->player.p_angle = 0;
+		cub3d->player.p_angle = 270;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'S') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'S');
-		cub3d->player.p_angle = 180;
+		cub3d->player.p_angle = 90;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'E') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'E');
-		cub3d->player.p_angle = 90;
+		cub3d->player.p_angle = 180;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'W') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'W');
-		cub3d->player.p_angle = 270;
+		cub3d->player.p_angle = 0;
 	}
 	if (cub3d->player.p_angle < 0
 		|| (ft_strlen(str) != ft_strlen(ft_strrchr(str, str[0]))))
