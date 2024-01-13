@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/10 14:30:44 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/11 13:38:35 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,52 @@ void	initialize_cast(t_cast *cast, t_cub3d *cube)
 	cast->height.x = 800;
 }
 
+int	get_hex_color(t_cub3d *cube, int x, int y)
+{
+	int	i;
+	int	colors[4];
+
+	i = -1;
+	while (++i < cube->doors.img.bpp / 8)
+		colors[i] = (int) cube->doors.img.addr[((x * 4)
+				+ (y * cube->doors.img.line_length)) + i];
+	return (create_trgb(0, colors[2], colors[1], colors[0]));
+}
+
+void	draw_door(t_cub3d *cube, t_cast *cast)
+{
+	int	y;
+
+	y = cast->lines.y;
+	while (y < cast->height.y)
+	{
+		(void) cube;
+		pixel_put(&cube->img, cast->height.x, y, get_hex_color(cube,
+				(cast->height.x / 56),
+				(cast->height.y - y) / 56));
+		// printf("%d, %d\n", cast->lines.x % 56, ((cast->height.y - y) * 1 / 5));
+		y++;
+	}
+}
+
+void	door_or_wall(t_cub3d *cube, t_cast *cast)
+{
+	if (cast->distv <= cast->disth)
+	{
+		if (cube->map.points[cast->rayv.y / 16][cast->rayv.x / 16] == '2')
+			draw_door(cube, cast);
+		else
+			dda(cast->height, cast->lines, cube, 0x005F6344);
+	}
+	else
+	{
+		if (cube->map.points[cast->rayh.y / 16][cast->rayh.x / 16] == '2')
+			draw_door(cube, cast);
+		else
+			dda(cast->height, cast->lines, cube, 0x00A5633C);
+	}
+}
+
 void	cast_n_project(t_cub3d *cube, t_cast *cast)
 {
 	if (cast->distv <= cast->disth)
@@ -44,10 +90,7 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 		cast->height.y = 800;
 	cast->lines.y = 400 - (cast->height.y / 2);
 	cast->height.y += cast->lines.y;
-	if (cast->distv <= cast->disth)
-		dda(cast->height, cast->lines, cube, 0x005F6344);
-	else
-		dda(cast->height, cast->lines, cube, 0x00A5633C);
+	door_or_wall(cube, cast);
 	cast->height.x -= 1;
 	cast->lines.x -= 1;
 	if (cube->m && cast->distv <= cast->disth)
@@ -116,4 +159,7 @@ void	draw_map(t_cub3d *cube)
 		draw_player(cube);
 	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img.img, 0, 0);
 	mlx_destroy_image(cube->mlx, cube->img.img);
+	// mlx_put_image_to_window(cube->mlx, cube->mlx_window,
+	// 	cube->doors.img.img, 400, 400);
+	check_door(cube);
 }

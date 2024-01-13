@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/10 14:31:15 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:16:05 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,12 @@ typedef struct player {
 	float	p_x;
 }		t_player;
 
+typedef struct texture {
+	t_data	img;
+	int		width;
+	int		height;
+}		t_texture;
+
 typedef struct cub3d {
 	int			width;
 	int			height;
@@ -123,6 +129,7 @@ typedef struct cub3d {
 	void		*mlx_window;
 	t_data		img;
 	t_data		hud;
+	t_texture	doors;
 	t_map		map;
 	t_player	player;
 	t_dir		dir;
@@ -150,6 +157,7 @@ typedef struct casting {
 	t_point	height;
 }		t_cast;
 
+void	print_filemap(t_cub3d *cube);
 void	create_map(t_cub3d *cube);
 
 // map utils:
@@ -167,6 +175,7 @@ char	*get_pl(t_cub3d *cub3d, int c, char *str);
 void	mapread(t_cub3d *cub3d, int start);
 
 // more map items:
+void	draw_hud(t_cub3d *cube);
 void	player_info(t_cub3d *cub3d);
 void	texture_parse(t_cub3d *cub3d);
 void	openmap(t_cub3d *cub3d, char *argv[]);
@@ -186,6 +195,7 @@ bool	is_wall(t_cub3d *cube, t_point ray);
 
 // dda:
 void	dda(t_point x1, t_point x2, t_cub3d *cube, int color);
+void	texture_dda(t_point x1, t_point x2, t_cub3d *cube, int color);
 
 // casting:
 void	draw_floor_ceiling(t_cub3d *cube);
@@ -195,13 +205,16 @@ void	set_verticals(t_cub3d *cube, t_cast *cast);
 void	set_rayv(t_cub3d *cube, t_cast *cast);
 
 // map:
+int		get_hex_color(t_cub3d *cube, int x, int y);
 float	dist(t_point player, t_point ray, float angle);
 void	initialize_cast(t_cast *cast, t_cub3d *cube);
 void	cast_n_project(t_cub3d *cube, t_cast *cast);
 void	draw_rays(t_cub3d *cube);
 
 // bonus utiLs:
-void	draw_hud(t_cub3d *cube);
+void	check_door(t_cub3d *cube);
+void	door_msg(t_cub3d *cube, char *str, int x, int y);
+void	open_door(t_cub3d *cube);
 int		keydown(int keycode, t_cub3d *cube);
 int		keyup(int keycode, t_cub3d *cube);
 
