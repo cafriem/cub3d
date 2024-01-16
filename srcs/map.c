@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/12 16:42:29 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/16 15:28:34 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,10 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 	int	width;
 	int	height;
 	int	pos;
-	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height); // new image
-	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height); // mlx to image
+	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height);
+	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height);
 	char	*name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
-			&cube->img.line_length, &cube->img.endian); // getting the address of the image
+			&cube->img.line_length, &cube->img.endian);
 	unsigned int	**num;
 	int	x = 0;
 	int	y = 0;
@@ -148,7 +148,7 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 }
 // x = <------------>
 
-void	gettext(t_cub3d *cube)
+void	get_text(t_cub3d *cube)
 {
 	cube->map.i_n = t_ext(cube, cube->map.t_n);
 	cube->map.i_s = t_ext(cube, cube->map.t_s);
@@ -190,6 +190,6 @@ void	create_map(t_cub3d *cube)
 	cube->height = 800;
 	cube->mlx = mlx_init();
 	cube->mlx_window = mlx_new_window(cube->mlx, cube->width, cube->height, "");
-	gettext(cube);
+	get_text(cube);
 	draw_map(cube);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/12 15:08:00 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/13 20:28:03 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdint.h>
 # include <signal.h>
 # include "../libft/libft.h"
-# include <mlx.h>
+// # include <mlx.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
@@ -29,30 +29,30 @@
 # define COS046 0.89438856137
 # define SIN046 0.4472908464
 # define DOF 50
- # ifdef OSX
-#  define ESC 53
-#  define PLUS 24
-#  define MINUS 27
-#  define W 13
-#  define A 0
-#  define S 1
-#  define D 2
-# define LEFT 123
-# define RIGHT 124
-# define DOWN 125
-# define UP 126
-# define R 15
-# define F 3
-# define X 7
-# define Q 12
-# define E 14
-# define H 4
-# define K 40
-# define I 34
-# define J 38
-# define L 37
-# define C 8
-# elif LINUX
+//  # ifdef OSX
+// #  define ESC 53
+// #  define PLUS 24
+// #  define MINUS 27
+// #  define W 13
+// #  define A 0
+// #  define S 1
+// #  define D 2
+// # define LEFT 123
+// # define RIGHT 124
+// # define DOWN 125
+// # define UP 126
+// # define R 15
+// # define F 3
+// # define X 7
+// # define Q 12
+// # define E 14
+// # define H 4
+// # define K 40
+// # define I 34
+// # define J 38
+// # define L 37
+// # define C 8
+// # elif LINUX
 # include "../mlx-linux/mlx.h"
 # define ESC 65307
 # define Q 113
@@ -73,7 +73,7 @@
 # define RIGHT 65363
 # define SHIFT 65505
 # define M 109
-# endif
+// # endif
 
 typedef struct s_data {
 	void	*img;
