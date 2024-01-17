@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/09 23:29:44 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:01:42 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,50 +29,52 @@
 # define SIN046 0.4472908464
 # define DOF 50
 // # ifdef OSX
-// # include <mlx.h>
-// # define ESC 53
-// # define PLUS 24
-// # define MINUS 27
-// # define W 13
-// # define A 0
-// # define S 1
-// # define D 2
-// # define LEFT 123
-// # define RIGHT 124
-// # define DOWN 125
-// # define UP 126
-// # define R 15
-// # define F 3
-// # define X 7
-// # define Q 12
-// # define E 14
-// # define H 4
-// # define K 40
-// # define I 34
-// # define J 38
-// # define L 37
-// # define C 8
+# include <mlx.h>
+# define ESC 53
+# define PLUS 24
+# define MINUS 27
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define LEFT 123
+# define RIGHT 124
+# define DOWN 125
+# define UP 126
+# define R 15
+# define F 3
+# define X 7
+# define Q 12
+# define E 14
+# define H 4
+# define K 40
+# define I 34
+# define J 38
+# define L 37
+# define C 8
+# define M 46
+# define SHIFT 57
 // # elif LINUX
-# include "../mlx-linux/mlx.h"
-# define ESC 65307
-# define Q 113
-# define W 119
-# define E 101
-# define R 114
-# define A 97
-# define S 115
-# define D 100
-# define F 102
-# define Z 122
-# define X 120
-# define C 99
-# define V 118
-# define UP 65362
-# define DOWN 65364
-# define LEFT 65361
-# define RIGHT 65363
-# define SHIFT 65505
-# define M 109
+// # include "../mlx-linux/mlx.h"
+// # define ESC 65307
+// # define Q 113
+// # define W 119
+// # define E 101
+// # define R 114
+// # define A 97
+// # define S 115
+// # define D 100
+// # define F 102
+// # define Z 122
+// # define X 120
+// # define C 99
+// # define V 118
+// # define UP 65362
+// # define DOWN 65364
+// # define LEFT 65361
+// # define RIGHT 65363
+// # define SHIFT 65505
+// # define M 109
 // # endif
 
 typedef struct s_data {
@@ -92,6 +94,10 @@ typedef struct map {
 	char	*t_s;
 	char	*t_e;
 	char	*t_w;
+	unsigned int	**i_n;
+	unsigned int	**i_s;
+	unsigned int	**i_e;
+	unsigned int	**i_w;
 	int		p_row;
 	int		p_colom;
 	int		f;
@@ -129,8 +135,8 @@ typedef struct cub3d {
 }		t_cub3d;
 
 typedef struct point {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 }		t_point;
 
 typedef struct casting {
@@ -230,5 +236,7 @@ void	draw_map(t_cub3d *cube);
 void	dda(t_point x1, t_point x2, t_cub3d *cube, int color);
 
 double	deg2rad(double degrees);
+
+void	gettext(t_cub3d *cube);
 
 #endif

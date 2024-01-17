@@ -4,6 +4,7 @@
 		"istream": "c",
 		"locale": "c",
 		"ostream": "c",
-		"__string": "c"
+		"__string": "c",
+		"typeinfo": "c"
 	}
 }

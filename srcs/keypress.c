@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/10 02:54:29 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:37:36 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	change_angle(t_cub3d *cube)
 	if (cube->dir.right)
 		cube->player.p_angle -= 1;
 	if (cube->player.p_angle < 0)
-		cube->player.p_angle = 359.9;
+		cube->player.p_angle = 360;
 	else if (cube->player.p_angle >= 360)
 		cube->player.p_angle = 0;
 }
