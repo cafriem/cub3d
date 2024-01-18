@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:03:16 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/11 10:23:26 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:58:22 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	dda(t_point x1, t_point x2, t_cub3d *cube, int color)
 	float	increase_x;
 	float	increase_y;
 
-	if (abs(x2.x - x1.x) > abs(x2.y - x1.y))
+	if (fabsf(x2.x - x1.x) > fabsf(x2.y - x1.y))
 	{
-		steps = abs(x2.x - x1.x);
+		steps = fabsf(x2.x - x1.x);
 		increase_x = (x2.x - x1.x) / steps;
 		increase_y = (x2.y - x1.y) / steps;
 	}
 	else
 	{
-		steps = abs(x2.y - x1.y);
+		steps = fabsf(x2.y - x1.y);
 		increase_x = (x2.x - x1.x) / steps;
 		increase_y = (x2.y - x1.y) / steps;
 	}
@@ -46,15 +46,15 @@ void	texture_dda(t_point x1, t_point x2, t_cub3d *cube, int color)
 	float	increase_y;
 
 	(void) color;
-	if (abs(x2.x - x1.x) > abs(x2.y - x1.y))
+	if (fabsf(x2.x - x1.x) > fabsf(x2.y - x1.y))
 	{
-		steps = abs(x2.x - x1.x);
+		steps = fabsf(x2.x - x1.x);
 		increase_x = (x2.x - x1.x) / steps;
 		increase_y = (x2.y - x1.y) / steps;
 	}
 	else
 	{
-		steps = abs(x2.y - x1.y);
+		steps = fabsf(x2.y - x1.y);
 		increase_x = (x2.x - x1.x) / steps;
 		increase_y = (x2.y - x1.y) / steps;
 	}

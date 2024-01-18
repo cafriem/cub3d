@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/16 15:28:34 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:40:24 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,6 @@ void	create_map(t_cub3d *cube)
 	cube->height = 800;
 	cube->mlx = mlx_init();
 	cube->mlx_window = mlx_new_window(cube->mlx, cube->width, cube->height, "");
-	get_text(cube);
+	// get_text(cube);
 	draw_map(cube);
 }

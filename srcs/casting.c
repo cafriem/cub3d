@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:50:34 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/09 17:52:30 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:42:06 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void	set_rayh(t_cub3d *cube, t_cast *cast)
 		cast->disth = 100000;
 		if (cast->rayh.y / 64 < cube->map.height && cast->rayh.y / 64 >= 0
 			&& cast->rayh.x / 64 < cube->map.width && cast->rayh.x / 64 >= 0
-			&& cube->map.points[cast->rayh.y / 64][cast->rayh.x / 64] == '1')
+			&& cube->map.points[(int)(cast->rayh.y / 64)]
+			[(int)(cast->rayh.x / 64)] == '1')
 		{
 			cast->disth = dist(cast->player, cast->rayh, cast->r_angle);
 			cast->dof = DOF;
@@ -126,7 +127,8 @@ void	set_rayv(t_cub3d *cube, t_cast *cast)
 		if (cast->rayv.x / 64 >= 0 && cast->rayv.y / 64 >= 0
 			&& cast->rayv.y / 64 < cube->map.height
 			&& cast->rayv.x / 64 < cube->map.width
-			&& cube->map.points[cast->rayv.y / 64][cast->rayv.x / 64] == '1')
+			&& cube->map.points[(int)(cast->rayv.y / 64)]
+			[(int)(cast->rayv.x / 64)] == '1')
 		{
 			cast->distv = dist(cast->player, cast->rayv, cast->r_angle);
 			cast->dof = DOF;

@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/16 15:38:11 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:03:40 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,18 @@ void	door_or_wall(t_cub3d *cube, t_cast *cast)
 {
 	if (cast->distv <= cast->disth)
 	{
-		// if (cube->map.points[cast->rayv.y / 16][cast->rayv.x / 16] == '2')
+		// if (cube->map.points[(int)(cast->rayv.y / 16)][(int)(cast->rayv.x / 16)] == '2')
 		// 	draw_door(cube, cast);
 		// else
-		if (cube->map.points[cast->rayv.y / 16][cast->rayv.x / 16] != '2')
+		if (cube->map.points[(int)(cast->rayv.y / 16)][(int)(cast->rayv.x / 16)] != '2')
 			dda(cast->height, cast->lines, cube, 0x005F6344);
 	}
 	else
 	{
-		// if (cube->map.points[cast->rayh.y / 16][cast->rayh.x / 16] == '2')
+		// if (cube->map.points[(int)(cast->rayh.y / 16)][(int)cast->rayh.x / 16] == '2')
 		// 	draw_door(cube, cast);
 		// else
-		if (cube->map.points[cast->rayh.y / 16][cast->rayh.x / 16] != '2')
+		if (cube->map.points[(int)(cast->rayh.y / 16)][(int)cast->rayh.x / 16] != '2')
 			dda(cast->height, cast->lines, cube, 0x00A5633C);
 	}
 }

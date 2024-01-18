@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:43:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/09 17:46:48 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:44:42 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,22 +98,22 @@ bool	is_wall(t_cub3d *cube, t_point ray)
 {
 	if (cube->player.p_angle <= -135 || cube->player.p_angle >= 135)
 	{
-		if (cube->map.points[(ray.y / 16)][(ray.x / 16)] == '1')
+		if (cube->map.points[(int)(ray.y / 16)][(int)(ray.x / 16)] == '1')
 			return (true);
 	}
 	else if (cube->player.p_angle > -135 && cube->player.p_angle <= -45)
 	{
-		if (cube->map.points[(ray.y / 16)][(ray.x / 16)] == '1')
+		if (cube->map.points[(int)(ray.y / 16)][(int)(ray.x / 16)] == '1')
 			return (true);
 	}
 	else if (cube->player.p_angle > -45 && cube->player.p_angle <= 45)
 	{
-		if (cube->map.points[(ray.y / 16)][(ray.x / 16)] == '1')
+		if (cube->map.points[(int)(ray.y / 16)][(int)(ray.x / 16)] == '1')
 			return (true);
 	}
 	else
 	{
-		if (cube->map.points[(ray.y / 16)][(ray.x / 16)] == '1')
+		if (cube->map.points[(int)(ray.y / 16)][(int)(ray.x / 16)] == '1')
 			return (true);
 	}
 	return (false);

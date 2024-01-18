@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/11 10:16:05 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:47:47 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,8 @@ typedef struct cub3d {
 }		t_cub3d;
 
 typedef struct point {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 }		t_point;
 
 typedef struct casting {

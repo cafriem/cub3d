@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:43:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/10 17:21:41 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:58:54 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ double	deg2rad(double degrees)
 
 bool	is_wall(t_cub3d *cube, t_point ray)
 {
-	if (cube->map.points[(ray.y / 16)][(ray.x / 16)] == '1')
+	if (cube->map.points[(int)(ray.y / 16)][(int)(ray.x / 16)] == '1')
 		return (true);
 	return (false);
 }
