@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/17 18:10:05 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/19 12:24:50 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 	int	width;
 	int	height;
 	int	pos;
-	cube->img.img = mlx_new_image(&cube->mlx, cube->width, cube->height); // new image
-	cube->img.img = mlx_xpm_file_to_image(&cube->mlx, map, &width, &height); // mlx to image
-	char	*name = mlx_get_data_addr(&cube->img.img, &cube->img.bpp,
+	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height); // new image
+	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height); // mlx to image
+	char	*name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
 			&cube->img.line_length, &cube->img.endian); // getting the address of the image
 	unsigned int	**num;
 	int	x = 0;
@@ -76,11 +76,13 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 		{
 			pos = (y * cube->img.line_length + x * (cube->img.bpp / 8));
 			num[y][x] = *(unsigned int *)&name[pos];
-			printf("test = %d\n", *(unsigned int *)&name[pos]);
 			x++;
 		}
 		y++;
 	}
+	// free(name);
+	mlx_destroy_image(cube->mlx, cube->img.img);
+	printf("DONE\n");
 	return(num);
 }
 // x = <------------>

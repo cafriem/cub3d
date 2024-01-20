@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/16 11:44:37 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/20 14:14:50 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,19 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 	cast->lines.y = 400 - (cast->height.y / 2);
 	cast->height.y += cast->lines.y;
 	if (cast->distv <= cast->disth)
-		dda(cast->height, cast->lines, cube, 0x005F6344);
+		wall_text(cast->height, cast->lines, cube);
+		// dda(cast->height, cast->lines, cube, 0x005F6344);
 	else
 		dda(cast->height, cast->lines, cube, 0x00A5633C);
+		// wall_text(cast->height, cast->lines, cube);
 	cast->height.x -= 1;
 	cast->lines.x -= 1;
 	if (cube->m && cast->distv <= cast->disth)
 		dda(cast->player, cast->rayv, cube, 0x0055FFFF);
+		// wall_text(cast->height, cast->lines, cube);
 	else if (cube->m)
 		dda(cast->player, cast->rayh, cube, 0x0055FFFF);
+		// wall_text(cast->height, cast->lines, cube);
 	cast->r_angle += 0.075;
 	if (cast->r_angle < 0)
 		cast->r_angle += 360;

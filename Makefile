@@ -6,7 +6,7 @@
 #    By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/02 22:13:13 by jadithya          #+#    #+#              #
-#    Updated: 2024/01/16 11:34:15 by cafriem          ###   ########.fr        #
+#    Updated: 2024/01/19 11:19:39 by cafriem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ BONUS = $(BONUSDIR)/cub3d_bonus.c \
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -g3
 
 OS:= ${shell uname}
 ifeq (${OS},Darwin)
