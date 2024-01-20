@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/19 12:24:50 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/20 15:00:59 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,21 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 	char	*name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
 			&cube->img.line_length, &cube->img.endian); // getting the address of the image
 	unsigned int	**num;
-	int	x = 0;
-	int	y = 0;
+	int	x = 64;
+	int	y = 64;
 	num = ft_calloc(65, sizeof(unsigned int *));
-	while (y < 64)
+	while (y > -1)
 	{
-		x = 0;
+		x = 64;
 		num[y] = ft_calloc(65, sizeof(unsigned int));
-		while (x < 64)
+		while (x > -1)
 		{
 			pos = (y * cube->img.line_length + x * (cube->img.bpp / 8));
 			num[y][x] = *(unsigned int *)&name[pos];
-			x++;
+			printf("text = %d [%d] [%d]\n", num[y][x], y, x);
+			x--;
 		}
-		y++;
+		y--;
 	}
 	// free(name);
 	mlx_destroy_image(cube->mlx, cube->img.img);

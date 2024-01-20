@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:03:16 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/20 14:32:41 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/20 14:44:51 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	wall_text(t_point x1, t_point x2, t_cub3d *cube)
 	printf("test 2 step = %f\n", steps);
 	while (i++ <= steps)
 	{
-		
 		pixel_put(&cube->img, x1.x + (increase_x * (i - 1)), x1.y + (increase_y * (i - 1)),
 			cube->map.i_n[(int)fabsf(text * (increase_t * (i - 1)))][(int)t]);
 	}
