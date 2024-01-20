@@ -1,5 +1,6 @@
 *.o
 cub3D
+bonus_cub3D
 libft
 MLX/libmlx.a
 .vscode/settings.json
