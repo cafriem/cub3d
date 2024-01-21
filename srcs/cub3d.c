@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/20 15:00:59 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/20 20:35:50 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 	char	*name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
 			&cube->img.line_length, &cube->img.endian); // getting the address of the image
 	unsigned int	**num;
-	int	x = 64;
+	int	x;
 	int	y = 64;
 	num = ft_calloc(65, sizeof(unsigned int *));
 	while (y > -1)

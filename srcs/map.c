@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/20 14:14:50 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/21 18:37:14 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 		cast->distt = cast->disth;
 	cast->distt = cast->distt * cos(deg2rad(cast->angle_diff));
 	cast->height.y = 64 * 400 / cast->distt;
-	if (cast->height.y > 800)
-		cast->height.y = 800;
+	// if (cast->height.y > 800)
+	// 	cast->height.y = 800;
 	cast->lines.y = 400 - (cast->height.y / 2);
 	cast->height.y += cast->lines.y;
 	if (cast->distv <= cast->disth)
