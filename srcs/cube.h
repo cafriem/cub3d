@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/18 19:43:12 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:55:45 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,22 @@ typedef struct s_data {
 }		t_data;
 
 typedef struct map {
-	char	**points;
-	char	**file_map;
-	int		width;
-	int		height;
-	char	*t_n;
-	char	*t_s;
-	char	*t_e;
-	char	*t_w;
+	char			**points;
+	char			**file_map;
+	int				width;
+	int				height;
+	char			*t_n;
+	char			*t_s;
+	char			*t_e;
+	char			*t_w;
 	unsigned int	**i_n;
 	unsigned int	**i_s;
 	unsigned int	**i_e;
 	unsigned int	**i_w;
-	int		p_row;
-	int		p_colom;
-	int		f;
-	int		c;
+	int				p_row;
+	int				p_colom;
+	int				f;
+	int				c;
 }		t_map;
 
 typedef struct angles {
@@ -142,6 +142,7 @@ typedef struct point {
 typedef struct casting {
 	int		rays;
 	int		dof;
+	float	x;
 	float	distv;
 	float	disth;
 	float	distt;

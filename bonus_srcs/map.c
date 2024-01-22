@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/18 20:03:40 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:42:07 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	get_hex_color(t_cub3d *cube, int x, int y)
 	int	colors[4];
 
 	i = -1;
-	while (++i < cube->doors.img.bpp / 8)
+	while (++i < 3)
 		colors[i] = (int) cube->doors.img.addr[((x * 4)
 				+ (y * cube->doors.img.line_length)) + i];
 	return (create_trgb(0, colors[2], colors[1], colors[0]));
@@ -48,14 +48,12 @@ void	draw_door(t_cub3d *cube, t_cast *cast)
 {
 	int	y;
 
-	y = cast->lines.y;
+	y = (int) cast->lines.y;
 	while (y < cast->height.y)
 	{
-		(void) cube;
 		pixel_put(&cube->img, cast->height.x, y, get_hex_color(cube,
-				(cast->height.x / 56),
-				(cast->height.y - y) / 56));
-		// printf("%d, %d\n", cast->lines.x % 56, ((cast->height.y - y) * 1 / 5));
+				((int) cast->height.x / 16),
+				((int)((fabsf(y - cast->lines.y)) * 56 / (cast->height.y - cast->lines.y)))));
 		y++;
 	}
 }
@@ -64,18 +62,16 @@ void	door_or_wall(t_cub3d *cube, t_cast *cast)
 {
 	if (cast->distv <= cast->disth)
 	{
-		// if (cube->map.points[(int)(cast->rayv.y / 16)][(int)(cast->rayv.x / 16)] == '2')
-		// 	draw_door(cube, cast);
-		// else
-		if (cube->map.points[(int)(cast->rayv.y / 16)][(int)(cast->rayv.x / 16)] != '2')
+		if (cube->map.points[(int)(cast->rayv.y / 16)][(int)(cast->rayv.x / 16)] == '2')
+			draw_door(cube, cast);
+		else
 			dda(cast->height, cast->lines, cube, 0x005F6344);
 	}
 	else
 	{
-		// if (cube->map.points[(int)(cast->rayh.y / 16)][(int)cast->rayh.x / 16] == '2')
-		// 	draw_door(cube, cast);
-		// else
-		if (cube->map.points[(int)(cast->rayh.y / 16)][(int)cast->rayh.x / 16] != '2')
+		if (cube->map.points[(int)(cast->rayh.y / 16)][(int)cast->rayh.x / 16] == '2')
+			draw_door(cube, cast);
+		else
 			dda(cast->height, cast->lines, cube, 0x00A5633C);
 	}
 }

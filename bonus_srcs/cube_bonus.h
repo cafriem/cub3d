@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/18 19:47:47 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:56:10 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ typedef struct point {
 typedef struct casting {
 	int		rays;
 	int		dof;
+	float	x;
 	float	distv;
 	float	disth;
 	float	distt;
