@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/20 20:35:50 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/24 18:58:10 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,41 @@ void	gettext(t_cub3d *cube)
 	printf("done texture\n");
 }
 
-void	create_map(t_cub3d *cube)
+// void	create_map(t_cub3d *cube)
+// {
+// 	cube->width = 800;
+// 	cube->height = 800;
+// 	cube->mlx = mlx_init();
+// 	cube->mlx_window = mlx_new_window(cube->mlx, cube->width, cube->height, "");
+// 	draw_map(cube);
+// }
+
+void	set_player_position(t_cub3d *cube)
 {
-	cube->width = 800;
-	cube->height = 800;
-	cube->mlx = mlx_init();
-	cube->mlx_window = mlx_new_window(cube->mlx, cube->width, cube->height, "");
-	gettext(cube);
-	draw_map(cube);
+	int	i;
+	int	j;
+
+	i = -1;
+	while (cube->map.points[++i])
+	{
+		j = -1;
+		while (cube->map.points[i][++j])
+		{
+			if (cube->map.points[i][j] != '0'
+				&& cube->map.points[i][j] != ' '
+				&& cube->map.points[i][j] != '1')
+			{
+				// cube->player.p_x = (64 * (i + (i + 1))) / 2;
+				// cube->player.p_y = (64 * (j + (j + 1))) / 2;
+			}
+		}
+	}
+	cube->dir.w = false;
+	cube->dir.s = false;
+	cube->dir.a = false;
+	cube->dir.d = false;
+	cube->dir.left = false;
+	cube->dir.right = false;
 }
 
 int	main(int argc, char *argv[])
