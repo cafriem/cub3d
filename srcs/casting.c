@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:50:34 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/16 13:37:13 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/22 16:33:40 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ void	set_rayh(t_cub3d *cube, t_cast *cast)
 	while (cast->dof++ < DOF)
 	{
 		cast->disth = 100000;
-		if (cast->rayh.y / 64 < cube->map.height && cast->rayh.y / 64 >= 0 && cast->rayh.x / 64 < cube->map.width && cast->rayh.x / 64 >= 0 && cube->map.points[(int)cast->rayh.y / 64][(int)cast->rayh.x / 64] == '1')
+		if (cast->rayh.y / 64 < cube->map.height && cast->rayh.y / 64 >= 0
+			&& cast->rayh.x / 64 < cube->map.width && cast->rayh.x / 64 >= 0
+			&& cube->map.points[(int)cast->rayh.y / 64][(int)cast->rayh.x / 64] == '1')
 		{
 			cast->disth = dist(cast->player, cast->rayh, cast->r_angle);
 			cast->dof = DOF;

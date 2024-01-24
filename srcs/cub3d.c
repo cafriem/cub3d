@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/20 20:35:50 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/24 11:08:42 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,12 @@ void	create_map(t_cub3d *cube)
 	draw_map(cube);
 }
 
+// void	check_init(t_cub3d *cube)
+// {
+// 	if (!cube->map.i_e || !cube->map.i_w || !cube->map.i_s || !cube->map.i_n)
+		
+// }
+
 int	main(int argc, char *argv[])
 {
 	t_cub3d	cube;
@@ -119,6 +125,7 @@ int	main(int argc, char *argv[])
 	}
 	openmap(&cube, argv);
 	set_booleans(&cube);
+	// check_init(&cube);
 	create_map(&cube);
 	print_filemap(&cube);
 	mlx_hook(cube.mlx_window, 17, 0, close_x, &cube);
