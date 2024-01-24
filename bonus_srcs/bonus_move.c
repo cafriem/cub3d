@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:11:15 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/10 14:20:07 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:46:15 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	change_angle(t_cub3d *cube)
 	if (cube->dir.right)
 		cube->player.p_angle -= 1;
 	if (cube->player.p_angle < 0)
-		cube->player.p_angle = 359.9;
+		cube->player.p_angle = 360;
 	else if (cube->player.p_angle >= 360)
 		cube->player.p_angle = 0;
 }
@@ -40,9 +40,11 @@ void	change_position(t_cub3d *cube)
 
 bool	condition(t_cub3d *cube)
 {
-	printf("%d, %d\n", (int) cube->player.p_y / 64, (int) cube->player.p_x / 64);
 	if (cube->map.points[(int)
 			cube->player.p_y / 64][(int) cube->player.p_x / 64] == '1')
+		return (true);
+	if (cube->map.points[(int)
+			cube->player.p_y / 64][(int) cube->player.p_x / 64] == '2')
 		return (true);
 	return (false);
 }

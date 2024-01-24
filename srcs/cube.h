@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/20 12:13:49 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/24 19:14:20 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@
 # define COS046 0.89438856137
 # define SIN046 0.4472908464
 # define DOF 50
-// # ifdef OSX
+//  # ifdef OSX
 # include <mlx.h>
-# define ESC 53
-# define PLUS 24
-# define MINUS 27
-# define W 13
-# define A 0
-# define S 1
-# define D 2
+#  define ESC 53
+#  define PLUS 24
+#  define MINUS 27
+#  define W 13
+#  define A 0
+#  define S 1
+#  define D 2
 # define LEFT 123
 # define RIGHT 124
 # define DOWN 125
@@ -52,8 +52,8 @@
 # define J 38
 # define L 37
 # define C 8
-# define M 46
 # define SHIFT 57
+# define M 46
 // # elif LINUX
 // # include "../mlx-linux/mlx.h"
 // # define ESC 65307
@@ -83,25 +83,27 @@ typedef struct s_data {
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }		t_data;
 
 typedef struct map {
-	char	**points;
-	char	**file_map;
-	int		width;
-	int		height;
-	char	*t_n;
-	char	*t_s;
-	char	*t_e;
-	char	*t_w;
+	char			**points;
+	char			**file_map;
+	int				width;
+	int				height;
+	char			*t_n;
+	char			*t_s;
+	char			*t_e;
+	char			*t_w;
 	unsigned int	**i_n;
 	unsigned int	**i_s;
 	unsigned int	**i_e;
 	unsigned int	**i_w;
-	int		p_row;
-	int		p_colom;
-	int		f;
-	int		c;
+	int				p_row;
+	int				p_colom;
+	int				f;
+	int				c;
 }		t_map;
 
 typedef struct angles {
@@ -142,6 +144,7 @@ typedef struct point {
 typedef struct casting {
 	int		rays;
 	int		dof;
+	float	x;
 	float	distv;
 	float	disth;
 	float	distt;
@@ -237,7 +240,7 @@ void	dda(t_point x1, t_point x2, t_cub3d *cube, int color);
 
 double	deg2rad(double degrees);
 
-void	gettext(t_cub3d *cube);
+void	get_text(t_cub3d *cube);
 void	wall_text(t_point x1, t_point x2, t_cub3d *cube);
 
 #endif

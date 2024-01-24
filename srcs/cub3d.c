@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/24 11:08:42 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/24 19:16:28 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 }
 // x = <------------>
 
-void	gettext(t_cub3d *cube)
+void	get_text(t_cub3d *cube)
 {
 	printf("get texture\n");
 	cube->map.i_n = t_ext(cube, cube->map.t_n);
@@ -98,15 +98,15 @@ void	gettext(t_cub3d *cube)
 	printf("done texture\n");
 }
 
-void	create_map(t_cub3d *cube)
-{
-	cube->width = 800;
-	cube->height = 800;
-	cube->mlx = mlx_init();
-	cube->mlx_window = mlx_new_window(cube->mlx, cube->width, cube->height, "");
-	gettext(cube);
-	draw_map(cube);
-}
+// void	create_map(t_cub3d *cube)
+// {
+// 	cube->width = 800;
+// 	cube->height = 800;
+// 	cube->mlx = mlx_init();
+// 	cube->mlx_window = mlx_new_window(cube->mlx, cube->width, cube->height, "");
+// 	get_text(cube);
+// 	draw_map(cube);
+// }
 
 // void	check_init(t_cub3d *cube)
 // {

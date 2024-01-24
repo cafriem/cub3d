@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:50:34 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/22 16:33:40 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/24 19:11:06 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,8 @@ void	set_rayv(t_cub3d *cube, t_cast *cast)
 		if (cast->rayv.x / 64 >= 0 && cast->rayv.y / 64 >= 0
 			&& cast->rayv.y / 64 < cube->map.height
 			&& cast->rayv.x / 64 < cube->map.width
-			&& cube->map.points[(int)cast->rayv.y / 64][(int)cast->rayv.x / 64] == '1')
+			&& cube->map.points[(int)(cast->rayv.y / 64)]
+			[(int)(cast->rayv.x / 64)] == '1')
 		{
 			cast->distv = dist(cast->player, cast->rayv, cast->r_angle);
 			cast->dof = DOF;

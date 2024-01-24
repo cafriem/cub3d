@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+         #
+#    By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/02 22:13:13 by jadithya          #+#    #+#              #
-#    Updated: 2024/01/19 11:19:39 by cafriem          ###   ########.fr        #
+#    Updated: 2024/01/24 18:58:58 by jadithya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
