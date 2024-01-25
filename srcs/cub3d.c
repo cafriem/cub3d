@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/24 19:16:28 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/25 14:32:09 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,26 +76,22 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 		{
 			pos = (y * cube->img.line_length + x * (cube->img.bpp / 8));
 			num[y][x] = *(unsigned int *)&name[pos];
-			printf("text = %d [%d] [%d]\n", num[y][x], y, x);
 			x--;
 		}
 		y--;
 	}
 	// free(name);
 	mlx_destroy_image(cube->mlx, cube->img.img);
-	printf("DONE\n");
 	return(num);
 }
 // x = <------------>
 
 void	get_text(t_cub3d *cube)
 {
-	printf("get texture\n");
 	cube->map.i_n = t_ext(cube, cube->map.t_n);
 	cube->map.i_s = t_ext(cube, cube->map.t_s);
 	cube->map.i_e = t_ext(cube, cube->map.t_e);
 	cube->map.i_w = t_ext(cube, cube->map.t_w);
-	printf("done texture\n");
 }
 
 // void	create_map(t_cub3d *cube)

@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/24 19:14:20 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/25 14:40:33 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,6 @@ void	dda(t_point x1, t_point x2, t_cub3d *cube, int color);
 double	deg2rad(double degrees);
 
 void	get_text(t_cub3d *cube);
-void	wall_text(t_point x1, t_point x2, t_cub3d *cube);
+void	wall_text(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast);
 
 #endif
