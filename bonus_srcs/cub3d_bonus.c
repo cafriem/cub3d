@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/25 15:59:07 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:12:26 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	get_text(t_cub3d *cube)
 	cube->map.i_s = t_ext(cube, cube->map.t_s);
 	cube->map.i_e = t_ext(cube, cube->map.t_e);
 	cube->map.i_w = t_ext(cube, cube->map.t_w);
+	cube->map.door = t_ext(cube, "textures/doors.xpm");
 }
 
 void	create_map(t_cub3d *cube)
@@ -95,10 +96,6 @@ void	create_map(t_cub3d *cube)
 	cube->height = 800;
 	cube->mlx = mlx_init();
 	cube->mlx_window = mlx_new_window(cube->mlx, cube->width, cube->height, "");
-	cube->doors.img.img = mlx_xpm_file_to_image(cube->mlx,
-			"textures/castledoors.xpm", &cube->doors.width, &cube->doors.height);
-	cube->doors.img.addr = mlx_get_data_addr(cube->doors.img.img, &cube->doors.img.bpp,
-			&cube->doors.img.line_length, &cube->doors.img.endian);
 	get_text(cube);
 	draw_map(cube);
 }

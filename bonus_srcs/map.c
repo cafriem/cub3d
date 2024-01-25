@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/25 16:17:18 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:45:16 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,49 +32,47 @@ void	initialize_cast(t_cast *cast, t_cub3d *cube)
 	cast->height.x = 800;
 }
 
-int	get_hex_color(t_cub3d *cube, int x, int y)
-{
-	int	i;
-	int	colors[4];
+// int	get_hex_color(t_cub3d *cube, int x, int y)
+// {
+// 	int	i;
+// 	int	colors[4];
 
-	i = -1;
-	while (++i < 3)
-		colors[i] = (int) cube->doors.img.addr[((x * 4)
-				+ (y * cube->doors.img.line_length)) + i];
-	return (create_trgb(0, colors[2], colors[1], colors[0]));
-}
+// 	i = -1;
+// 	while (++i < 3)
+// 		colors[i] = (int) cube->doors.img.addr[((x * 4)
+// 				+ (y * cube->doors.img.line_length)) + i];
+// 	return (create_trgb(0, colors[2], colors[1], colors[0]));
+// }
 
-void	draw_door(t_cub3d *cube, t_cast *cast)
-{
-	int	y;
+// void	draw_door(t_cub3d *cube, t_cast *cast)
+// {
+// 	int	y;
 
-	y = (int) cast->lines.y;
-	while (y < cast->height.y)
-	{
-		pixel_put(&cube->img, cast->height.x, y, get_hex_color(cube,
-				((int) cast->height.x / 16),
-				((int)((fabsf(y - cast->lines.y)) * 56 / (cast->height.y - cast->lines.y)))));
-		y++;
-	}
-}
+// 	y = (int) cast->lines.y;
+// 	while (y < cast->height.y)
+// 	{
+// 		pixel_put(&cube->img, cast->height.x, y, get_hex_color(cube,
+// 				((int) cast->height.x / 16),
+// 				((int)((fabsf(y - cast->lines.y)) * 56 / (cast->height.y - cast->lines.y)))));
+// 		y++;
+// 	}
+// }
 
 void	door_or_wall(t_cub3d *cube, t_cast *cast)
 {
 	if (cast->distv <= cast->disth)
 	{
 		if (cube->map.points[(int)(cast->rayv.y / 16)][(int)(cast->rayv.x / 16)] == '2')
-			// draw_door(cube, cast);
-			;
+			wall_text_d(cast->height, cast->lines, cube, cast);
 		else
-			wall_text(cast->height, cast->lines, cube, cast);
+			wall_text_v(cast->height, cast->lines, cube, cast);
 	}
 	else
 	{
 		if (cube->map.points[(int)(cast->rayh.y / 16)][(int)cast->rayh.x / 16] == '2')
-			// draw_door(cube, cast);
-			;
+			wall_text_d(cast->height, cast->lines, cube, cast);
 		else
-			wall_text(cast->height, cast->lines, cube, cast);
+			wall_text_h(cast->height, cast->lines, cube, cast);
 	}
 }
 
@@ -153,13 +151,13 @@ void	draw_map(t_cub3d *cube)
 		{
 			if (cube->map.points[i][j] == '1')
 				draw_square(i, j, cube, 0x00FFFFFF);
+			else if (cube->map.points[i][j] == '2' || cube->map.points[i][j] == '3')
+				draw_square(i, j, cube, 0x00822001);
 		}
 	}
 	if (cube->m)
 		draw_player(cube);
 	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img.img, 0, 0);
 	mlx_destroy_image(cube->mlx, cube->img.img);
-	// mlx_put_image_to_window(cube->mlx, cube->mlx_window,
-	// 	cube->doors.img.img, 400, 400);
 	check_door(cube);
 }

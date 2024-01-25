@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/25 16:11:46 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:13:57 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct map {
 	unsigned int	**i_s;
 	unsigned int	**i_e;
 	unsigned int	**i_w;
+	unsigned int	**door;
 	int				p_row;
 	int				p_colom;
 	int				f;
@@ -122,12 +123,6 @@ typedef struct player {
 	float	p_x;
 }		t_player;
 
-typedef struct texture {
-	t_data	img;
-	int		width;
-	int		height;
-}		t_texture;
-
 typedef struct cub3d {
 	int			width;
 	int			height;
@@ -135,7 +130,6 @@ typedef struct cub3d {
 	void		*mlx_window;
 	t_data		img;
 	t_data		hud;
-	t_texture	doors;
 	t_map		map;
 	t_player	player;
 	t_dir		dir;
@@ -203,7 +197,9 @@ bool	is_wall(t_cub3d *cube, t_point ray);
 // dda:
 void	dda(t_point x1, t_point x2, t_cub3d *cube, int color);
 void	texture_dda(t_point x1, t_point x2, t_cub3d *cube, int color);
-void	wall_text(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast);
+void	wall_text_h(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast);
+void	wall_text_v(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast);
+void	wall_text_d(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast);
 
 // casting:
 void	draw_floor_ceiling(t_cub3d *cube);
