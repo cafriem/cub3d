@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/10 19:51:38 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:59:07 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,44 @@ void	print_filemap(t_cub3d *cube)
 	}
 }
 
+unsigned int	**t_ext(t_cub3d *cube, char *map)
+{
+
+	int	width;
+	int	height;
+	int	pos;
+	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height); // new image
+	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height); // mlx to image
+	char	*name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
+			&cube->img.line_length, &cube->img.endian); // getting the address of the image
+	unsigned int	**num;
+	int	x;
+	int	y = 64;
+	num = ft_calloc(65, sizeof(unsigned int *));
+	while (y > -1)
+	{
+		x = 64;
+		num[y] = ft_calloc(65, sizeof(unsigned int));
+		while (x > -1)
+		{
+			pos = (y * cube->img.line_length + x * (cube->img.bpp / 8));
+			num[y][x] = *(unsigned int *)&name[pos];
+			x--;
+		}
+		y--;
+	}
+	mlx_destroy_image(cube->mlx, cube->img.img);
+	return(num);
+}
+
+void	get_text(t_cub3d *cube)
+{
+	cube->map.i_n = t_ext(cube, cube->map.t_n);
+	cube->map.i_s = t_ext(cube, cube->map.t_s);
+	cube->map.i_e = t_ext(cube, cube->map.t_e);
+	cube->map.i_w = t_ext(cube, cube->map.t_w);
+}
+
 void	create_map(t_cub3d *cube)
 {
 	cube->width = 800;
@@ -61,6 +99,7 @@ void	create_map(t_cub3d *cube)
 			"textures/castledoors.xpm", &cube->doors.width, &cube->doors.height);
 	cube->doors.img.addr = mlx_get_data_addr(cube->doors.img.img, &cube->doors.img.bpp,
 			&cube->doors.img.line_length, &cube->doors.img.endian);
+	get_text(cube);
 	draw_map(cube);
 }
 

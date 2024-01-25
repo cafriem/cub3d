@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/22 17:56:10 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:11:46 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,21 +81,27 @@ typedef struct s_data {
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }		t_data;
 
 typedef struct map {
-	char	**points;
-	char	**file_map;
-	int		width;
-	int		height;
-	char	*t_n;
-	char	*t_s;
-	char	*t_e;
-	char	*t_w;
-	int		p_row;
-	int		p_colom;
-	int		f;
-	int		c;
+	char			**points;
+	char			**file_map;
+	int				width;
+	int				height;
+	char			*t_n;
+	char			*t_s;
+	char			*t_e;
+	char			*t_w;
+	unsigned int	**i_n;
+	unsigned int	**i_s;
+	unsigned int	**i_e;
+	unsigned int	**i_w;
+	int				p_row;
+	int				p_colom;
+	int				f;
+	int				c;
 }		t_map;
 
 typedef struct angles {
@@ -197,6 +203,7 @@ bool	is_wall(t_cub3d *cube, t_point ray);
 // dda:
 void	dda(t_point x1, t_point x2, t_cub3d *cube, int color);
 void	texture_dda(t_point x1, t_point x2, t_cub3d *cube, int color);
+void	wall_text(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast);
 
 // casting:
 void	draw_floor_ceiling(t_cub3d *cube);
