@@ -1,7 +1,7 @@
-NO ./north
-SO ./south
-WE ./west
-EA ./east
+NO ./brick.xpm
+SO ./brick.xpm
+WE ./brick.xpm
+EA ./brick.xpm
 
 F 220,100,0
 C 225,30,0

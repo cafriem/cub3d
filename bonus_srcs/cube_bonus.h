@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/18 19:47:47 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:13:57 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,21 +81,28 @@ typedef struct s_data {
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }		t_data;
 
 typedef struct map {
-	char	**points;
-	char	**file_map;
-	int		width;
-	int		height;
-	char	*t_n;
-	char	*t_s;
-	char	*t_e;
-	char	*t_w;
-	int		p_row;
-	int		p_colom;
-	int		f;
-	int		c;
+	char			**points;
+	char			**file_map;
+	int				width;
+	int				height;
+	char			*t_n;
+	char			*t_s;
+	char			*t_e;
+	char			*t_w;
+	unsigned int	**i_n;
+	unsigned int	**i_s;
+	unsigned int	**i_e;
+	unsigned int	**i_w;
+	unsigned int	**door;
+	int				p_row;
+	int				p_colom;
+	int				f;
+	int				c;
 }		t_map;
 
 typedef struct angles {
@@ -116,12 +123,6 @@ typedef struct player {
 	float	p_x;
 }		t_player;
 
-typedef struct texture {
-	t_data	img;
-	int		width;
-	int		height;
-}		t_texture;
-
 typedef struct cub3d {
 	int			width;
 	int			height;
@@ -129,7 +130,6 @@ typedef struct cub3d {
 	void		*mlx_window;
 	t_data		img;
 	t_data		hud;
-	t_texture	doors;
 	t_map		map;
 	t_player	player;
 	t_dir		dir;
@@ -144,6 +144,7 @@ typedef struct point {
 typedef struct casting {
 	int		rays;
 	int		dof;
+	float	x;
 	float	distv;
 	float	disth;
 	float	distt;
@@ -196,6 +197,9 @@ bool	is_wall(t_cub3d *cube, t_point ray);
 // dda:
 void	dda(t_point x1, t_point x2, t_cub3d *cube, int color);
 void	texture_dda(t_point x1, t_point x2, t_cub3d *cube, int color);
+void	wall_text_h(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast);
+void	wall_text_v(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast);
+void	wall_text_d(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast);
 
 // casting:
 void	draw_floor_ceiling(t_cub3d *cube);

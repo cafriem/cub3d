@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:11:15 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/18 19:46:15 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:48:37 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,28 @@ void	change_position(t_cub3d *cube)
 
 bool	condition(t_cub3d *cube)
 {
-	if (cube->map.points[(int)
-			cube->player.p_y / 64][(int) cube->player.p_x / 64] == '1')
+	int	x;
+	int	y;
+
+	x = cube->player.p_y;
+	y = cube->player.p_x;
+	if (cube->map.points[x / 64][y / 64] == '1' || cube->map.points[x / 64][y / 64] == '2')
 		return (true);
-	if (cube->map.points[(int)
-			cube->player.p_y / 64][(int) cube->player.p_x / 64] == '2')
+	if (cube->map.points[(x - 15) / 64][(y - 15) / 64] == '1' || cube->map.points[(x - 15) / 64][(y - 15) / 64] == '2')
+		return (true);
+	if (cube->map.points[(x) / 64][(y - 15) / 64] == '1' || cube->map.points[(x) / 64][(y - 15) / 64] == '2')
+		return (true);
+	if (cube->map.points[(x - 15) / 64][(y) / 64] == '1' || cube->map.points[(x - 15) / 64][(y) / 64] == '2')
+		return (true);
+	if (cube->map.points[(x + 15) / 64][(y + 15) / 64] == '1' || cube->map.points[(x + 15) / 64][(y + 15) / 64] == '2')
+		return (true);
+	if (cube->map.points[(x) / 64][(y + 15) / 64] == '1' || cube->map.points[(x) / 64][(y + 15) / 64] == '2')
+		return (true);
+	if (cube->map.points[(x + 15) / 64][(y) / 64] == '1' || cube->map.points[(x + 15) / 64][(y) / 64] == '2')
+		return (true);
+	if (cube->map.points[(x - 15) / 64][(y + 15) / 64] == '1' || cube->map.points[(x - 15) / 64][(y + 15) / 64] == '2')
+		return (true);
+	if (cube->map.points[(x + 15) / 64][(y - 15) / 64] == '1' || cube->map.points[(x + 15) / 64][(y - 15) / 64] == '2')
 		return (true);
 	return (false);
 }

@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-EA ./path_to_the_east_texture
-WE ./path_to_the_west_texture
+NO ./brick.xpm
+SO ./brick.xpm
+WE ./brick.xpm
+EA ./brick.xpm
 
 F 220,100,0
 C 225,30,0

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   casting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:50:34 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/18 19:42:06 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:11:06 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ void	set_rayh(t_cub3d *cube, t_cast *cast)
 		cast->disth = 100000;
 		if (cast->rayh.y / 64 < cube->map.height && cast->rayh.y / 64 >= 0
 			&& cast->rayh.x / 64 < cube->map.width && cast->rayh.x / 64 >= 0
-			&& cube->map.points[(int)(cast->rayh.y / 64)]
-			[(int)(cast->rayh.x / 64)] == '1')
+			&& cube->map.points[(int)cast->rayh.y / 64][(int)cast->rayh.x / 64] == '1')
 		{
 			cast->disth = dist(cast->player, cast->rayh, cast->r_angle);
 			cast->dof = DOF;

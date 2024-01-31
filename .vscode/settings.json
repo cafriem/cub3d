@@ -5,7 +5,6 @@
 		"locale": "c",
 		"ostream": "c",
 		"__string": "c",
-		"mlx.h": "c",
-		"system_error": "c"
+		"typeinfo": "c"
 	}
 }

@@ -6,11 +6,12 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/24 18:58:32 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:59:23 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cube_bonus.h"
+
 
 void	change_angle(t_cub3d *cube)
 {
@@ -19,7 +20,7 @@ void	change_angle(t_cub3d *cube)
 	if (cube->dir.right)
 		cube->player.p_angle -= 1;
 	if (cube->player.p_angle < 0)
-		cube->player.p_angle = 360;
+		cube->player.p_angle = 359.9;
 	else if (cube->player.p_angle >= 360)
 		cube->player.p_angle = 0;
 }
