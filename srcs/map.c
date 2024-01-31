@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/25 14:40:03 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/01/31 19:35:54 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,14 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 		cast->distt = cast->disth;
 	cast->distt = cast->distt * cos(deg2rad(cast->angle_diff));
 	cast->height.y = 64 * 400 / cast->distt;
-	// if (cast->height.y > 800)
-	// 	cast->height.y = 800;
+	if (cast->height.y > 800)
+		cast->height.y = 800;
 	cast->lines.y = 400 - (cast->height.y / 2);
 	cast->height.y += cast->lines.y;
 	if (cast->distv <= cast->disth)
-		wall_text(cast->height, cast->lines, cube, cast);
-		// dda(cast->height, cast->lines, cube, 0x005F6344);
+		wall_text_v(cast->height, cast->lines, cube, cast);
 	else
-		dda(cast->height, cast->lines, cube, 0x00A5633C);
-		// wall_text(cast->height, cast->lines, cube);
+		wall_text_h(cast->height, cast->lines, cube, cast);
 	cast->height.x -= 1;
 	cast->lines.x -= 1;
 	if (cube->m && cast->distv <= cast->disth)
