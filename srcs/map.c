@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/31 19:35:54 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:22:32 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,14 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 	cast->lines.x -= 1;
 	if (cube->m && cast->distv <= cast->disth)
 		dda(cast->player, cast->rayv, cube, 0x0055FFFF);
-		// wall_text(cast->height, cast->lines, cube);
 	else if (cube->m)
 		dda(cast->player, cast->rayh, cube, 0x0055FFFF);
-		// wall_text(cast->height, cast->lines, cube);
 	cast->r_angle += 0.075;
 	if (cast->r_angle < 0)
 		cast->r_angle += 360;
 	else if (cast->r_angle >= 360)
 		cast->r_angle -= 360;
 }
-
-// printf("p: %d, %d\nv: %d, %d (%f)\nh: %d, %d (%f)\n%f\n\n",
-// 	player.x, player.y, rayv.x, rayv.y, distv,
-// 	rayh.x, rayh.y, disth, cube->player.p_angle);
 
 void	draw_rays(t_cub3d *cube)
 {

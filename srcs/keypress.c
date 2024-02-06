@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/24 18:58:32 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:25:17 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ int	keydown(int keycode, t_cub3d *cube)
 		cube->dir.right = true;
 	else if (keycode == SHIFT)
 		cube->dir.shift = true;
-	else if (keycode == M)
-		cube->m = !cube->m;
 	return (0);
 }
 
