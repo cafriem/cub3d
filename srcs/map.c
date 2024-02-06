@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/31 19:35:54 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/03 17:50:19 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,11 @@ void	draw_map(t_cub3d *cube)
 		draw_player(cube);
 	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img.img, 0, 0);
 	mlx_destroy_image(cube->mlx, cube->img.img);
+}
+
+void	draw_torch(t_cub3d *cube, unsigned int **torch[], int frame)
+{
+	
 }
 
 void	create_map(t_cub3d *cube)

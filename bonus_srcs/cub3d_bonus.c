@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/25 17:12:26 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:01:41 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,16 @@ void	get_text(t_cub3d *cube)
 	cube->map.i_e = t_ext(cube, cube->map.t_e);
 	cube->map.i_w = t_ext(cube, cube->map.t_w);
 	cube->map.door = t_ext(cube, "textures/doors.xpm");
+	
+	cube->map.torch0 = t_ext(cube, "Torch64x64_01.xpm");
+	cube->map.torch1 = t_ext(cube, "Torch64x64_02.xpm");
+	cube->map.torch2 = t_ext(cube, "Torch64x64_03.xpm");
+	cube->map.torch3 = t_ext(cube, "Torch64x64_04.xpm");
+	cube->map.torch4 = t_ext(cube, "Torch64x64_05.xpm");
+	cube->map.torch5 = t_ext(cube, "Torch64x64_06.xpm");
 }
+
+
 
 void	create_map(t_cub3d *cube)
 {

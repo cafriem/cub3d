@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/31 18:41:38 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:18:24 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,22 @@ void	draw_rays(t_cub3d *cube)
 	}
 }
 
+void	draw_torch(t_cub3d *cube, unsigned int **map)
+{
+	int y = 600;
+	while (y < 664)
+	{
+		int x = 600;
+		while (x < 664)
+		{
+			if (map[y - 600][x - 600] != 0)
+			pixel_put(&cube->img, x, y, map[y - 600][x - 600]);
+			x++;
+		}
+		y++;
+	}
+}
+
 void	draw_map(t_cub3d *cube)
 {
 	int	i;
@@ -157,6 +173,10 @@ void	draw_map(t_cub3d *cube)
 	}
 	if (cube->m)
 		draw_player(cube);
+	cube->map.torchnum++;
+	if (cube->map.torchnum > 6)
+		cube->map.torchnum = 0;
+	draw_torch(cube, cube->map.torch0);
 	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img.img, 0, 0);
 	mlx_destroy_image(cube->mlx, cube->img.img);
 	check_door(cube);
