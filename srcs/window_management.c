@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 20:17:52 by jadithya          #+#    #+#             */
-/*   Updated: 2023/12/20 19:00:05 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:23:30 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void	close_free(t_cub3d *cube)
 		free(cube->map.points[i++]);
 	if (cube->map.points)
 		free(cube->map.points);
+	free(cube->mlx);
+	free(cube->map.i_e);
+	free(cube->map.i_w);
+	free(cube->map.i_n);
+	free(cube->map.i_s);
 }
 
 int	close_x(t_cub3d *cube)

@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/06 15:40:51 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:56:56 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@
 #  define C 8
 #  define SHIFT 57
 #  define M 46
-# elif LINUX
+# else
 #  include "../mlx-linux/mlx.h"
 #  define ESC 65307
 #  define Q 113

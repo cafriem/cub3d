@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/31 21:22:32 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:12:55 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,70 +87,6 @@ void	draw_rays(t_cub3d *cube)
 		cast_n_project(cube, &cast);
 	}
 }
-
-// void	draw_rays(t_cub3d *cube)
-// {
-// 	int	depth;
-// 	int	ray_y;
-// 	int	ray_x;
-// 	int	x_off;
-// 	int	y_off;
-
-
-// 	depth = 0;
-// 	ray_y = (cube->player.p_y / 16) * 16;
-// 	ray_x = ((cube->player.p_y - ray_y)
-// 			* (-1 / tan(cube->player.p_direction))) + cube->player.p_x;
-// 	y_off = -64;
-// 	x_off = -y_off * (-1 / tan(cube->player.p_direction));
-// 	while (depth < 8)
-// 	{
-
-// 	}
-// }
-
-// int pos = (y * size_line + x * (bits_per_pixel / 8));
-
-// unsigned int	**t_ext(t_cub3d *cube, char *map)
-// {
-
-// 	int	width;
-// 	int	height;
-// 	int	pos;
-// 	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height);
-// 	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height);
-// 	char	*name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
-// 			&cube->img.line_length, &cube->img.endian);
-// 	unsigned int	**num;
-// 	int	x = 0;
-// 	int	y = 0;
-// 	num = ft_calloc(65, sizeof(unsigned int *));
-// 	while (y < 64)
-// 	{
-// 		x = 0;
-// 		num[y] = ft_calloc(65, sizeof(unsigned int));
-// 		while (x < 64)
-// 		{
-// 			pos = (y * cube->img.line_length + x * (cube->img.bpp / 8));
-// 			num[y][x] = *(unsigned int *)&name[pos];
-// 			x++;
-// 		}
-// 		printf("part 3\n");
-// 		y++;
-// 	}
-// 	printf("part 4\n");
-// 	printf("part 5\n");
-// 	return(num);
-// }
-// x = <------------>
-
-// void	get_text(t_cub3d *cube)
-// {
-// 	cube->map.i_n = t_ext(cube, cube->map.t_n);
-// 	cube->map.i_s = t_ext(cube, cube->map.t_s);
-// 	cube->map.i_e = t_ext(cube, cube->map.t_e);
-// 	cube->map.i_w = t_ext(cube, cube->map.t_w);
-// }
 
 void	draw_map(t_cub3d *cube)
 {

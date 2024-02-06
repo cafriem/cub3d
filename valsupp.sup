@@ -1,0 +1,13 @@
+{
+   ignore_mlx_errors
+   Memcheck:Leak
+   ...
+   obj:*/libX11.so.*
+}
+
+{
+   ignore_more_errors
+   Memcheck:Leak
+   ...
+   obj:*/libXext.so.*
+}
