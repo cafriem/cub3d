@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 20:17:52 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/06 18:23:30 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/06 20:56:10 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	close_free(t_cub3d *cube)
 {
 	int	i;
 
+	printf("test\n");
 	mlx_destroy_window(cube->mlx, cube->mlx_window);
 	i = 0;
 	while (cube->map.points[i])
@@ -23,6 +24,15 @@ void	close_free(t_cub3d *cube)
 	if (cube->map.points)
 		free(cube->map.points);
 	free(cube->mlx);
+	i = 0;
+	while (i < 65)
+	{
+		free(cube->map.i_e[i]);
+		free(cube->map.i_w[i]);
+		free(cube->map.i_n[i]);
+		free(cube->map.i_s[i]);
+		i++;
+	}
 	free(cube->map.i_e);
 	free(cube->map.i_w);
 	free(cube->map.i_n);

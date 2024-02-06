@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/06 19:56:51 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/06 20:37:05 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,11 @@ void	texture_parse(t_cub3d *cub3d)
 		else if (!ft_strncmp(line, "C", 1))
 			cub3d->map.c = get_color(ft_substr((cub3d->map.file_map[c]), 1,
 						ft_strlen(cub3d->map.file_map[c])));
-		free(line);
+		else
+			break ;
+		free (line);
 	}
+	free (line);
 	mapread(cub3d, c);
 }
 
