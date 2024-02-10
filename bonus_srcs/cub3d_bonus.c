@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 14:07:47 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:23:08 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,17 @@ void	check_text(t_cub3d *cube)
 		error(cube, 5);
 	if (access("textures/doors.xpm", F_OK) == -1 || access("textures/doors.xpm", R_OK) == -1)
 		error(cube, 5);
-	if (access("Torch64x64_01.xpm", F_OK) == -1 || access("Torch64x64_01.xpm", R_OK) == -1)
+	if (access("textures/Torch_1.xpm", F_OK) == -1 || access("textures/Torch_1.xpm", R_OK) == -1)
 		error(cube, 5);
-	if (access("Torch64x64_02.xpm", F_OK) == -1 || access("Torch64x64_02.xpm", R_OK) == -1)
+	if (access("textures/Torch_2.xpm", F_OK) == -1 || access("textures/Torch_2.xpm", R_OK) == -1)
 		error(cube, 5);
-	if (access("Torch64x64_03.xpm", F_OK) == -1 || access("Torch64x64_03.xpm", R_OK) == -1)
+	if (access("textures/Torch_3.xpm", F_OK) == -1 || access("textures/Torch_3.xpm", R_OK) == -1)
 		error(cube, 5);
-	if (access("Torch64x64_04.xpm", F_OK) == -1 || access("Torch64x64_04.xpm", R_OK) == -1)
+	if (access("textures/Torch_4.xpm", F_OK) == -1 || access("textures/Torch_4.xpm", R_OK) == -1)
 		error(cube, 5);
-	if (access("Torch64x64_05.xpm", F_OK) == -1 || access("Torch64x64_05.xpm", R_OK) == -1)
+	if (access("textures/Torch_5.xpm", F_OK) == -1 || access("textures/Torch_5.xpm", R_OK) == -1)
 		error(cube, 5);
-	if (access("Torch64x64_06.xpm", F_OK) == -1 || access("Torch64x64_06.xpm", R_OK) == -1)
+	if (access("textures/Torch_6.xpm", F_OK) == -1 || access("textures/Torch_6.xpm", R_OK) == -1)
 		error(cube, 5);
 }
 
@@ -116,12 +116,12 @@ void	get_text(t_cub3d *cube)
 	cube->map.door = t_ext(cube, "textures/doors.xpm");
 
 	cube->map.torch = calloc(6, sizeof(unsigned int **));
-	cube->map.torch[0] = t_ext(cube, "Torch64x64_01.xpm");
-	cube->map.torch[1] = t_ext(cube, "Torch64x64_02.xpm");
-	cube->map.torch[2] = t_ext(cube, "Torch64x64_03.xpm");
-	cube->map.torch[3] = t_ext(cube, "Torch64x64_04.xpm");
-	cube->map.torch[4] = t_ext(cube, "Torch64x64_05.xpm");
-	cube->map.torch[5] = t_ext(cube, "Torch64x64_06.xpm");
+	cube->map.torch[0] = t_ext(cube, "textures/Torch_1.xpm");
+	cube->map.torch[1] = t_ext(cube, "textures/Torch_2.xpm");
+	cube->map.torch[2] = t_ext(cube, "textures/Torch_3.xpm");
+	cube->map.torch[3] = t_ext(cube, "textures/Torch_4.xpm");
+	cube->map.torch[4] = t_ext(cube, "textures/Torch_5.xpm");
+	cube->map.torch[5] = t_ext(cube, "textures/Torch_6.xpm");
 }
 
 
