@@ -6,11 +6,11 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:12:15 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 23:13:57 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 23:29:08 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube_bonus.h"
+#include "cube_bonus.h"
 
 bool	v_condition(t_point x1, float increase_x, float increase_y, int i)
 {

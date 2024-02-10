@@ -6,11 +6,11 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 22:33:54 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 22:34:58 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 23:29:42 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube_bonus.h"
+#include "cube_bonus.h"
 
 void	print_filemap(t_cub3d *cube)
 {
@@ -42,6 +42,6 @@ int	mouse(int x, int y, t_cub3d *cube)
 int	file_check(char *string)
 {
 	if (ft_strcmp(ft_strchr(string, '.'), ".cub") == 0)
-		return(1);
-	return(0);
+		return (1);
+	return (0);
 }

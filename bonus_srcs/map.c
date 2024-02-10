@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 23:16:25 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/10 23:28:13 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void	draw_rays(t_cub3d *cube)
 
 void	draw_torch(t_cub3d *cube, unsigned int **map)
 {
-	int y;
-	float mapy;
-	int x;
-	float mapx;
-	
+	int		y;
+	float	mapy;
+	int		x;
+	float	mapx;
+
 	y = 600;
 	mapy = 0;
 	while (y < 800)
@@ -101,7 +101,8 @@ void	draw_map2(t_cub3d *cube)
 		{
 			if (cube->map.points[i][j] == '1')
 				draw_square(i, j, cube, 0x00FFFFFF);
-			else if (cube->map.points[i][j] == '2' || cube->map.points[i][j] == '3')
+			else if (cube->map.points[i][j] == '2'
+				|| cube->map.points[i][j] == '3')
 				draw_square(i, j, cube, 0x00822001);
 		}
 	}

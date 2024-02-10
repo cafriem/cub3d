@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_more.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 23:19:16 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/10 23:27:37 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	player_check(t_cub3d *cub3d, int c)
 		c1++;
 	if (ft_strchr(cub3d->map.points[c], 'E') != NULL)
 		c1++;
-	if (ft_strchr(cub3d->map.points[c], 'W') != NULL)		
+	if (ft_strchr(cub3d->map.points[c], 'W') != NULL)
 		c1++;
-	return(c1 - 1);
+	return (c1 - 1);
 }
 
 void	player_info(t_cub3d *cub3d)
@@ -74,13 +74,13 @@ int	texture_parse2(t_cub3d *cub3d, char *line, int c)
 		cub3d->map.t_w = ft_strchr(cub3d->map.file_map[c], '.');
 	else if (!ft_strncmp(line, "F", 1))
 		cub3d->map.f = get_color(ft_substr((cub3d->map.file_map[c]), 1,
-			ft_strlen(cub3d->map.file_map[c])));
+					ft_strlen(cub3d->map.file_map[c])));
 	else if (!ft_strncmp(line, "C", 1))
 		cub3d->map.c = get_color(ft_substr((cub3d->map.file_map[c]), 1,
-			ft_strlen(cub3d->map.file_map[c])));
+					ft_strlen(cub3d->map.file_map[c])));
 	else
-		return(1);
-	return(0);
+		return (1);
+	return (0);
 }
 
 void	texture_parse(t_cub3d *cub3d)
@@ -93,7 +93,7 @@ void	texture_parse(t_cub3d *cub3d)
 	{
 		line = ft_strtrim(cub3d->map.file_map[c], " ");
 		if (texture_parse2(cub3d, line, c) == 1)
-			break;
+			break ;
 		free (line);
 	}
 	if (line)
