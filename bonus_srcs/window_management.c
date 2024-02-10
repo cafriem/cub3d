@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 20:17:52 by jadithya          #+#    #+#             */
 /*   Updated: 2024/02/10 14:42:40 by jadithya         ###   ########.fr       */
@@ -12,49 +12,54 @@
 
 #include "cube_bonus.h"
 
+void	free_point(unsigned int **map)
+{
+	int	c;
+
+	c = 0;
+	while (c < 65)
+	{
+		free(map[c]);
+		c++;
+	}
+	free(map);
+}
+
+void	free_torch(unsigned int ***torch)
+{
+	int	c;
+
+	c = 0;
+	while (c < 5)
+	{
+		free_point(torch[c]);
+		c++;
+	}
+	free(torch);
+}
+
 void	close_free(t_cub3d *cube)
 {
 	int	i;
 
 	mlx_destroy_window(cube->mlx, cube->mlx_window);
-	i = 0;
-	while (cube->map.points[i])
-		free(cube->map.points[i++]);
-	if (cube->map.points)
-		free(cube->map.points);
 	free(cube->mlx);
-	i = 0;
-	while (i < 65)
-	{
-		free(cube->map.i_e[i]);
-		free(cube->map.i_w[i]);
-		free(cube->map.i_n[i]);
-		free(cube->map.i_s[i]);
-		free(cube->map.door[i]);
-		free (cube->map.torch[0][i]);
-		free (cube->map.torch[1][i]);
-		free (cube->map.torch[2][i]);
-		free (cube->map.torch[3][i]);
-		free (cube->map.torch[4][i]);
-		free (cube->map.torch[5][i]);
-		i++;
-	}
-	free(cube->map.i_e);
-	free(cube->map.i_w);
-	free(cube->map.i_n);
-	free(cube->map.i_s);
-	free(cube->map.door);
-	free (cube->map.torch[0]);
-	free (cube->map.torch[1]);
-	free (cube->map.torch[2]);
-	free (cube->map.torch[3]);
-	free (cube->map.torch[4]);
-	free (cube->map.torch[5]);
-	free (cube->map.torch);
-	i = 0;
-	while (cube->map.file_map[i])
-		free (cube->map.file_map[i++]);
-	free (cube->map.file_map);
+	if (cube->map.i_e)
+		free_point(cube->map.i_e);
+	if (cube->map.i_w)
+		free_point(cube->map.i_w);
+	if (cube->map.i_n)
+		free_point(cube->map.i_n);
+	if (cube->map.i_s)
+		free_point(cube->map.i_s);
+	if (cube->map.door)
+		free_point(cube->map.door);
+	if (cube->map.points)
+		ft_freesplit(cube->map.points);
+	if (cube->map.file_map)
+		ft_freesplit(cube->map.file_map);
+	if (cube->map.torch)
+		free_torch(cube->map.torch);
 }
 
 int	close_x(t_cub3d *cube)

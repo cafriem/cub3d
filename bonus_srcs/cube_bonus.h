@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/06 16:23:23 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:37:20 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,10 @@ void	draw_map(t_cub3d *cube);
 
 void	dda(t_point x1, t_point x2, t_cub3d *cube, int color);
 void	draw_torch(t_cub3d *cube, unsigned int **map);
+
+void	free_point(unsigned int **map);
+void	free_torch(unsigned int ***torch);
+
 
 double	deg2rad(double degrees);
 

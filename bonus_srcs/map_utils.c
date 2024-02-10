@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:27:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 13:49:36 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 22:04:20 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,42 +70,53 @@ int	get_color(char *line)
 		free(line);
 	return (ret);
 }
+
+int	valid_letter(char letter)
+{
+	if (letter == '0' || letter == 'N' || letter == 'S' || letter == 'E'
+	|| letter == 'W' || letter == '2' || letter == ' ' || letter == '1')
+		return(0);
+	return(1);
+}
+
 void	check_updown(t_cub3d *cub3d, int row, int colom)
 {
-	int	vertical;
+	int	vert;
 
-	vertical = row;
-	while (cub3d->map.points[vertical][colom] != '1')
+	vert = row;
+	while (cub3d->map.points[vert][colom] != '1')
 	{
-		vertical--;
-		if (vertical < 0)
+		vert--;
+		if (vert < 0 || valid_letter(cub3d->map.points[vert][colom]) == 1)
 			error(cub3d, 2);
 	}
-	vertical = row;
-	while (cub3d->map.points[vertical][colom] != '1')
+	vert = row;
+	while (cub3d->map.points[vert][colom] != '1')
 	{
-		vertical++;
-		if (vertical > cub3d->map.height)
+		vert++;
+		if (vert > cub3d->map.height
+			|| valid_letter(cub3d->map.points[vert][colom]) == 1)
 			error(cub3d, 2);
 	}
 }
 
 int	check_leftright(t_cub3d *cub3d, int row, int colom)
 {
-	int	horizontal;
+	int	hor;
 
-	horizontal = colom;
-	while (cub3d->map.points[row][horizontal] != '1')
+	hor = colom;
+	while (cub3d->map.points[row][hor] != '1')
 	{
-		horizontal--;
-		if (horizontal < 0)
+		hor--;
+		if (hor < 0 || valid_letter(cub3d->map.points[row][hor]) == 1)
 			error(cub3d, 2);
 	}
-	horizontal = colom;
-	while (cub3d->map.points[row][horizontal] != '1')
+	hor = colom;
+	while (cub3d->map.points[row][hor] != '1')
 	{
-		horizontal++;
-		if (horizontal > cub3d->map.width)
+		hor++;
+		if (hor > cub3d->map.width
+			|| valid_letter(cub3d->map.points[row][hor]) == 1)
 			error(cub3d, 2);
 	}
 	return (1);
