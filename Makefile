@@ -6,7 +6,7 @@
 #    By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/02 22:13:13 by jadithya          #+#    #+#              #
-#    Updated: 2024/02/06 16:15:59 by jadithya         ###   ########.fr        #
+#    Updated: 2024/02/10 23:13:01 by jadithya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,10 @@ SRCS = $(SRCDIR)/cub3d.c \
 
 BONUS = $(BONUSDIR)/cub3d_bonus.c \
 		$(BONUSDIR)/DDA.c \
+		$(BONUSDIR)/DDA_help.c \
 		$(BONUSDIR)/bonus_move.c \
 		$(BONUSDIR)/error.c \
+		$(BONUSDIR)/some_map.c \
 		$(BONUSDIR)/map.c \
 		$(BONUSDIR)/keypress.c \
 		$(BONUSDIR)/window_management.c \

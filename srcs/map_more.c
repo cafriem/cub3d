@@ -6,11 +6,20 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 13:19:21 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 22:25:21 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+float	dist(t_point player, t_point ray, float angle)
+{
+	(void) angle;
+	return (sqrt(
+			((ray.x - player.x) * (ray.x - player.x))
+			+ ((ray.y - player.y) * (ray.y - player.y))
+		));
+}
 
 void	player_info(t_cub3d *cub3d)
 {
@@ -39,12 +48,10 @@ void	player_info(t_cub3d *cub3d)
 		error(cub3d, 3);
 }
 
-void	texture_parse(t_cub3d *cub3d)
+void	texture_parse(t_cub3d *cub3d, int c)
 {
-	int		c;
 	char	*line;
 
-	c = -1;
 	while (cub3d->map.file_map[++c])
 	{
 		line = ft_strtrim(cub3d->map.file_map[c], " ");
@@ -81,8 +88,7 @@ void	openmap(t_cub3d *cub3d, char *argv[])
 	str = readfile(fd);
 	cub3d->map.file_map = ft_split(str, '\n');
 	free (str);
-	texture_parse(cub3d);
-	// struck_check(cub3d);
+	texture_parse(cub3d, -1);
 	cub3d->player.p_x = cub3d->map.p_colom * 64 + 32;
 	cub3d->player.p_y = cub3d->map.p_row * 64 + 32;
 	cub3d->player.p_dx = cos(cub3d->player.p_angle) * 1;
