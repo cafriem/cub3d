@@ -3,78 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 15:41:16 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 23:16:25 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube_bonus.h"
-
-float	dist(t_point player, t_point ray, float angle)
-{
-	(void) angle;
-	return (sqrt(
-			((ray.x - player.x) * (ray.x - player.x))
-			+ ((ray.y - player.y) * (ray.y - player.y))
-		));
-}
-
-void	initialize_cast(t_cast *cast, t_cub3d *cube)
-{
-	cast->rays = 0;
-	cast->r_angle = cube->player.p_angle - 30;
-	if (cast->r_angle < 0)
-		cast->r_angle += 360;
-	cast->lines.x = 800;
-	cast->lines.y = 0;
-	cast->height.x = 800;
-}
-
-// int	get_hex_color(t_cub3d *cube, int x, int y)
-// {
-// 	int	i;
-// 	int	colors[4];
-
-// 	i = -1;
-// 	while (++i < 3)
-// 		colors[i] = (int) cube->doors.img.addr[((x * 4)
-// 				+ (y * cube->doors.img.line_length)) + i];
-// 	return (create_trgb(0, colors[2], colors[1], colors[0]));
-// }
-
-// void	draw_door(t_cub3d *cube, t_cast *cast)
-// {
-// 	int	y;
-
-// 	y = (int) cast->lines.y;
-// 	while (y < cast->height.y)
-// 	{
-// 		pixel_put(&cube->img, cast->height.x, y, get_hex_color(cube,
-// 				((int) cast->height.x / 16),
-// 				((int)((fabsf(y - cast->lines.y)) * 56 / (cast->height.y - cast->lines.y)))));
-// 		y++;
-// 	}
-// }
-
-void	door_or_wall(t_cub3d *cube, t_cast *cast)
-{
-	if (cast->distv <= cast->disth)
-	{
-		if (cube->map.points[(int)(cast->rayv.y / 16)][(int)(cast->rayv.x / 16)] == '2')
-			wall_text_d(cast->height, cast->lines, cube, cast);
-		else
-			wall_text_v(cast->height, cast->lines, cube, cast);
-	}
-	else
-	{
-		if (cube->map.points[(int)(cast->rayh.y / 16)][(int)cast->rayh.x / 16] == '2')
-			wall_text_d(cast->height, cast->lines, cube, cast);
-		else
-			wall_text_h(cast->height, cast->lines, cube, cast);
-	}
-}
 
 void	cast_n_project(t_cub3d *cube, t_cast *cast)
 {
@@ -84,8 +20,6 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 		cast->distt = cast->disth;
 	cast->distt = cast->distt * cos(deg2rad(cast->angle_diff));
 	cast->height.y = 64 * 400 / cast->distt;
-	// if (cast->height.y > 800)
-	// 	cast->height.y = 800;
 	cast->lines.y = 400 - (cast->height.y / 2);
 	cast->height.y += cast->lines.y;
 	door_or_wall(cube, cast);
@@ -101,10 +35,6 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 	else if (cast->r_angle >= 360)
 		cast->r_angle -= 360;
 }
-
-// printf("p: %d, %d\nv: %d, %d (%f)\nh: %d, %d (%f)\n%f\n\n",
-// 	player.x, player.y, rayv.x, rayv.y, distv,
-// 	rayh.x, rayh.y, disth, cube->player.p_angle);
 
 void	draw_rays(t_cub3d *cube)
 {
@@ -135,12 +65,17 @@ void	draw_rays(t_cub3d *cube)
 
 void	draw_torch(t_cub3d *cube, unsigned int **map)
 {
-	int y = 600;
-	float mapy = 0;
+	int y;
+	float mapy;
+	int x;
+	float mapx;
+	
+	y = 600;
+	mapy = 0;
 	while (y < 800)
 	{
-		int x = 600;
-		float mapx = 0;
+		x = 600;
+		mapx = 0;
 		while (x < 800)
 		{
 			if (map && map[(int)mapy][(int)mapx])
@@ -153,17 +88,12 @@ void	draw_torch(t_cub3d *cube, unsigned int **map)
 	}
 }
 
-void	draw_map(t_cub3d *cube)
+void	draw_map2(t_cub3d *cube)
 {
 	int	i;
 	int	j;
 
-	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height);
-	cube->img.addr = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
-			&cube->img.line_length, &cube->img.endian);
-	draw_floor_ceiling(cube);
 	i = -1;
-	draw_rays(cube);
 	while (cube->m && cube->map.points[++i])
 	{
 		j = -1;
@@ -175,6 +105,16 @@ void	draw_map(t_cub3d *cube)
 				draw_square(i, j, cube, 0x00822001);
 		}
 	}
+}
+
+void	draw_map(t_cub3d *cube)
+{
+	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height);
+	cube->img.addr = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
+			&cube->img.line_length, &cube->img.endian);
+	draw_floor_ceiling(cube);
+	draw_rays(cube);
+	draw_map2(cube);
 	if (cube->m)
 		draw_player(cube);
 	cube->map.tnum++;

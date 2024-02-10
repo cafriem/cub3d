@@ -6,26 +6,11 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:27:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 22:04:20 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/10 23:17:31 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube_bonus.h"
-
-char	*readfile(int fd)
-{
-	char	*ntext;
-	char	*text;
-
-	text = get_next_line(fd);
-	ntext = get_next_line(fd);
-	while (ntext != NULL)
-	{
-		text = ft_strjoinfree(text, ntext, 3);
-		ntext = get_next_line(fd);
-	}
-	return (text);
-}
 
 int	create_trgb(int t, int r, int g, int b)
 {
@@ -44,31 +29,6 @@ int	check_digit(char *string)
 		c++;
 	}
 	return(0);
-}
-
-int	get_color(char *line)
-{
-	char	**spl;
-	int		c;
-	int		ret;
-
-	spl = ft_split(line, ',');
-	c = 0;
-	while (spl[c])
-		c++;
-	if (c != 3)
-		return (-1);
-	if ((spl[0] && spl[1] && spl[2]) && (check_digit(spl[0]) == 1)
-		&& (check_digit(spl[1]) == 1) && (check_digit(spl[2]) == 1))
-		ret = create_trgb(1, ft_atoi(spl[0]), ft_atoi(spl[1]), ft_atoi(spl[2]));
-	else
-	{
-		return (-1);
-	}
-	ft_freesplit(spl);
-	if (line)
-		free(line);
-	return (ret);
 }
 
 int	valid_letter(char letter)

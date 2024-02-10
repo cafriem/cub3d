@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/10 20:37:20 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/10 23:21:45 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,9 @@ void	draw_torch(t_cub3d *cube, unsigned int **map);
 
 void	free_point(unsigned int **map);
 void	free_torch(unsigned int ***torch);
-
+void	door_or_wall(t_cub3d *cube, t_cast *cast);
+void	close_free(t_cub3d *cube);
+int		check_digit(char *string);
 
 double	deg2rad(double degrees);
 
