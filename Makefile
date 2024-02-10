@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/02 22:13:13 by jadithya          #+#    #+#              #
-#    Updated: 2024/02/10 23:13:01 by jadithya         ###   ########.fr        #
+#    Updated: 2024/02/10 23:19:35 by cafriem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,13 @@ BONUS = $(BONUSDIR)/cub3d_bonus.c \
 		$(BONUSDIR)/window_management.c \
 		$(BONUSDIR)/map_utils.c \
 		$(BONUSDIR)/map_more.c \
+		$(BONUSDIR)/map_more2.c \
+		$(BONUSDIR)/map_more3.c \
 		$(BONUSDIR)/map_valid.c \
 		$(BONUSDIR)/drawing.c \
 		$(BONUSDIR)/casting.c \
 		$(BONUSDIR)/bonus_utils.c \
+		$(BONUSDIR)/free_parsing.c \
 
 CC = cc
 

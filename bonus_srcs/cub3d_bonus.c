@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 22:35:52 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 22:24:40 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	get_text(t_cub3d *cube)
 	cube->map.torch[2] = t_ext(cube, "textures/Torch_4.xpm", 64, 64);
 	cube->map.torch[3] = t_ext(cube, "textures/Torch_5.xpm", 64, 64);
 	cube->map.torch[4] = t_ext(cube, "textures/Torch_6.xpm", 64, 64);
-	cube->map.torch[5] = t_ext(cube, "textures/Torch_3.xpm", 64, 64);
+	cube->map.torch[5] = t_ext(cube, "textures/Torch_1.xpm", 64, 64);
 }
 
 void	create_map(t_cub3d *cube)

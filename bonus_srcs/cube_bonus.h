@@ -283,6 +283,10 @@ void	draw_torch(t_cub3d *cube, unsigned int **map);
 
 void	free_point(unsigned int **map);
 void	free_torch(unsigned int ***torch);
+void	door_or_wall(t_cub3d *cube, t_cast *cast);
+void	close_free(t_cub3d *cube);
+int		check_digit(char *string);
+
 
 double	deg2rad(double degrees);
 

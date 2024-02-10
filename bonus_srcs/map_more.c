@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_more.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 15:13:00 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 23:19:16 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube_bonus.h"
-
-void	draw_hud(t_cub3d *cube)
-{
-	(void) cube;
-}
 
 int	player_check(t_cub3d *cub3d, int c)
 {
@@ -67,6 +62,27 @@ void	checker(t_cub3d *cube)
 		error(cube, 4);
 }
 
+int	texture_parse2(t_cub3d *cub3d, char *line, int c)
+{
+	if (ft_strncmp(line, "NO", 2) == 0)
+		cub3d->map.t_n = ft_strchr(cub3d->map.file_map[c], '.');
+	else if (!ft_strncmp(line, "SO", 2))
+		cub3d->map.t_s = ft_strchr(cub3d->map.file_map[c], '.');
+	else if (!ft_strncmp(line, "EA", 2))
+		cub3d->map.t_e = ft_strchr(cub3d->map.file_map[c], '.');
+	else if (!ft_strncmp(line, "WE", 2))
+		cub3d->map.t_w = ft_strchr(cub3d->map.file_map[c], '.');
+	else if (!ft_strncmp(line, "F", 1))
+		cub3d->map.f = get_color(ft_substr((cub3d->map.file_map[c]), 1,
+			ft_strlen(cub3d->map.file_map[c])));
+	else if (!ft_strncmp(line, "C", 1))
+		cub3d->map.c = get_color(ft_substr((cub3d->map.file_map[c]), 1,
+			ft_strlen(cub3d->map.file_map[c])));
+	else
+		return(1);
+	return(0);
+}
+
 void	texture_parse(t_cub3d *cub3d)
 {
 	int		c;
@@ -76,58 +92,12 @@ void	texture_parse(t_cub3d *cub3d)
 	while (cub3d->map.file_map[++c])
 	{
 		line = ft_strtrim(cub3d->map.file_map[c], " ");
-		if (ft_strncmp(line, "NO", 2) == 0)
-			cub3d->map.t_n = ft_strchr(cub3d->map.file_map[c], '.');
-		else if (!ft_strncmp(line, "SO", 2))
-			cub3d->map.t_s = ft_strchr(cub3d->map.file_map[c], '.');
-		else if (!ft_strncmp(line, "EA", 2))
-			cub3d->map.t_e = ft_strchr(cub3d->map.file_map[c], '.');
-		else if (!ft_strncmp(line, "WE", 2))
-			cub3d->map.t_w = ft_strchr(cub3d->map.file_map[c], '.');
-		else if (!ft_strncmp(line, "F", 1))
-			cub3d->map.f = get_color(ft_substr((cub3d->map.file_map[c]), 1,
-						ft_strlen(cub3d->map.file_map[c])));
-		else if (!ft_strncmp(line, "C", 1))
-			cub3d->map.c = get_color(ft_substr((cub3d->map.file_map[c]), 1,
-						ft_strlen(cub3d->map.file_map[c])));
-		else
-			break ;
+		if (texture_parse2(cub3d, line, c) == 1)
+			break;
 		free (line);
 	}
 	if (line)
 		free (line);
 	checker(cub3d);
 	mapread(cub3d, c);
-}
-
-void	openmap(t_cub3d *cub3d, char *argv[])
-{
-	int		fd;
-	char	*str;
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		error(cub3d, 1);
-	str = readfile(fd);
-	cub3d->map.file_map = ft_split(str, '\n');
-	free(str);
-	texture_parse(cub3d);
-	cub3d->player.p_x = cub3d->map.p_colom * 64 + 32;
-	cub3d->player.p_y = cub3d->map.p_row * 64 + 32;
-	cub3d->player.p_dx = cos(cub3d->player.p_angle) * 1;
-	cub3d->player.p_dy = sin(cub3d->player.p_angle) * 1;
-}
-
-void	set_booleans(t_cub3d *cube)
-{
-	cube->dir.w = false;
-	cube->dir.s = false;
-	cube->dir.a = false;
-	cube->dir.d = false;
-	cube->dir.left = false;
-	cube->dir.right = false;
-	cube->m = false;
-	cube->dir.shift = false;
-	cube->map.torchnum = 0;
-	cube->map.tnum = 0;
 }
