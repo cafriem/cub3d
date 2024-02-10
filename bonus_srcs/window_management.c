@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 20:17:52 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 14:07:13 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:42:40 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ void	close_free(t_cub3d *cube)
 		free(cube->map.i_n[i]);
 		free(cube->map.i_s[i]);
 		free(cube->map.door[i]);
+		free (cube->map.torch[0][i]);
+		free (cube->map.torch[1][i]);
+		free (cube->map.torch[2][i]);
+		free (cube->map.torch[3][i]);
+		free (cube->map.torch[4][i]);
+		free (cube->map.torch[5][i]);
 		i++;
 	}
 	free(cube->map.i_e);
@@ -38,6 +44,13 @@ void	close_free(t_cub3d *cube)
 	free(cube->map.i_n);
 	free(cube->map.i_s);
 	free(cube->map.door);
+	free (cube->map.torch[0]);
+	free (cube->map.torch[1]);
+	free (cube->map.torch[2]);
+	free (cube->map.torch[3]);
+	free (cube->map.torch[4]);
+	free (cube->map.torch[5]);
+	free (cube->map.torch);
 	i = 0;
 	while (cube->map.file_map[i])
 		free (cube->map.file_map[i++]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 14:23:08 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/10 16:43:43 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	print_filemap(t_cub3d *cube)
 
 unsigned int	**t_ext(t_cub3d *cube, char *map)
 {
-
 	int	width;
 	int	height;
 	int	pos;
+
 	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height);
 	char	*name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
 			&cube->img.line_length, &cube->img.endian);
@@ -117,14 +117,12 @@ void	get_text(t_cub3d *cube)
 
 	cube->map.torch = calloc(6, sizeof(unsigned int **));
 	cube->map.torch[0] = t_ext(cube, "textures/Torch_1.xpm");
-	cube->map.torch[1] = t_ext(cube, "textures/Torch_2.xpm");
-	cube->map.torch[2] = t_ext(cube, "textures/Torch_3.xpm");
-	cube->map.torch[3] = t_ext(cube, "textures/Torch_4.xpm");
-	cube->map.torch[4] = t_ext(cube, "textures/Torch_5.xpm");
-	cube->map.torch[5] = t_ext(cube, "textures/Torch_6.xpm");
+	cube->map.torch[1] = t_ext(cube, "textures/Torch_3.xpm");
+	cube->map.torch[2] = t_ext(cube, "textures/Torch_4.xpm");
+	cube->map.torch[3] = t_ext(cube, "textures/Torch_5.xpm");
+	cube->map.torch[4] = t_ext(cube, "textures/Torch_6.xpm");
+	cube->map.torch[5] = t_ext(cube, "textures/Torch_3.xpm");
 }
-
-
 
 void	create_map(t_cub3d *cube)
 {
@@ -170,7 +168,7 @@ int	main(int argc, char *argv[])
 	if (access(argv[1], F_OK) == -1 || access(argv[1], R_OK) == -1)
 		error(&cube, 0);
 	cube.map.tnum = 0;
-	cube.map.torch = 0;
+	cube.map.torchnum = 0;
 	openmap(&cube, argv);
 	set_booleans(&cube);
 	create_map(&cube);
