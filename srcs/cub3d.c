@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/06 18:15:54 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 13:18:09 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 	int	width;
 	int	height;
 	int	pos;
-	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height); // new image
 	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height); // mlx to image
 	char	*name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
 			&cube->img.line_length, &cube->img.endian); // getting the address of the image

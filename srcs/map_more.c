@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/06 20:37:05 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 13:19:21 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,14 @@ void	texture_parse(t_cub3d *cub3d)
 void	openmap(t_cub3d *cub3d, char *argv[])
 {
 	int		fd;
+	char	*str;
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		error(cub3d, 1);
-	cub3d->map.file_map = ft_split(readfile(fd), '\n');
+	str = readfile(fd);
+	cub3d->map.file_map = ft_split(str, '\n');
+	free (str);
 	texture_parse(cub3d);
 	// struck_check(cub3d);
 	cub3d->player.p_x = cub3d->map.p_colom * 64 + 32;

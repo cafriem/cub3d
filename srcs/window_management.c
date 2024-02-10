@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 20:17:52 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/06 20:56:10 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 13:18:00 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ void	close_free(t_cub3d *cube)
 	free(cube->map.i_w);
 	free(cube->map.i_n);
 	free(cube->map.i_s);
+	i = 0;
+	while (cube->map.file_map[i])
+		free (cube->map.file_map[i++]);
+	free (cube->map.file_map);
 }
 
 int	close_x(t_cub3d *cube)
