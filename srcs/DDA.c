@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:03:16 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/31 19:34:28 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:12:27 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	wall_text(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast)
 	}
 	i = 1;
 	int	text = 1;
-	printf ("x = %f, %f\n", cast->rayv.x, cast->rayv.y);
 	while (i++ <= steps)
 	{
 		pixel_put(&cube->img, x1.x + (increase_x * (i - 1)), x1.y + (increase_y * (i - 1)),

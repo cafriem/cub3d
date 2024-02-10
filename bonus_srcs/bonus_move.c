@@ -6,37 +6,11 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:11:15 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/31 18:48:37 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:21:13 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube_bonus.h"
-
-void	change_angle(t_cub3d *cube)
-{
-	if (cube->dir.left)
-		cube->player.p_angle += 1;
-	if (cube->dir.right)
-		cube->player.p_angle -= 1;
-	if (cube->player.p_angle < 0)
-		cube->player.p_angle = 360;
-	else if (cube->player.p_angle >= 360)
-		cube->player.p_angle = 0;
-}
-
-void	change_position(t_cub3d *cube)
-{
-	if (!cube->dir.shift)
-	{
-		cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 1;
-		cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 1;
-	}
-	else
-	{
-		cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 2;
-		cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 2;
-	}
-}
 
 bool	condition(t_cub3d *cube)
 {

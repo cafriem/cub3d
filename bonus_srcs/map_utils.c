@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:27:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/10 14:30:36 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 13:49:36 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	get_color(char *line)
 	spl = ft_split(line, ',');
 	ret = create_trgb(1, ft_atoi(spl[0]), ft_atoi(spl[1]), ft_atoi(spl[2]));
 	ft_freesplit(spl);
+	if (line)
+		free(line);
 	return (ret);
 }
 
