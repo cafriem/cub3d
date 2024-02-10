@@ -6,12 +6,11 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2024/01/24 18:59:23 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:07:32 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube_bonus.h"
-
 
 void	change_angle(t_cub3d *cube)
 {
@@ -20,7 +19,7 @@ void	change_angle(t_cub3d *cube)
 	if (cube->dir.right)
 		cube->player.p_angle -= 1;
 	if (cube->player.p_angle < 0)
-		cube->player.p_angle = 359.9;
+		cube->player.p_angle = 360;
 	else if (cube->player.p_angle >= 360)
 		cube->player.p_angle = 0;
 }
@@ -34,37 +33,9 @@ void	change_position(t_cub3d *cube)
 	}
 	else
 	{
-		cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 2;
-		cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 2;
+		cube->player.p_dx = (-cos(deg2rad(cube->player.p_angle))) * 3;
+		cube->player.p_dy = (sin(deg2rad(cube->player.p_angle))) * 3;
 	}
-}
-
-int	move(t_cub3d *cube)
-{
-	change_angle(cube);
-	change_position(cube);
-	if (cube->dir.w)
-	{
-		cube->player.p_x += cube->player.p_dx;
-		cube->player.p_y += cube->player.p_dy;
-	}
-	if (cube->dir.s)
-	{
-		cube->player.p_x -= cube->player.p_dx;
-		cube->player.p_y -= cube->player.p_dy;
-	}
-	if (cube->dir.a)
-	{
-		cube->player.p_x += cube->player.p_dy;
-		cube->player.p_y -= cube->player.p_dx;
-	}
-	if (cube->dir.d)
-	{
-		cube->player.p_x -= cube->player.p_dy;
-		cube->player.p_y += cube->player.p_dx;
-	}
-	draw_map(cube);
-	return (0);
 }
 
 int	keydown(int keycode, t_cub3d *cube)
@@ -85,6 +56,8 @@ int	keydown(int keycode, t_cub3d *cube)
 		cube->dir.shift = true;
 	else if (keycode == M)
 		cube->m = !cube->m;
+	else if (keycode == E)
+		open_door(cube);
 	return (0);
 }
 

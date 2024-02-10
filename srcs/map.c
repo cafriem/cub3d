@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/03 17:50:19 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/06 17:12:55 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,14 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 	cast->lines.x -= 1;
 	if (cube->m && cast->distv <= cast->disth)
 		dda(cast->player, cast->rayv, cube, 0x0055FFFF);
-		// wall_text(cast->height, cast->lines, cube);
 	else if (cube->m)
 		dda(cast->player, cast->rayh, cube, 0x0055FFFF);
-		// wall_text(cast->height, cast->lines, cube);
 	cast->r_angle += 0.075;
 	if (cast->r_angle < 0)
 		cast->r_angle += 360;
 	else if (cast->r_angle >= 360)
 		cast->r_angle -= 360;
 }
-
-// printf("p: %d, %d\nv: %d, %d (%f)\nh: %d, %d (%f)\n%f\n\n",
-// 	player.x, player.y, rayv.x, rayv.y, distv,
-// 	rayh.x, rayh.y, disth, cube->player.p_angle);
 
 void	draw_rays(t_cub3d *cube)
 {
@@ -93,70 +87,6 @@ void	draw_rays(t_cub3d *cube)
 		cast_n_project(cube, &cast);
 	}
 }
-
-// void	draw_rays(t_cub3d *cube)
-// {
-// 	int	depth;
-// 	int	ray_y;
-// 	int	ray_x;
-// 	int	x_off;
-// 	int	y_off;
-
-
-// 	depth = 0;
-// 	ray_y = (cube->player.p_y / 16) * 16;
-// 	ray_x = ((cube->player.p_y - ray_y)
-// 			* (-1 / tan(cube->player.p_direction))) + cube->player.p_x;
-// 	y_off = -64;
-// 	x_off = -y_off * (-1 / tan(cube->player.p_direction));
-// 	while (depth < 8)
-// 	{
-
-// 	}
-// }
-
-// int pos = (y * size_line + x * (bits_per_pixel / 8));
-
-// unsigned int	**t_ext(t_cub3d *cube, char *map)
-// {
-
-// 	int	width;
-// 	int	height;
-// 	int	pos;
-// 	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height);
-// 	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height);
-// 	char	*name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
-// 			&cube->img.line_length, &cube->img.endian);
-// 	unsigned int	**num;
-// 	int	x = 0;
-// 	int	y = 0;
-// 	num = ft_calloc(65, sizeof(unsigned int *));
-// 	while (y < 64)
-// 	{
-// 		x = 0;
-// 		num[y] = ft_calloc(65, sizeof(unsigned int));
-// 		while (x < 64)
-// 		{
-// 			pos = (y * cube->img.line_length + x * (cube->img.bpp / 8));
-// 			num[y][x] = *(unsigned int *)&name[pos];
-// 			x++;
-// 		}
-// 		printf("part 3\n");
-// 		y++;
-// 	}
-// 	printf("part 4\n");
-// 	printf("part 5\n");
-// 	return(num);
-// }
-// x = <------------>
-
-// void	get_text(t_cub3d *cube)
-// {
-// 	cube->map.i_n = t_ext(cube, cube->map.t_n);
-// 	cube->map.i_s = t_ext(cube, cube->map.t_s);
-// 	cube->map.i_e = t_ext(cube, cube->map.t_e);
-// 	cube->map.i_w = t_ext(cube, cube->map.t_w);
-// }
 
 void	draw_map(t_cub3d *cube)
 {

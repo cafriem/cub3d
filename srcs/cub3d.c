@@ -3,41 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/03 14:19:24 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/10 14:08:05 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-// void	print_map(t_cub3d *cub3d)
-// {
-// 	int	c;
-
-// 	c = 0;
-// 	while (cub3d->map.points[c])
-// 	{
-// 		if (c > 9)
-// 			printf("mapline = %d |%s|\n", c, cub3d->map.points[c]);
-// 		else
-// 			printf("mapline = %d  |%s|\n", c, cub3d->map.points[c]);
-// 		c++;
-// 	}
-// }
-
-// void	struck_check(t_cub3d *cub3d)
-// {
-// 	printf("NO texture = %s\n", cub3d->map.t_n);
-// 	printf("SO texture = %s\n", cub3d->map.t_s);
-// 	printf("EA texture = %s\n", cub3d->map.t_e);
-// 	printf("WE texture = %s\n", cub3d->map.t_w);
-// 	printf("F = %d\n", cub3d->map.f);
-// 	printf("C = %d\n", cub3d->map.c);
-// 	printf("player facing = %f\n", cub3d->player.p_angle);
-// 	printf("player location = %d, %d\n", cub3d->map.p_row, cub3d->map.p_colom);
-// }
 
 void	print_filemap(t_cub3d *cube)
 {
@@ -60,7 +33,6 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 	int	width;
 	int	height;
 	int	pos;
-	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height); // new image
 	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height); // mlx to image
 	char	*name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
 			&cube->img.line_length, &cube->img.endian); // getting the address of the image
@@ -80,11 +52,9 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 		}
 		y--;
 	}
-	// free(name);
 	mlx_destroy_image(cube->mlx, cube->img.img);
 	return(num);
 }
-// x = <------------>
 
 void	get_text(t_cub3d *cube)
 {
@@ -105,9 +75,7 @@ int	main(int argc, char *argv[])
 	}
 	openmap(&cube, argv);
 	set_booleans(&cube);
-	// check_init(&cube);
 	create_map(&cube);
-	print_filemap(&cube);
 	mlx_hook(cube.mlx_window, 17, 0, close_x, &cube);
 	mlx_hook(cube.mlx_window, 2, (1L << 0), keydown, &cube);
 	mlx_hook(cube.mlx_window, 3, (1L << 1), keyup, &cube);

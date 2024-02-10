@@ -39,8 +39,12 @@ SRCS =ft_memset.c		\
 		ft_power.c		\
 		ft_freesplit.c	\
 		ft_strdupfree.c	\
-		ft_strcmp.c		\
-		get_next_line_bonus.c
+		ft_strcmp.c
+
+GNLSRC = gnl/get_next_line_bonus.c\
+		gnl/get_next_line_utils_bonus.c\
+
+GNLOBJS = $(GNLSRC:.c=.o)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -48,13 +52,16 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-$(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
+%.o: %.c
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(NAME): $(OBJS) $(GNLOBJS)
+	ar rc $(NAME) $(OBJS) $(GNLOBJS)
 
 all: $(NAME)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(GNLOBJS)
 
 fclean: clean
 	rm -f $(NAME)

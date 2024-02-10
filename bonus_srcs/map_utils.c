@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:27:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 11:10:18 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/10 13:49:36 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	get_color(char *line)
 		return (-1);
 	}
 	ft_freesplit(spl);
+	if (line)
+		free(line);
 	return (ret);
 }
 void	check_updown(t_cub3d *cub3d, int row, int colom)
