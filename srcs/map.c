@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/06 17:12:55 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 22:24:26 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-float	dist(t_point player, t_point ray, float angle)
-{
-	(void) angle;
-	return (sqrt(
-			((ray.x - player.x) * (ray.x - player.x))
-			+ ((ray.y - player.y) * (ray.y - player.y))
-		));
-}
 
 void	initialize_cast(t_cast *cast, t_cub3d *cube)
 {
@@ -90,14 +81,12 @@ void	draw_rays(t_cub3d *cube)
 
 void	draw_map(t_cub3d *cube)
 {
-	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height);
-
-	cube->img.addr = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
-			&cube->img.line_length, &cube->img.endian);
-
 	int	i;
 	int	j;
 
+	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height);
+	cube->img.addr = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
+			&cube->img.line_length, &cube->img.endian);
 	draw_floor_ceiling(cube);
 	i = -1;
 	draw_rays(cube);
@@ -114,11 +103,6 @@ void	draw_map(t_cub3d *cube)
 		draw_player(cube);
 	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img.img, 0, 0);
 	mlx_destroy_image(cube->mlx, cube->img.img);
-}
-
-void	draw_torch(t_cub3d *cube, unsigned int **torch[], int frame)
-{
-	
 }
 
 void	create_map(t_cub3d *cube)

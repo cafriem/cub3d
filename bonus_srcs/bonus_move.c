@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:11:15 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/06 16:21:13 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 22:27:49 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,24 @@ bool	condition(t_cub3d *cube)
 
 	x = cube->player.p_y;
 	y = cube->player.p_x;
-	if (cube->map.points[x / 64][y / 64] == '1' || cube->map.points[x / 64][y / 64] == '2')
-		return (true);
-	if (cube->map.points[(x - 15) / 64][(y - 15) / 64] == '1' || cube->map.points[(x - 15) / 64][(y - 15) / 64] == '2')
-		return (true);
-	if (cube->map.points[(x) / 64][(y - 15) / 64] == '1' || cube->map.points[(x) / 64][(y - 15) / 64] == '2')
-		return (true);
-	if (cube->map.points[(x - 15) / 64][(y) / 64] == '1' || cube->map.points[(x - 15) / 64][(y) / 64] == '2')
-		return (true);
-	if (cube->map.points[(x + 15) / 64][(y + 15) / 64] == '1' || cube->map.points[(x + 15) / 64][(y + 15) / 64] == '2')
-		return (true);
-	if (cube->map.points[(x) / 64][(y + 15) / 64] == '1' || cube->map.points[(x) / 64][(y + 15) / 64] == '2')
-		return (true);
-	if (cube->map.points[(x + 15) / 64][(y) / 64] == '1' || cube->map.points[(x + 15) / 64][(y) / 64] == '2')
-		return (true);
-	if (cube->map.points[(x - 15) / 64][(y + 15) / 64] == '1' || cube->map.points[(x - 15) / 64][(y + 15) / 64] == '2')
-		return (true);
-	if (cube->map.points[(x + 15) / 64][(y - 15) / 64] == '1' || cube->map.points[(x + 15) / 64][(y - 15) / 64] == '2')
+	if (cube->map.points[x / 64][y / 64] == '1'
+	|| cube->map.points[x / 64][y / 64] == '2'
+	|| cube->map.points[(x - 15) / 64][(y - 15) / 64] == '1'
+	|| cube->map.points[(x - 15) / 64][(y - 15) / 64] == '2'
+	|| cube->map.points[(x) / 64][(y - 15) / 64] == '1'
+	|| cube->map.points[(x) / 64][(y - 15) / 64] == '2'
+	|| cube->map.points[(x - 15) / 64][(y) / 64] == '1'
+	|| cube->map.points[(x - 15) / 64][(y) / 64] == '2'
+	|| cube->map.points[(x + 15) / 64][(y + 15) / 64] == '1'
+	|| cube->map.points[(x + 15) / 64][(y + 15) / 64] == '2'
+	|| cube->map.points[(x) / 64][(y + 15) / 64] == '1'
+	|| cube->map.points[(x) / 64][(y + 15) / 64] == '2'
+	|| cube->map.points[(x + 15) / 64][(y) / 64] == '1'
+	|| cube->map.points[(x + 15) / 64][(y) / 64] == '2'
+	|| cube->map.points[(x - 15) / 64][(y + 15) / 64] == '1'
+	|| cube->map.points[(x - 15) / 64][(y + 15) / 64] == '2'
+	|| cube->map.points[(x + 15) / 64][(y - 15) / 64] == '1'
+	|| cube->map.points[(x + 15) / 64][(y - 15) / 64] == '2')
 		return (true);
 	return (false);
 }
