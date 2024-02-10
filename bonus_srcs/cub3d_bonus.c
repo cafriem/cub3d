@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 16:43:43 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 22:07:55 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,27 +82,16 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 
 void	check_text(t_cub3d *cube)
 {
-	if (access(cube->map.t_n, F_OK) == -1 || access(cube->map.t_n, R_OK) == -1)
-		error(cube, 5);
-	if (access(cube->map.t_s, F_OK) == -1 || access(cube->map.t_s, R_OK) == -1)
-		error(cube, 5);
-	if (access(cube->map.t_e, F_OK) == -1 || access(cube->map.t_e, R_OK) == -1)
-		error(cube, 5);
-	if (access(cube->map.t_w, F_OK) == -1 || access(cube->map.t_w, R_OK) == -1)
-		error(cube, 5);
-	if (access("textures/doors.xpm", F_OK) == -1 || access("textures/doors.xpm", R_OK) == -1)
-		error(cube, 5);
-	if (access("textures/Torch_1.xpm", F_OK) == -1 || access("textures/Torch_1.xpm", R_OK) == -1)
-		error(cube, 5);
-	if (access("textures/Torch_2.xpm", F_OK) == -1 || access("textures/Torch_2.xpm", R_OK) == -1)
-		error(cube, 5);
-	if (access("textures/Torch_3.xpm", F_OK) == -1 || access("textures/Torch_3.xpm", R_OK) == -1)
-		error(cube, 5);
-	if (access("textures/Torch_4.xpm", F_OK) == -1 || access("textures/Torch_4.xpm", R_OK) == -1)
-		error(cube, 5);
-	if (access("textures/Torch_5.xpm", F_OK) == -1 || access("textures/Torch_5.xpm", R_OK) == -1)
-		error(cube, 5);
-	if (access("textures/Torch_6.xpm", F_OK) == -1 || access("textures/Torch_6.xpm", R_OK) == -1)
+	if (access(cube->map.t_n, F_OK) == -1 || access(cube->map.t_n, R_OK) == -1
+	|| access(cube->map.t_s, F_OK) == -1 || access(cube->map.t_s, R_OK) == -1
+	|| access(cube->map.t_e, F_OK) == -1 || access(cube->map.t_e, R_OK) == -1
+	|| access("textures/doors.xpm", F_OK) == -1 || access("textures/doors.xpm", R_OK) == -1
+	|| access("textures/Torch_1.xpm", F_OK) == -1 || access("textures/Torch_1.xpm", R_OK) == -1
+	|| access("textures/Torch_2.xpm", F_OK) == -1 || access("textures/Torch_2.xpm", R_OK) == -1
+	|| access("textures/Torch_3.xpm", F_OK) == -1 || access("textures/Torch_3.xpm", R_OK) == -1
+	|| access("textures/Torch_4.xpm", F_OK) == -1 || access("textures/Torch_4.xpm", R_OK) == -1
+	|| access("textures/Torch_5.xpm", F_OK) == -1 || access("textures/Torch_5.xpm", R_OK) == -1
+	|| access("textures/Torch_6.xpm", F_OK) == -1 || access("textures/Torch_6.xpm", R_OK) == -1)
 		error(cube, 5);
 }
 
