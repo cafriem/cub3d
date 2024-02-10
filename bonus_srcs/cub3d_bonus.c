@@ -12,58 +12,19 @@
 
 #include "cube_bonus.h"
 
-// void	print_map(t_cub3d *cub3d)
-// {
-// 	int	c;
-
-// 	c = 0;
-// 	while (cub3d->map.points[c])
-// 	{
-// 		if (c > 9)
-// 			printf("mapline = %d |%s|\n", c, cub3d->map.points[c]);
-// 		else
-// 			printf("mapline = %d  |%s|\n", c, cub3d->map.points[c]);
-// 		c++;
-// 	}
-// }
-
-// void	struck_check(t_cub3d *cub3d)
-// {
-// 	printf("NO texture = %s\n", cub3d->map.t_n);
-// 	printf("SO texture = %s\n", cub3d->map.t_s);
-// 	printf("EA texture = %s\n", cub3d->map.t_e);
-// 	printf("WE texture = %s\n", cub3d->map.t_w);
-// 	printf("F = %d\n", cub3d->map.f);
-// 	printf("C = %d\n", cub3d->map.c);
-// 	printf("player facing = %f\n", cub3d->player.p_angle);
-// 	printf("player location = %d, %d\n", cub3d->map.p_row, cub3d->map.p_colom);
-// }
-
-void	print_filemap(t_cub3d *cube)
+unsigned int	**t_ext(t_cub3d *cube, char *map, int x, int y)
 {
-	int	i;
-
-	i = 0;
-	while (cube->map.file_map[i])
-	{
-		printf("%d: %s\n", i, cube->map.file_map[i]);
-		i++;
-	}
-}
-
-unsigned int	**t_ext(t_cub3d *cube, char *map)
-{
-	int	width;
-	int	height;
-	int	pos;
+	int				width;
+	int				height;
+	int				pos;
+	char			*name;
+	unsigned int	**num;
 
 	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height);
-	char	*name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
+	name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
 			&cube->img.line_length, &cube->img.endian);
-	unsigned int	**num;
-	int	x;
-	int	y = 64;
 	num = ft_calloc(65, sizeof(unsigned int *));
+	y = 64;
 	while (y > -1)
 	{
 		x = 64;
@@ -77,40 +38,48 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 		y--;
 	}
 	mlx_destroy_image(cube->mlx, cube->img.img);
-	return(num);
+	return (num);
 }
 
 void	check_text(t_cub3d *cube)
 {
 	if (access(cube->map.t_n, F_OK) == -1 || access(cube->map.t_n, R_OK) == -1
-	|| access(cube->map.t_s, F_OK) == -1 || access(cube->map.t_s, R_OK) == -1
-	|| access(cube->map.t_e, F_OK) == -1 || access(cube->map.t_e, R_OK) == -1
-	|| access("textures/doors.xpm", F_OK) == -1 || access("textures/doors.xpm", R_OK) == -1
-	|| access("textures/Torch_1.xpm", F_OK) == -1 || access("textures/Torch_1.xpm", R_OK) == -1
-	|| access("textures/Torch_2.xpm", F_OK) == -1 || access("textures/Torch_2.xpm", R_OK) == -1
-	|| access("textures/Torch_3.xpm", F_OK) == -1 || access("textures/Torch_3.xpm", R_OK) == -1
-	|| access("textures/Torch_4.xpm", F_OK) == -1 || access("textures/Torch_4.xpm", R_OK) == -1
-	|| access("textures/Torch_5.xpm", F_OK) == -1 || access("textures/Torch_5.xpm", R_OK) == -1
-	|| access("textures/Torch_6.xpm", F_OK) == -1 || access("textures/Torch_6.xpm", R_OK) == -1)
+		|| access(cube->map.t_s, F_OK) == -1
+		|| access(cube->map.t_s, R_OK) == -1
+		|| access(cube->map.t_e, F_OK) == -1
+		|| access(cube->map.t_e, R_OK) == -1
+		|| access("textures/doors.xpm", F_OK) == -1
+		|| access("textures/doors.xpm", R_OK) == -1
+		|| access("textures/Torch_1.xpm", F_OK) == -1
+		|| access("textures/Torch_1.xpm", R_OK) == -1
+		|| access("textures/Torch_2.xpm", F_OK) == -1
+		|| access("textures/Torch_2.xpm", R_OK) == -1
+		|| access("textures/Torch_3.xpm", F_OK) == -1
+		|| access("textures/Torch_3.xpm", R_OK) == -1
+		|| access("textures/Torch_4.xpm", F_OK) == -1
+		|| access("textures/Torch_4.xpm", R_OK) == -1
+		|| access("textures/Torch_5.xpm", F_OK) == -1
+		|| access("textures/Torch_5.xpm", R_OK) == -1
+		|| access("textures/Torch_6.xpm", F_OK) == -1
+		|| access("textures/Torch_6.xpm", R_OK) == -1)
 		error(cube, 5);
 }
 
 void	get_text(t_cub3d *cube)
 {
 	check_text(cube);
-	cube->map.i_n = t_ext(cube, cube->map.t_n);
-	cube->map.i_s = t_ext(cube, cube->map.t_s);
-	cube->map.i_e = t_ext(cube, cube->map.t_e);
-	cube->map.i_w = t_ext(cube, cube->map.t_w);
-	cube->map.door = t_ext(cube, "textures/doors.xpm");
-
+	cube->map.i_n = t_ext(cube, cube->map.t_n, 64, 64);
+	cube->map.i_s = t_ext(cube, cube->map.t_s, 64, 64);
+	cube->map.i_e = t_ext(cube, cube->map.t_e, 64, 64);
+	cube->map.i_w = t_ext(cube, cube->map.t_w, 64, 64);
+	cube->map.door = t_ext(cube, "textures/doors.xpm", 64, 64);
 	cube->map.torch = calloc(6, sizeof(unsigned int **));
-	cube->map.torch[0] = t_ext(cube, "textures/Torch_1.xpm");
-	cube->map.torch[1] = t_ext(cube, "textures/Torch_3.xpm");
-	cube->map.torch[2] = t_ext(cube, "textures/Torch_4.xpm");
-	cube->map.torch[3] = t_ext(cube, "textures/Torch_5.xpm");
-	cube->map.torch[4] = t_ext(cube, "textures/Torch_6.xpm");
-	cube->map.torch[5] = t_ext(cube, "textures/Torch_1.xpm");
+	cube->map.torch[0] = t_ext(cube, "textures/Torch_1.xpm", 64, 64);
+	cube->map.torch[1] = t_ext(cube, "textures/Torch_3.xpm", 64, 64);
+	cube->map.torch[2] = t_ext(cube, "textures/Torch_4.xpm", 64, 64);
+	cube->map.torch[3] = t_ext(cube, "textures/Torch_5.xpm", 64, 64);
+	cube->map.torch[4] = t_ext(cube, "textures/Torch_6.xpm", 64, 64);
+	cube->map.torch[5] = t_ext(cube, "textures/Torch_1.xpm", 64, 64);
 }
 
 void	create_map(t_cub3d *cube)
@@ -121,28 +90,6 @@ void	create_map(t_cub3d *cube)
 	cube->mlx_window = mlx_new_window(cube->mlx, cube->width, cube->height, "");
 	get_text(cube);
 	draw_map(cube);
-}
-
-int	mouse(int x, int y, t_cub3d *cube)
-{
-	(void) cube;
-	(void) y;
-	if (x < 400)
-		cube->player.p_angle += 1;
-	else if (x >= 400)
-		cube->player.p_angle -= 1;
-	if (cube->player.p_angle <= 0)
-		cube->player.p_angle += 360;
-	else if (cube->player.p_angle >= 360)
-		cube->player.p_angle -= 360;
-	return (0);
-}
-
-int	file_check(char *string)
-{
-	if (ft_strcmp(ft_strchr(string, '.'), ".cub") == 0)
-		return(1);
-	return(0);
 }
 
 int	main(int argc, char *argv[])

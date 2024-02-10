@@ -28,8 +28,10 @@ SRCS = $(SRCDIR)/cub3d.c \
 
 BONUS = $(BONUSDIR)/cub3d_bonus.c \
 		$(BONUSDIR)/DDA.c \
+		$(BONUSDIR)/DDA_help.c \
 		$(BONUSDIR)/bonus_move.c \
 		$(BONUSDIR)/error.c \
+		$(BONUSDIR)/some_map.c \
 		$(BONUSDIR)/map.c \
 		$(BONUSDIR)/keypress.c \
 		$(BONUSDIR)/window_management.c \

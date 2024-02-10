@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/10 23:21:45 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/10 23:13:52 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@
 #  define M 109
 # endif
 
-typedef struct s_data {
+typedef struct s_data
+{
 	void	*img;
 	char	*addr;
 	int		bpp;
@@ -87,7 +88,8 @@ typedef struct s_data {
 	int		height;
 }		t_data;
 
-typedef struct map {
+typedef struct map
+{
 	char			**points;
 	char			**file_map;
 	int				width;
@@ -110,7 +112,8 @@ typedef struct map {
 	int				c;
 }		t_map;
 
-typedef struct angles {
+typedef struct angles
+{
 	bool	w;
 	bool	s;
 	bool	a;
@@ -120,7 +123,8 @@ typedef struct angles {
 	bool	shift;
 }		t_dir;
 
-typedef struct player {
+typedef struct player
+{
 	float	p_angle;
 	float	p_dy;
 	float	p_dx;
@@ -128,7 +132,8 @@ typedef struct player {
 	float	p_x;
 }		t_player;
 
-typedef struct cub3d {
+typedef struct cub3d
+{
 	int			width;
 	int			height;
 	void		*mlx;
@@ -142,12 +147,14 @@ typedef struct cub3d {
 	int			fail;
 }		t_cub3d;
 
-typedef struct point {
+typedef struct point
+{
 	float	x;
 	float	y;
 }		t_point;
 
-typedef struct casting {
+typedef struct casting
+{
 	int		rays;
 	int		dof;
 	float	x;
@@ -164,8 +171,25 @@ typedef struct casting {
 	t_point	height;
 }		t_cast;
 
+typedef struct fkifiknow
+{
+	int		i;
+	float	s;
+	float	t;
+	float	y;
+	float	x;
+}		t_dda;
+
 void	print_filemap(t_cub3d *cube);
 void	create_map(t_cub3d *cube);
+
+//dda help:
+bool	v_condition(t_point x1, float increase_x, float increase_y, int i);
+bool	v_angle(t_cast *cast);
+
+//some map:
+int		mouse(int x, int y, t_cub3d *cube);
+int		file_check(char *string);
 
 // map utils:
 char	*readfile(int fd);
@@ -262,6 +286,7 @@ void	free_torch(unsigned int ***torch);
 void	door_or_wall(t_cub3d *cube, t_cast *cast);
 void	close_free(t_cub3d *cube);
 int		check_digit(char *string);
+
 
 double	deg2rad(double degrees);
 
