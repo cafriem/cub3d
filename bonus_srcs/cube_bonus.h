@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cube_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
 /*   Updated: 2024/02/06 16:23:23 by jadithya         ###   ########.fr       */
@@ -101,6 +101,9 @@ typedef struct map {
 	unsigned int	**i_e;
 	unsigned int	**i_w;
 	unsigned int	**door;
+	unsigned int	***torch;
+	int				tnum;
+	int				torchnum;
 	int				p_row;
 	int				p_colom;
 	int				f;
@@ -136,6 +139,7 @@ typedef struct cub3d {
 	t_player	player;
 	t_dir		dir;
 	bool		m;
+	int			fail;
 }		t_cub3d;
 
 typedef struct point {
@@ -238,7 +242,7 @@ void	key_press5(int keypress, t_cub3d *cub3d);
 void	legends1(t_cub3d *cub3d);
 void	legends2(t_cub3d *cub3d);
 //------------error.c------------//
-void	error(t_cub3d *cub3d, int flag);
+void	error(t_cub3d *cube, int flag);
 //functions:
 void	create_map(t_cub3d *cube);
 int		close_x(t_cub3d *cube);
@@ -251,6 +255,7 @@ int		keyup(int keycode, t_cub3d *cube);
 void	draw_map(t_cub3d *cube);
 
 void	dda(t_point x1, t_point x2, t_cub3d *cube, int color);
+void	draw_torch(t_cub3d *cube, unsigned int **map);
 
 double	deg2rad(double degrees);
 

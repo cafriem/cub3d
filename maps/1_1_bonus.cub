@@ -3,7 +3,7 @@ SO ./textures/brick_wall.xpm
 EA ./textures/wooden_floor_horizontal.xpm
 WE ./textures/wooden_floor_horizontal.xpm
 
-F 9,79,8
+F 4,79,8
 C 9,14,88
 
 

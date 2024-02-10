@@ -6,6 +6,8 @@
 		"ostream": "c",
 		"__string": "c",
 		"typeinfo": "c",
+		"string": "c",
+		"iosfwd": "c"
 		"cube_bonus.h": "c"
 	}
 }

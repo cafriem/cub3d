@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   map_more.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
 /*   Updated: 2024/02/10 14:06:18 by jadithya         ###   ########.fr       */
@@ -15,6 +15,22 @@
 void	draw_hud(t_cub3d *cube)
 {
 	(void) cube;
+}
+
+int	player_check(t_cub3d *cub3d, int c)
+{
+	int	c1;
+
+	c1 = 0;
+	if (ft_strchr(cub3d->map.points[c], 'N') != NULL)
+		c1++;
+	if (ft_strchr(cub3d->map.points[c], 'S') != NULL)
+		c1++;
+	if (ft_strchr(cub3d->map.points[c], 'E') != NULL)
+		c1++;
+	if (ft_strchr(cub3d->map.points[c], 'W') != NULL)		
+		c1++;
+	return(c1 - 1);
 }
 
 void	player_info(t_cub3d *cub3d)
@@ -36,12 +52,19 @@ void	player_info(t_cub3d *cub3d)
 			cub3d->map.p_row = c;
 			cub3d->map.p_colom = ft_strlen(cub3d->map.points[c])
 				- ft_strlen(str);
+			leter_count += player_check(cub3d, c);
 			leter_count++;
 		}
 		c++;
 	}
 	if (leter_count > 1)
 		error(cub3d, 3);
+}
+
+void	checker(t_cub3d *cube)
+{
+	if (cube->map.c == -1 || cube->map.c == -1)
+		error(cube, 4);
 }
 
 void	texture_parse(t_cub3d *cub3d)
@@ -71,7 +94,7 @@ void	texture_parse(t_cub3d *cub3d)
 			break ;
 		free (line);
 	}
-	free (line);
+	checker(cub3d);
 	mapread(cub3d, c);
 }
 
