@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/06 16:22:56 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:07:32 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	change_position(t_cub3d *cube)
 
 int	keydown(int keycode, t_cub3d *cube)
 {
-	write(1, "hi\n", 3);
 	if (keycode == W)
 		cube->dir.w = true;
 	else if (keycode == A)
@@ -64,7 +63,6 @@ int	keydown(int keycode, t_cub3d *cube)
 
 int	keyup(int keycode, t_cub3d *cube)
 {
-	printf("key: %d\n", keycode);
 	if (keycode == ESC)
 		return (close_esc(keycode, cube));
 	else if (keycode == W)

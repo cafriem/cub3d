@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 13:18:09 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:08:05 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int	main(int argc, char *argv[])
 	openmap(&cube, argv);
 	set_booleans(&cube);
 	create_map(&cube);
-	print_filemap(&cube);
 	mlx_hook(cube.mlx_window, 17, 0, close_x, &cube);
 	mlx_hook(cube.mlx_window, 2, (1L << 0), keydown, &cube);
 	mlx_hook(cube.mlx_window, 3, (1L << 1), keyup, &cube);

@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/06 16:32:22 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:07:47 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 	int	width;
 	int	height;
 	int	pos;
-	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height); // new image
-	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height); // mlx to image
+	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height);
 	char	*name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
-			&cube->img.line_length, &cube->img.endian); // getting the address of the image
+			&cube->img.line_length, &cube->img.endian);
 	unsigned int	**num;
 	int	x;
 	int	y = 64;
@@ -127,11 +126,10 @@ int	main(int argc, char *argv[])
 	openmap(&cube, argv);
 	set_booleans(&cube);
 	create_map(&cube);
-	print_filemap(&cube);
 	mlx_hook(cube.mlx_window, 17, 0, close_x, &cube);
 	mlx_hook(cube.mlx_window, 2, 1L << 0, keydown, &cube);
 	mlx_hook(cube.mlx_window, 3, (1L << 1), keyup, &cube);
-	//mlx_hook(cube.mlx_window, 6, (1L << 6), mouse, &cube);
+	mlx_hook(cube.mlx_window, 6, (1L << 6), mouse, &cube);
 	mlx_loop_hook(cube.mlx, move, &cube);
 	mlx_loop(cube.mlx);
 }
