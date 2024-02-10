@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 14:23:08 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/10 22:06:58 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	print_filemap(t_cub3d *cube)
 
 unsigned int	**t_ext(t_cub3d *cube, char *map)
 {
-
 	int	width;
 	int	height;
 	int	pos;
@@ -123,8 +122,6 @@ void	get_text(t_cub3d *cube)
 	cube->map.torch[4] = t_ext(cube, "textures/Torch_5.xpm");
 	cube->map.torch[5] = t_ext(cube, "textures/Torch_6.xpm");
 }
-
-
 
 void	create_map(t_cub3d *cube)
 {
