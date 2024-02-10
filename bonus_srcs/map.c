@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/06 18:07:06 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:41:16 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,14 +137,14 @@ void	draw_torch(t_cub3d *cube, unsigned int **map)
 {
 	int y = 600;
 	float mapy = 0;
-	while (y < 856)
+	while (y < 800)
 	{
 		int x = 600;
 		float mapx = 0;
-		while (x < 856)
+		while (x < 800)
 		{
-			if (map[(int)mapy][(int)mapx] != 0)
-			pixel_put(&cube->img, x, y, map[(int)mapy][(int)mapx]);
+			if (map && map[(int)mapy][(int)mapx])
+				pixel_put(&cube->img, x, y, map[(int)mapy][(int)mapx]);
 			mapx += 0.25;
 			x++;
 		}

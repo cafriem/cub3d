@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_more.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 14:06:18 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 15:13:00 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	texture_parse(t_cub3d *cub3d)
 			break ;
 		free (line);
 	}
+	if (line)
+		free (line);
 	checker(cub3d);
 	mapread(cub3d, c);
 }
@@ -126,4 +128,6 @@ void	set_booleans(t_cub3d *cube)
 	cube->dir.right = false;
 	cube->m = false;
 	cube->dir.shift = false;
+	cube->map.torchnum = 0;
+	cube->map.tnum = 0;
 }
