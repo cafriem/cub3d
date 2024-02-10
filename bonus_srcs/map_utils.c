@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:27:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/01/10 14:30:36 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 11:10:18 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,42 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
+int	check_digit(char *string)
+{
+	int c;
+
+	c = 0;
+	while (string[c])
+	{
+		if (string[c] >= '0' && string[c] <= '9')
+			return(1);
+		c++;
+	}
+	return(0);
+}
+
 int	get_color(char *line)
 {
 	char	**spl;
+	int		c;
 	int		ret;
 
 	spl = ft_split(line, ',');
-	ret = create_trgb(1, ft_atoi(spl[0]), ft_atoi(spl[1]), ft_atoi(spl[2]));
+	c = 0;
+	while (spl[c])
+		c++;
+	if (c != 3)
+		return (-1);
+	if ((spl[0] && spl[1] && spl[2]) && (check_digit(spl[0]) == 1)
+		&& (check_digit(spl[1]) == 1) && (check_digit(spl[2]) == 1))
+		ret = create_trgb(1, ft_atoi(spl[0]), ft_atoi(spl[1]), ft_atoi(spl[2]));
+	else
+	{
+		return (-1);
+	}
 	ft_freesplit(spl);
 	return (ret);
 }
-
 void	check_updown(t_cub3d *cub3d, int row, int colom)
 {
 	int	vertical;

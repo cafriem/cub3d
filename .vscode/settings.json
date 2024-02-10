@@ -5,6 +5,8 @@
 		"locale": "c",
 		"ostream": "c",
 		"__string": "c",
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"string": "c",
+		"iosfwd": "c"
 	}
 }

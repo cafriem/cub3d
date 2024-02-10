@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/05 15:01:41 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/10 14:08:47 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,48 @@ unsigned int	**t_ext(t_cub3d *cube, char *map)
 	return(num);
 }
 
+void	check_text(t_cub3d *cube)
+{
+	if (access(cube->map.t_n, F_OK) == -1 || access(cube->map.t_n, R_OK) == -1)
+		error(cube, 5);
+	if (access(cube->map.t_s, F_OK) == -1 || access(cube->map.t_s, R_OK) == -1)
+		error(cube, 5);
+	if (access(cube->map.t_e, F_OK) == -1 || access(cube->map.t_e, R_OK) == -1)
+		error(cube, 5);
+	if (access(cube->map.t_w, F_OK) == -1 || access(cube->map.t_w, R_OK) == -1)
+		error(cube, 5);
+	if (access("textures/doors.xpm", F_OK) == -1 || access("textures/doors.xpm", R_OK) == -1)
+		error(cube, 5);
+	if (access("Torch64x64_01.xpm", F_OK) == -1 || access("Torch64x64_01.xpm", R_OK) == -1)
+		error(cube, 5);
+	if (access("Torch64x64_02.xpm", F_OK) == -1 || access("Torch64x64_02.xpm", R_OK) == -1)
+		error(cube, 5);
+	if (access("Torch64x64_03.xpm", F_OK) == -1 || access("Torch64x64_03.xpm", R_OK) == -1)
+		error(cube, 5);
+	if (access("Torch64x64_04.xpm", F_OK) == -1 || access("Torch64x64_04.xpm", R_OK) == -1)
+		error(cube, 5);
+	if (access("Torch64x64_05.xpm", F_OK) == -1 || access("Torch64x64_05.xpm", R_OK) == -1)
+		error(cube, 5);
+	if (access("Torch64x64_06.xpm", F_OK) == -1 || access("Torch64x64_06.xpm", R_OK) == -1)
+		error(cube, 5);
+}
+
 void	get_text(t_cub3d *cube)
 {
+	check_text(cube);
 	cube->map.i_n = t_ext(cube, cube->map.t_n);
 	cube->map.i_s = t_ext(cube, cube->map.t_s);
 	cube->map.i_e = t_ext(cube, cube->map.t_e);
 	cube->map.i_w = t_ext(cube, cube->map.t_w);
 	cube->map.door = t_ext(cube, "textures/doors.xpm");
-	
-	cube->map.torch0 = t_ext(cube, "Torch64x64_01.xpm");
-	cube->map.torch1 = t_ext(cube, "Torch64x64_02.xpm");
-	cube->map.torch2 = t_ext(cube, "Torch64x64_03.xpm");
-	cube->map.torch3 = t_ext(cube, "Torch64x64_04.xpm");
-	cube->map.torch4 = t_ext(cube, "Torch64x64_05.xpm");
-	cube->map.torch5 = t_ext(cube, "Torch64x64_06.xpm");
+
+	cube->map.torch = calloc(6, sizeof(unsigned int **));
+	cube->map.torch[0] = t_ext(cube, "Torch64x64_01.xpm");
+	cube->map.torch[1] = t_ext(cube, "Torch64x64_02.xpm");
+	cube->map.torch[2] = t_ext(cube, "Torch64x64_03.xpm");
+	cube->map.torch[3] = t_ext(cube, "Torch64x64_04.xpm");
+	cube->map.torch[4] = t_ext(cube, "Torch64x64_05.xpm");
+	cube->map.torch[5] = t_ext(cube, "Torch64x64_06.xpm");
 }
 
 
@@ -124,15 +152,26 @@ int	mouse(int x, int y, t_cub3d *cube)
 	return (0);
 }
 
+int	file_check(char *string)
+{
+	if (ft_strcmp(ft_strchr(string, '.'), ".cub") == 0)
+		return(1);
+	return(0);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_cub3d	cube;
 
-	if (argc != 2)
+	if (argc != 2 || file_check(argv[1]) != 1)
 	{
 		ft_putstr_fd("WRONG AMOUNT OF ARGUMENTS", 2);
 		exit(1);
 	}
+	if (access(argv[1], F_OK) == -1 || access(argv[1], R_OK) == -1)
+		error(&cube, 0);
+	cube.map.tnum = 0;
+	cube.map.torch = 0;
 	openmap(&cube, argv);
 	set_booleans(&cube);
 	create_map(&cube);

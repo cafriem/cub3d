@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/06 15:13:18 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/07 15:02:36 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,8 @@ typedef struct map {
 	unsigned int	**i_e;
 	unsigned int	**i_w;
 	unsigned int	**door;
-	unsigned int	**torch0;
-	unsigned int	**torch1;
-	unsigned int	**torch2;
-	unsigned int	**torch3;
-	unsigned int	**torch4;
-	unsigned int	**torch5;
+	unsigned int	***torch;
+	int				tnum;
 	int				torchnum;
 	int				p_row;
 	int				p_colom;
@@ -143,6 +139,7 @@ typedef struct cub3d {
 	t_player	player;
 	t_dir		dir;
 	bool		m;
+	int			fail;
 }		t_cub3d;
 
 typedef struct point {
@@ -245,7 +242,7 @@ void	key_press5(int keypress, t_cub3d *cub3d);
 void	legends1(t_cub3d *cub3d);
 void	legends2(t_cub3d *cub3d);
 //------------error.c------------//
-void	error(t_cub3d *cub3d, int flag);
+void	error(t_cub3d *cube, int flag);
 //functions:
 void	create_map(t_cub3d *cube);
 int		close_x(t_cub3d *cube);
