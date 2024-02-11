@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/10 22:24:59 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 23:31:30 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void	mapread(t_cub3d *cub3d, int start);
 // more map items:
 float	dist(t_point player, t_point ray, float angle);
 void	player_info(t_cub3d *cub3d);
-void	texture_parse(t_cub3d *cub3d);
+void	texture_parse(t_cub3d *cub3d, int c);
 void	openmap(t_cub3d *cub3d, char *argv[]);
 void	set_booleans(t_cub3d *cube);
 

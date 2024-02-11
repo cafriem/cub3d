@@ -2,12 +2,8 @@ NO ./textures/brick.xpm
 SO ./textures/brick.xpm
 EA ./textures/brick.xpm
 WE ./textures/brick.xpm
-
 F 19,109,28
 C 19,24,98
-
-
-
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001

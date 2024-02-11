@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:13:46 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/10 23:29:21 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/11 16:51:00 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_torch(unsigned int ***torch)
 	int	c;
 
 	c = 0;
-	while (c < 5)
+	while (c < 6)
 	{
 		free_point(torch[c]);
 		c++;

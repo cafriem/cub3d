@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 23:27:37 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/11 19:12:52 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	player_info(t_cub3d *cub3d)
 
 void	checker(t_cub3d *cube)
 {
-	if (cube->map.c == -1 || cube->map.c == -1)
+	if (cube->map.c == -1 || cube->map.f == -1)
 		error(cube, 4);
 }
 
