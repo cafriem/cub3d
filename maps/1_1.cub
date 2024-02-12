@@ -1,7 +1,7 @@
-NO ./textures/brick.xpm
-SO ./textures/brick.xpm
 EA ./textures/brick.xpm
-WE ./textures/brick.xpm
+SO ./textures/brick.xpm
+NO ./textures/wooden_floor_horizontal.xpm
+NO ./textures/wooden_floor_horizontal.xpm
 
 F 19,109,28
 C 19,24,98

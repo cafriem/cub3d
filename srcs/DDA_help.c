@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   DDA_help.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 14:20:49 by cafriem           #+#    #+#             */
+/*   Created: 2024/02/10 23:12:15 by jadithya          #+#    #+#             */
 /*   Updated: 2024/02/10 23:48:59 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	free_map(t_cub3d *cube)
+bool	v_condition(t_point x1, float increase_x, float increase_y, int i)
 {
-	if (cube->map.points)
-		ft_freesplit(cube->map.points);
-	if (cube->map.file_map)
-		ft_freesplit(cube->map.file_map);
+	if (x1.x + (increase_x * i) >= 0 && x1.x
+		+ (increase_x * i) < 800 && x1.y + (increase_y * i) >= 0
+		&& x1.y + (increase_y * i) < 800)
+		return (true);
+	return (false);
 }
 
-void	error(t_cub3d *cube, int flag)
+bool	v_angle(t_cast *cast)
 {
-	if (flag == 0)
-		exit (1);
-	if (flag == 1)
-		ft_putstr_fd("Failed : No File Name\n", 2);
-	if (flag == 2)
-		ft_putstr_fd("Failed : Map wrong\n", 2);
-	if (flag == 3)
-		ft_putstr_fd("Failed : Wrong number of players\n", 2);
-	if (flag == 4)
-		ft_putstr_fd("Failed : Ceiling or Floor, wrong color\n", 2);
-	if (flag == 5)
-		ft_putstr_fd("Failed : Textures doesn't exist\n", 2);
-	free_map(cube);
-	exit(1);
+	if (cast->r_angle > 90 && cast->r_angle < 270)
+		return (true);
+	return (false);
 }

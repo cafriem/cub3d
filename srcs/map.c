@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 22:24:26 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 23:48:59 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-void	initialize_cast(t_cast *cast, t_cub3d *cube)
-{
-	cast->rays = 0;
-	cast->r_angle = cube->player.p_angle - 30;
-	if (cast->r_angle < 0)
-		cast->r_angle += 360;
-	cast->lines.x = 800;
-	cast->lines.y = 0;
-	cast->height.x = 800;
-}
 
 void	cast_n_project(t_cub3d *cube, t_cast *cast)
 {
@@ -31,14 +20,9 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 		cast->distt = cast->disth;
 	cast->distt = cast->distt * cos(deg2rad(cast->angle_diff));
 	cast->height.y = 64 * 400 / cast->distt;
-	if (cast->height.y > 800)
-		cast->height.y = 800;
 	cast->lines.y = 400 - (cast->height.y / 2);
 	cast->height.y += cast->lines.y;
-	if (cast->distv <= cast->disth)
-		wall_text_v(cast->height, cast->lines, cube, cast);
-	else
-		wall_text_h(cast->height, cast->lines, cube, cast);
+	door_or_wall(cube, cast);
 	cast->height.x -= 1;
 	cast->lines.x -= 1;
 	if (cube->m && cast->distv <= cast->disth)
@@ -79,17 +63,12 @@ void	draw_rays(t_cub3d *cube)
 	}
 }
 
-void	draw_map(t_cub3d *cube)
+void	draw_map2(t_cub3d *cube)
 {
 	int	i;
 	int	j;
 
-	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height);
-	cube->img.addr = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
-			&cube->img.line_length, &cube->img.endian);
-	draw_floor_ceiling(cube);
 	i = -1;
-	draw_rays(cube);
 	while (cube->m && cube->map.points[++i])
 	{
 		j = -1;
@@ -99,18 +78,16 @@ void	draw_map(t_cub3d *cube)
 				draw_square(i, j, cube, 0x00FFFFFF);
 		}
 	}
-	if (cube->m)
-		draw_player(cube);
-	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img.img, 0, 0);
-	mlx_destroy_image(cube->mlx, cube->img.img);
 }
 
-void	create_map(t_cub3d *cube)
+void	draw_map(t_cub3d *cube)
 {
-	cube->width = 800;
-	cube->height = 800;
-	cube->mlx = mlx_init();
-	cube->mlx_window = mlx_new_window(cube->mlx, cube->width, cube->height, "");
-	get_text(cube);
-	draw_map(cube);
+	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height);
+	cube->img.addr = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
+			&cube->img.line_length, &cube->img.endian);
+	draw_floor_ceiling(cube);
+	draw_rays(cube);
+	draw_map2(cube);
+	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img.img, 0, 0);
+	mlx_destroy_image(cube->mlx, cube->img.img);
 }
