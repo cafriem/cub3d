@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 14:08:05 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/11 17:38:08 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("WRONG AMOUNT OF ARGUMENTS", 2);
+		ft_putstr_fd("Error: WRONG AMOUNT OF ARGUMENTS", 2);
 		exit(1);
 	}
 	openmap(&cube, argv);

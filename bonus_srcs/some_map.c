@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 22:33:54 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 23:29:42 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/11 17:37:37 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,15 @@ int	mouse(int x, int y, t_cub3d *cube)
 
 int	file_check(char *string)
 {
-	if (ft_strcmp(ft_strchr(string, '.'), ".cub") == 0)
+	char	*str;
+
+	str = ft_strchr(string, '.');
+	if (str && ft_strcmp(str, ".cub") == 0)
 		return (1);
+	else
+	{
+		printf("Error: file invalid\n");
+		exit(1);
+	}
 	return (0);
 }

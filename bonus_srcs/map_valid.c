@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:29:37 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 14:06:43 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 12:03:45 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,24 @@ char	*get_pl(t_cub3d *cub3d, int c, char *str)
 	return (str);
 }
 
+void	check_player_exist(t_cub3d *cube)
+{
+	bool	flag;
+	int		i;
+
+	i = 0;
+	flag = false;
+	while (cube->map.points[i])
+	{
+		if (ft_strchr(cube->map.points[i], 'N') || ft_strchr(cube->map.points[i], 'W')
+			|| ft_strchr(cube->map.points[i], 'S') || ft_strchr(cube->map.points[i], 'E'))
+			flag = true;
+		i++;
+	}
+	if (!flag)
+		error(cube, 3);
+}
+
 void	mapread(t_cub3d *cub3d, int start)
 {
 	int		c;
@@ -100,7 +118,10 @@ void	mapread(t_cub3d *cub3d, int start)
 	str = ft_strtrim_free(str, "\n");
 	cub3d->map.points = ft_split(str, '\n');
 	free(str);
+	check_player_exist(cub3d);
 	map_size(cub3d);
+	if (cub3d->map.height > 56 || cub3d->map.height <= 2 || cub3d->map.width <= 2)
+		error(cub3d, 7);
 	map_checker(cub3d);
 	player_info(cub3d);
 }
