@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_more.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 12:57:54 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/12 13:16:11 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	texture_parse(t_cub3d *cub3d)
 	}
 	if (line)
 		free (line);
-	if (cub3d->map.c == -1 || cub3d->map.c == -1)
+	if (cub3d->map.c == -1 || cub3d->map.f == -1)
 		error(cub3d, 4);
 	mapread(cub3d, c);
 	nuggets(cub3d);

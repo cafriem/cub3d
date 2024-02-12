@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:27:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 12:28:30 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:12:09 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_digit(char *string)
 	c = 0;
 	while (string[c])
 	{
-		if (!(string[c] >= '0' && string[c] <= '9'))
+		if (!ft_isdigit(string[c]))
 		{
 			free(string);
 			return (0);

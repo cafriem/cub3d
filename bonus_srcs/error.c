@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:20:49 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/12 12:31:39 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:17:56 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@ void	error(t_cub3d *cube, int flag)
 	if (flag == 3)
 		ft_putstr_fd("Error: Wrong number of players\n", 2);
 	if (flag == 4)
+	{
 		ft_putstr_fd("Error: Ceiling or Floor, wrong color\n", 2);
+		if (cube->map.file_map)
+			ft_freesplit(cube->map.file_map);
+		exit(1);
+	}
 	if (flag == 5)
 		ft_putstr_fd("Error: Textures doesn't exist\n", 2);
 	if (flag == 6)

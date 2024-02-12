@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:15:53 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/12 12:24:57 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:17:09 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,21 @@ int	get_color(char *line)
 	int		ret;
 
 	spl = ft_split(line, ',');
+	if (line)
+		free(line);
 	c = 0;
 	while (spl[c])
 		c++;
 	if (c != 3)
 		return (-1);
-	// printf("%s - %s -%s\n", spl[0], spl[1], spl[2]);
 	if ((spl[0] && spl[1] && spl[2]) && (check_digit(ft_strtrim(spl[0], " ")) == 1)
 		&& (check_digit(ft_strtrim(spl[1], " ")) == 1) && (check_digit(ft_strtrim(spl[2], " ")) == 1))
 		ret = create_trgb(1, ft_atoi(spl[0]), ft_atoi(spl[1]), ft_atoi(spl[2]));
 	else
 	{
+		ft_freesplit(spl);
 		return (-1);
 	}
 	ft_freesplit(spl);
-	if (line)
-		free(line);
 	return (ret);
 }
