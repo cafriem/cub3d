@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 13:16:11 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:31:06 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,23 @@ int	texture_parse2(t_cub3d *cub3d, char *line, int c)
 
 void	nuggets(t_cub3d *cube)
 {
-	if (cube->map.t_n == 0)
-		error(cube, 5);
-	if (cube->map.t_s == 0)
-		error(cube, 5);
-	if (cube->map.t_e == 0)
-		error(cube, 5);
-	if (cube->map.t_w == 0)
+	t_dir	bol;
+	int		c;
+
+	c = 0;
+	bol.w = false;
+	bol.a = false;
+	bol.s = false;
+	bol.d = false;
+	while (cube->map.file_map[c] && c < 4)
+	{
+		bol.w = bol.w || (ft_strncmp(cube->map.file_map[c], "NO", 2) == 0);
+		bol.a = bol.a || (ft_strncmp(cube->map.file_map[c], "SO", 2) == 0);
+		bol.s = bol.s || (ft_strncmp(cube->map.file_map[c], "EA", 2) == 0);
+		bol.d = bol.d || (ft_strncmp(cube->map.file_map[c], "WE", 2) == 0);
+		c++;
+	}
+	if (!bol.w || !bol.a || !bol.s || !bol.d)
 		error(cube, 5);
 }
 
