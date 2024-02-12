@@ -76,7 +76,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2 || file_check(argv[1]) != 1)
 	{
-		ft_putstr_fd("WRONG AMOUNT OF ARGUMENTS", 2);
+		ft_putstr_fd("Error: WRONG AMOUNT OF ARGUMENTS", 2);
 		exit(1);
 	}
 	if (access(argv[1], F_OK) == -1 || access(argv[1], R_OK) == -1)

@@ -204,7 +204,7 @@ void	mapread(t_cub3d *cub3d, int start);
 // more map items:
 void	draw_hud(t_cub3d *cube);
 void	player_info(t_cub3d *cub3d);
-void	texture_parse(t_cub3d *cub3d);
+void	texture_parse(t_cub3d *cub3d, int c);
 void	openmap(t_cub3d *cub3d, char *argv[]);
 void	set_booleans(t_cub3d *cube);
 
