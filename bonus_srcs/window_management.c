@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 20:17:52 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 23:14:17 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/12 15:02:51 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	close_x(t_cub3d *cube)
 {
+	mlx_destroy_window(cube->mlx, cube->mlx_window);
+	free(cube->mlx);
 	close_free(cube);
 	exit(0);
 	return (0);
@@ -22,6 +24,8 @@ int	close_x(t_cub3d *cube)
 int	close_esc(int keycode, t_cub3d *cube)
 {
 	(void) keycode;
+	mlx_destroy_window(cube->mlx, cube->mlx_window);
+	free(cube->mlx);
 	close_free(cube);
 	exit(0);
 	return (0);

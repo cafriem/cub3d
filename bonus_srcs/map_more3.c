@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:18:13 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/12 11:32:12 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:35:54 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ void	set_booleans(t_cub3d *cube)
 	cube->dir.shift = false;
 }
 
-void	draw_hud(t_cub3d *cube)
-{
-	(void) cube;
-}
-
 void	openmap(t_cub3d *cub3d, char *argv[])
 {
 	int		fd;
@@ -38,6 +33,8 @@ void	openmap(t_cub3d *cub3d, char *argv[])
 	if (fd == -1)
 		error(cub3d, 1);
 	str = readfile(fd);
+	if (!str)
+		error(cub3d, 8);
 	cub3d->map.file_map = ft_split(str, '\n');
 	free(str);
 	texture_parse(cub3d);

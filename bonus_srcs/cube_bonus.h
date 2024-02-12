@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/12 14:36:09 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/12 15:40:43 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ int		create_trgb(int t, int r, int g, int b);
 int		get_color(char *line);
 void	check_updown(t_cub3d *cub3d, int row, int colom);
 int		check_leftright(t_cub3d *cub3d, int row, int colom);
+int		valid_letter(char letter);
 
 // map valid:
 void	check_valid(t_cub3d *cub3d, int row, int colom);

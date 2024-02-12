@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:13:46 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/12 14:40:21 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/12 15:06:27 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	free_torch(unsigned int ***torch)
 
 void	close_free(t_cub3d *cube)
 {
-	// mlx_destroy_window(cube->mlx, cube->mlx_window);
-	// free(cube->mlx);
 	if (cube->map.i_e)
 		free_point(cube->map.i_e);
 	if (cube->map.i_w)

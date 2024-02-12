@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 14:37:06 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/12 15:31:51 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ void	check_text(t_cub3d *cube)
 		|| access("textures/Torch_4.xpm", F_OK | R_OK) == -1
 		|| access("textures/Torch_5.xpm", F_OK | R_OK) == -1
 		|| access("textures/Torch_6.xpm", F_OK | R_OK) == -1)
+	{
+		mlx_destroy_window(cube->mlx, cube->mlx_window);
+		free(cube->mlx);
 		error(cube, 5);
+	}
 }
 
 void	get_text(t_cub3d *cube)

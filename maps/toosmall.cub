@@ -1,0 +1,11 @@
+EA ./textures/brick.xpm
+WE ./textures/brick.xpm
+NO ./textures/wooden_floor_horizontal.xpm
+SO ./textures/wooden_floor_horizontal.xpm
+
+F 19,109,28
+C 19,24,98
+
+111
+1W1
+111

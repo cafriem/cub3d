@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:29:37 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 12:03:45 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:43:02 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,22 @@ void	check_player_exist(t_cub3d *cube)
 		error(cube, 3);
 }
 
+void	valid_line(char *string, t_cub3d *cube, char *freeme)
+{
+	int	i;
+
+	i = 0;
+	while (string[i])
+	{
+		if (valid_letter(string[i]))
+		{
+			free (freeme);
+			error(cube, 2);
+		}
+		i++;
+	}
+}
+
 void	mapread(t_cub3d *cub3d, int start)
 {
 	int		c;
@@ -112,6 +128,7 @@ void	mapread(t_cub3d *cub3d, int start)
 	while (cub3d->map.file_map[c + 1])
 	{
 		c++;
+		valid_line(cub3d->map.file_map[c], cub3d, str);
 		str = ft_strjoinfree(str, "\n", 1);
 		str = ft_strjoinfree(str, cub3d->map.file_map[c], 1);
 	}
