@@ -1,5 +1,5 @@
 NO ./textures/brick_wall.xpm
-SO ./textures/brick_wall.xpm
+EA ./textures/brick_wall.xpm
 EA ./textures/wooden_floor_horizontal.xpm
 WE ./textures/wooden_floor_horizontal.xpm
 

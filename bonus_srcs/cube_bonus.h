@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/10 23:30:11 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:36:09 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,6 @@ typedef struct fkifiknow
 	float	x;
 }		t_dda;
 
-void	print_filemap(t_cub3d *cube);
 void	create_map(t_cub3d *cube);
 
 //dda help:
@@ -251,20 +250,6 @@ void	door_msg(t_cub3d *cube, char *str, int x, int y);
 void	open_door(t_cub3d *cube);
 int		keydown(int keycode, t_cub3d *cube);
 int		keyup(int keycode, t_cub3d *cube);
-
-//------------DDA.c------------//
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	draw_point(t_cub3d *cube3d);
-//------------key_press.c------------//
-int		move(t_cub3d *cube);
-int		key_press1(int keypress, t_cub3d *cub3d);
-void	key_press2(int keypress, t_cub3d *cub3d);
-void	key_press3(int keypress, t_cub3d *cub3d);
-void	key_press4(int keypress, t_cub3d *cub3d);
-void	key_press5(int keypress, t_cub3d *cub3d);
-//------------legends.c------------//
-void	legends1(t_cub3d *cub3d);
-void	legends2(t_cub3d *cub3d);
 //------------error.c------------//
 void	error(t_cub3d *cube, int flag);
 //functions:
@@ -288,5 +273,7 @@ void	close_free(t_cub3d *cube);
 int		check_digit(char *string);
 
 double	deg2rad(double degrees);
+void	init(t_cub3d *cube);
+
 
 #endif
