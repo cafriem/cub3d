@@ -6,7 +6,7 @@
 #    By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/02 22:13:13 by jadithya          #+#    #+#              #
-#    Updated: 2024/02/10 23:19:35 by cafriem          ###   ########.fr        #
+#    Updated: 2024/02/10 23:47:40 by cafriem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,16 +15,22 @@ NAME = cub3D
 BONUSNAME = bonus_cub3D
 
 SRCS = $(SRCDIR)/cub3d.c \
-		$(SRCDIR)/DDA.c \
-		$(SRCDIR)/keypress.c \
-		$(SRCDIR)/error.c \
-		$(SRCDIR)/map.c \
-		$(SRCDIR)/window_management.c \
-		$(SRCDIR)/map_utils.c \
-		$(SRCDIR)/map_more.c \
-		$(SRCDIR)/map_valid.c \
-		$(SRCDIR)/drawing.c \
 		$(SRCDIR)/casting.c \
+		$(SRCDIR)/DDA_help.c \
+		$(SRCDIR)/move.c \
+		$(SRCDIR)/DDA.c \
+		$(SRCDIR)/drawing.c \
+		$(SRCDIR)/error.c \
+		$(SRCDIR)/free_parsing.c \
+		$(SRCDIR)/keypress.c \
+		$(SRCDIR)/map_more.c \
+		$(SRCDIR)/map_more2.c \
+		$(SRCDIR)/map_more3.c \
+		$(SRCDIR)/map_utils.c \
+		$(SRCDIR)/map_valid.c \
+		$(SRCDIR)/map.c \
+		$(SRCDIR)/some_map.c \
+		$(SRCDIR)/window_management.c \
 
 BONUS = $(BONUSDIR)/cub3d_bonus.c \
 		$(BONUSDIR)/DDA.c \

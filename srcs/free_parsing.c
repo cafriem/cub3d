@@ -1,39 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   free_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 14:20:49 by cafriem           #+#    #+#             */
+/*   Created: 2024/02/10 23:13:46 by cafriem           #+#    #+#             */
 /*   Updated: 2024/02/10 23:48:59 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	free_map(t_cub3d *cube)
+void	free_point(unsigned int **map)
 {
+	int	c;
+
+	c = 0;
+	while (c < 65)
+	{
+		free(map[c]);
+		c++;
+	}
+	free(map);
+}
+
+void	close_free(t_cub3d *cube)
+{
+	int	i;
+
+	mlx_destroy_window(cube->mlx, cube->mlx_window);
+	free(cube->mlx);
+	if (cube->map.i_e)
+		free_point(cube->map.i_e);
+	if (cube->map.i_w)
+		free_point(cube->map.i_w);
+	if (cube->map.i_n)
+		free_point(cube->map.i_n);
+	if (cube->map.i_s)
+		free_point(cube->map.i_s);
 	if (cube->map.points)
 		ft_freesplit(cube->map.points);
 	if (cube->map.file_map)
 		ft_freesplit(cube->map.file_map);
-}
-
-void	error(t_cub3d *cube, int flag)
-{
-	if (flag == 0)
-		exit (1);
-	if (flag == 1)
-		ft_putstr_fd("Failed : No File Name\n", 2);
-	if (flag == 2)
-		ft_putstr_fd("Failed : Map wrong\n", 2);
-	if (flag == 3)
-		ft_putstr_fd("Failed : Wrong number of players\n", 2);
-	if (flag == 4)
-		ft_putstr_fd("Failed : Ceiling or Floor, wrong color\n", 2);
-	if (flag == 5)
-		ft_putstr_fd("Failed : Textures doesn't exist\n", 2);
-	free_map(cube);
-	exit(1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_more.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/11 19:12:52 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/11 00:22:11 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,6 @@ void	player_info(t_cub3d *cub3d)
 		error(cub3d, 3);
 }
 
-void	checker(t_cub3d *cube)
-{
-	if (cube->map.c == -1 || cube->map.f == -1)
-		error(cube, 4);
-}
-
 int	texture_parse2(t_cub3d *cub3d, char *line, int c)
 {
 	if (ft_strncmp(line, "NO", 2) == 0)
@@ -83,6 +77,28 @@ int	texture_parse2(t_cub3d *cub3d, char *line, int c)
 	return (0);
 }
 
+void	nuggets(t_cub3d *cube)
+{
+	t_dir	bol;
+	int		c;
+
+	c = 0;
+	bol.w = false;
+	bol.a = false;
+	bol.s = false;
+	bol.d = false;
+	while (cube->map.file_map[c] && c < 4)
+	{
+		bol.w = (ft_strncmp(cube->map.file_map[c], "NO", 2) == 0);
+		bol.a = (ft_strncmp(cube->map.file_map[c], "SO", 2) == 0);
+		bol.s = (ft_strncmp(cube->map.file_map[c], "EA", 2) == 0);
+		bol.d = (ft_strncmp(cube->map.file_map[c], "WE", 2) == 0);
+		c++;
+	}
+	if (!bol.w || !bol.a || !bol.s || !bol.d)
+		error(cube, 5);
+}
+
 void	texture_parse(t_cub3d *cub3d)
 {
 	int		c;
@@ -98,6 +114,8 @@ void	texture_parse(t_cub3d *cub3d)
 	}
 	if (line)
 		free (line);
-	checker(cub3d);
+	if (cub3d->map.c == -1 || cub3d->map.c == -1)
+		error(cub3d, 4);
 	mapread(cub3d, c);
+	nuggets(cub3d);
 }

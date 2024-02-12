@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/06 17:12:40 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 23:48:59 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,37 +33,9 @@ void	change_position(t_cub3d *cube)
 	}
 	else
 	{
-		cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 2;
-		cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 2;
+		cube->player.p_dx = (-cos(deg2rad(cube->player.p_angle))) * 3;
+		cube->player.p_dy = (sin(deg2rad(cube->player.p_angle))) * 3;
 	}
-}
-
-int	move(t_cub3d *cube)
-{
-	change_angle(cube);
-	change_position(cube);
-	if (cube->dir.w)
-	{
-		cube->player.p_x += cube->player.p_dx;
-		cube->player.p_y += cube->player.p_dy;
-	}
-	if (cube->dir.s)
-	{
-		cube->player.p_x -= cube->player.p_dx;
-		cube->player.p_y -= cube->player.p_dy;
-	}
-	if (cube->dir.a)
-	{
-		cube->player.p_x += cube->player.p_dy;
-		cube->player.p_y -= cube->player.p_dx;
-	}
-	if (cube->dir.d)
-	{
-		cube->player.p_x -= cube->player.p_dy;
-		cube->player.p_y += cube->player.p_dx;
-	}
-	draw_map(cube);
-	return (0);
 }
 
 int	keydown(int keycode, t_cub3d *cube)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:43:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 22:25:07 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/10 23:48:59 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,25 +96,7 @@ double	deg2rad(double degrees)
 
 bool	is_wall(t_cub3d *cube, t_point ray)
 {
-	if (cube->player.p_angle <= -135 || cube->player.p_angle >= 135)
-	{
-		if (cube->map.points[(int)(ray.y / 16)][(int)(ray.x / 16)] == '1')
-			return (true);
-	}
-	else if (cube->player.p_angle > -135 && cube->player.p_angle <= -45)
-	{
-		if (cube->map.points[(int)(ray.y / 16)][(int)(ray.x / 16)] == '1')
-			return (true);
-	}
-	else if (cube->player.p_angle > -45 && cube->player.p_angle <= 45)
-	{
-		if (cube->map.points[(int)(ray.y / 16)][(int)(ray.x / 16)] == '1')
-			return (true);
-	}
-	else
-	{
-		if (cube->map.points[(int)(ray.y / 16)][(int)(ray.x / 16)] == '1')
-			return (true);
-	}
+	if (cube->map.points[(int)(ray.y / 16)][(int)(ray.x / 16)] == '1')
+		return (true);
 	return (false);
 }
