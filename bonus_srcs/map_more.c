@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 15:18:06 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:49:00 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ void	texture_parse(t_cub3d *cub3d)
 	char	*line;
 
 	c = -1;
-	while (cub3d->map.file_map[++c] && ft_double_pointer_counter2(cub3d->map.file_map) > c)
+	while (cub3d->map.file_map[++c]
+		&& ft_double_pointer_counter2(cub3d->map.file_map) > c)
 	{
 		line = ft_strtrim(cub3d->map.file_map[c], " ");
 		if (texture_parse2(cub3d, line, c) == 1)

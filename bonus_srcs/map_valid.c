@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:29:37 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 15:43:02 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:48:45 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,19 +125,20 @@ void	mapread(t_cub3d *cub3d, int start)
 
 	c = start;
 	str = ft_strdup(cub3d->map.file_map[c]);
-	while (cub3d->map.file_map[c + 1])
+	while (cub3d->map.file_map[c])
 	{
-		c++;
 		valid_line(cub3d->map.file_map[c], cub3d, str);
 		str = ft_strjoinfree(str, "\n", 1);
 		str = ft_strjoinfree(str, cub3d->map.file_map[c], 1);
+		c++;
 	}
 	str = ft_strtrim_free(str, "\n");
 	cub3d->map.points = ft_split(str, '\n');
 	free(str);
 	check_player_exist(cub3d);
 	map_size(cub3d);
-	if (cub3d->map.height > 56 || cub3d->map.height <= 2 || cub3d->map.width <= 2)
+	if (cub3d->map.height > 56 
+		|| cub3d->map.height <= 2 || cub3d->map.width <= 2)
 		error(cub3d, 7);
 	map_checker(cub3d);
 	player_info(cub3d);
