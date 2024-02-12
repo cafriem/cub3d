@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:27:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 23:48:59 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:32:52 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ int	check_digit(char *string)
 	c = 0;
 	while (string[c])
 	{
-		if (string[c] >= '0' && string[c] <= '9')
-			return (1);
+		if (!ft_isdigit(string[c]))
+		{
+			free(string);
+			return (0);
+		}
 		c++;
 	}
-	return (0);
+	free(string);
+	return (1);
 }
 
 int	valid_letter(char letter)
@@ -47,14 +51,15 @@ void	check_updown(t_cub3d *cub3d, int row, int colom)
 	while (cub3d->map.points[vert][colom] != '1')
 	{
 		vert--;
-		if (vert < 0 || valid_letter(cub3d->map.points[vert][colom]) == 1)
+		if (vert < 0 || colom >= ft_strlen(cub3d->map.points[vert])
+			|| valid_letter(cub3d->map.points[vert][colom]) == 1)
 			error(cub3d, 2);
 	}
 	vert = row;
 	while (cub3d->map.points[vert][colom] != '1')
 	{
 		vert++;
-		if (vert > cub3d->map.height
+		if (vert >= cub3d->map.height
 			|| valid_letter(cub3d->map.points[vert][colom]) == 1)
 			error(cub3d, 2);
 	}
@@ -75,7 +80,7 @@ int	check_leftright(t_cub3d *cub3d, int row, int colom)
 	while (cub3d->map.points[row][hor] != '1')
 	{
 		hor++;
-		if (hor > cub3d->map.width
+		if (hor >= cub3d->map.width
 			|| valid_letter(cub3d->map.points[row][hor]) == 1)
 			error(cub3d, 2);
 	}

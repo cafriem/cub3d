@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 13:30:09 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:36:38 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	draw_map2(t_cub3d *cube)
 	int	i;
 	int	j;
 
-	i = -1;
+	i = 0;
 	while (cube->m && cube->map.points[++i])
 	{
 		j = -1;
@@ -88,6 +88,8 @@ void	draw_map(t_cub3d *cube)
 	draw_floor_ceiling(cube);
 	draw_rays(cube);
 	draw_map2(cube);
+	if (cube->m)
+		draw_player(cube);
 	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img.img, 0, 0);
 	mlx_destroy_image(cube->mlx, cube->img.img);
 }

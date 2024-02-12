@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 23:48:59 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:24:16 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,15 @@ unsigned int	**t_ext(t_cub3d *cube, char *map, int x, int y)
 
 void	check_text(t_cub3d *cube)
 {
-	if (access(cube->map.t_n, F_OK) == -1 || access(cube->map.t_n, R_OK) == -1
-		|| access(cube->map.t_s, F_OK) == -1
-		|| access(cube->map.t_s, R_OK) == -1
-		|| access(cube->map.t_e, F_OK) == -1
-		|| access(cube->map.t_e, R_OK) == -1)
+	if (access(cube->map.t_n, F_OK | R_OK) == -1
+		|| access(cube->map.t_s, F_OK | R_OK) == -1
+		|| access(cube->map.t_w, F_OK | R_OK) == -1
+		|| access(cube->map.t_e, F_OK | R_OK) == -1)
+	{
+		mlx_destroy_window(cube->mlx, cube->mlx_window);
+		free(cube->mlx);
 		error(cube, 5);
+	}
 }
 
 void	get_text(t_cub3d *cube)
@@ -81,6 +84,7 @@ int	main(int argc, char *argv[])
 	}
 	if (access(argv[1], F_OK) == -1 || access(argv[1], R_OK) == -1)
 		error(&cube, 0);
+	init(&cube);
 	openmap(&cube, argv);
 	set_booleans(&cube);
 	create_map(&cube);

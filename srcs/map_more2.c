@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_more2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:15:53 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/10 23:48:59 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:31:56 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,26 @@ char	*readfile(int fd)
 {
 	char	*ntext;
 	char	*text;
+	bool	flag;
 
 	text = get_next_line(fd);
 	ntext = get_next_line(fd);
+	flag = false;
 	while (ntext != NULL)
 	{
 		text = ft_strjoinfree(text, ntext, 3);
 		ntext = get_next_line(fd);
+		if (flag && ntext && ft_strlen(ntext) == 1)
+		{
+			free(ntext);
+			ntext = ft_strdup("00000");
+			continue ;
+		}
+		if (ntext && ft_strncmp("NO", ntext, 2) && ft_strncmp("SO", ntext, 2)
+			&& ft_strncmp("EA", ntext, 2) && ft_strncmp("WE", ntext, 2)
+			&& ft_strncmp("F", ntext, 1) && ft_strncmp("C", ntext, 1)
+			&& ft_strlen(ntext) > 1)
+			flag = true;
 	}
 	return (text);
 }
@@ -31,7 +44,8 @@ float	dist(t_point player, t_point ray, float angle)
 {
 	(void) angle;
 	return (sqrt(((ray.x - player.x) * (ray.x - player.x))
-			+ ((ray.y - player.y) * (ray.y - player.y))));
+			+ ((ray.y - player.y) * (ray.y - player.y))
+		));
 }
 
 void	initialize_cast(t_cast *cast, t_cub3d *cube)
@@ -60,20 +74,23 @@ int	get_color(char *line)
 	int		ret;
 
 	spl = ft_split(line, ',');
+	if (line)
+		free(line);
 	c = 0;
 	while (spl[c])
 		c++;
 	if (c != 3)
 		return (-1);
-	if ((spl[0] && spl[1] && spl[2]) && (check_digit(spl[0]) == 1)
-		&& (check_digit(spl[1]) == 1) && (check_digit(spl[2]) == 1))
+	if ((spl[0] && spl[1] && spl[2])
+		&& (check_digit(ft_strtrim(spl[0], " ")) == 1)
+		&& (check_digit(ft_strtrim(spl[1], " ")) == 1)
+		&& (check_digit(ft_strtrim(spl[2], " ")) == 1))
 		ret = create_trgb(1, ft_atoi(spl[0]), ft_atoi(spl[1]), ft_atoi(spl[2]));
 	else
 	{
+		ft_freesplit(spl);
 		return (-1);
 	}
 	ft_freesplit(spl);
-	if (line)
-		free(line);
 	return (ret);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+         #
+#    By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/02 22:13:13 by jadithya          #+#    #+#              #
-#    Updated: 2024/02/10 23:47:40 by cafriem          ###   ########.fr        #
+#    Updated: 2024/02/12 17:36:18 by jadithya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ BONUSNAME = bonus_cub3D
 SRCS = $(SRCDIR)/cub3d.c \
 		$(SRCDIR)/casting.c \
 		$(SRCDIR)/DDA_help.c \
-		$(SRCDIR)/move.c \
 		$(SRCDIR)/DDA.c \
 		$(SRCDIR)/drawing.c \
 		$(SRCDIR)/error.c \
@@ -29,6 +28,7 @@ SRCS = $(SRCDIR)/cub3d.c \
 		$(SRCDIR)/map_utils.c \
 		$(SRCDIR)/map_valid.c \
 		$(SRCDIR)/map.c \
+		$(SRCDIR)/move.c \
 		$(SRCDIR)/some_map.c \
 		$(SRCDIR)/window_management.c \
 

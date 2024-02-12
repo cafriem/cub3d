@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_valid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:29:37 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 23:48:59 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:33:29 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,23 +84,22 @@ char	*get_pl(t_cub3d *cub3d, int c, char *str)
 	return (str);
 }
 
-void	mapread(t_cub3d *cub3d, int start)
+void	check_player_exist(t_cub3d *cube)
 {
-	int		c;
-	char	*str;
+	bool	flag;
+	int		i;
 
-	c = start;
-	str = ft_strdup(cub3d->map.file_map[c]);
-	while (cub3d->map.file_map[c + 1])
+	i = 0;
+	flag = false;
+	while (cube->map.points[i])
 	{
-		c++;
-		str = ft_strjoinfree(str, "\n", 1);
-		str = ft_strjoinfree(str, cub3d->map.file_map[c], 1);
+		if (ft_strchr(cube->map.points[i], 'N')
+			|| ft_strchr(cube->map.points[i], 'W')
+			|| ft_strchr(cube->map.points[i], 'S')
+			|| ft_strchr(cube->map.points[i], 'E'))
+			flag = true;
+		i++;
 	}
-	str = ft_strtrim_free(str, "\n");
-	cub3d->map.points = ft_split(str, '\n');
-	free(str);
-	map_size(cub3d);
-	map_checker(cub3d);
-	player_info(cub3d);
+	if (!flag)
+		error(cube, 3);
 }

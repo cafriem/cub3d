@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   some_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 22:33:54 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/10 23:48:59 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:35:06 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 int	file_check(char *string)
 {
-	if (ft_strcmp(ft_strchr(string, '.'), ".cub") == 0)
+	char	*str;
+
+	str = ft_strchr(string, '.');
+	if (str && ft_strcmp(str, ".cub") == 0)
 		return (1);
+	else
+	{
+		printf("Error: file invalid\n");
+		exit(1);
+	}
 	return (0);
 }

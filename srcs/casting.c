@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:50:34 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 13:29:15 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:26:25 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,11 +138,12 @@ void	set_rayv(t_cub3d *cube, t_cast *cast)
 		{
 			cast->rayv.x += cast->off.x;
 			cast->rayv.y += cast->off.y;
-			if (cast->rayv.x < 0)
-				cast->rayv.x = 0;
-			if (cast->rayv.y < 0)
-				cast->rayv.y = 0;
 		}
 		cast->dof++;
 	}
 }
+
+			// if (cast->rayv.x < 0)
+			// 	cast->rayv.x = 0;
+			// if (cast->rayv.y < 0)
+			// 	cast->rayv.y = 0;
