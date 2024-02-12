@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:56:22 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 16:54:20 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:59:13 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	check_door(t_cub3d *cube)
 		[(int)(cube->player.p_x / 64
 				- cos(deg2rad(cube->player.p_angle)))] == '3'
 		|| cube->map.points[(int)(cube->player.p_y / 64
-			+ sin(deg2rad(cube->player.p_angle)))]
+			- sin(deg2rad(cube->player.p_angle)))]
 		[(int)(cube->player.p_x / 64
-				+ cos(deg2rad(cube->player.p_angle)))] == '3')
+				- cos(deg2rad(cube->player.p_angle)))] == '3')
 		return (door_msg(cube, "Press E to close", 336, 400));
 }
 
