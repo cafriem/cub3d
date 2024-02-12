@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 13:53:14 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:01:56 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	draw_map2(t_cub3d *cube)
 	int	i;
 	int	j;
 
-	i = -1;
+	i = 0;
 	while (cube->m && cube->map.points[++i])
 	{
 		j = -1;
