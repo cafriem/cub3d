@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/10 23:58:15 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/12 13:21:44 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,7 @@ void	mapread(t_cub3d *cub3d, int start);
 // more map items:
 void	draw_hud(t_cub3d *cube);
 void	player_info(t_cub3d *cub3d);
-void	texture_parse(t_cub3d *cub3d, int c);
+void	texture_parse(t_cub3d *cub3d);
 void	openmap(t_cub3d *cub3d, char *argv[]);
 void	set_booleans(t_cub3d *cube);
 
