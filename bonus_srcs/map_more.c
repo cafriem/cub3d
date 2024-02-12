@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 17:16:35 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/13 01:19:53 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	nuggets(t_cub3d *cube)
 	bol.a = false;
 	bol.s = false;
 	bol.d = false;
-	while (cube->map.file_map[c] && c < 4)
+	while (cube->map.file_map[c] && c < 6)
 	{
 		bol.w = (bol.w || (ft_strncmp(cube->map.file_map[c], "NO", 2) == 0));
 		bol.a = (bol.a || (ft_strncmp(cube->map.file_map[c], "SO", 2) == 0));
