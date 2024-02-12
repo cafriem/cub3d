@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:20:49 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/11 18:40:28 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 12:31:39 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	error(t_cub3d *cube, int flag)
 		ft_putstr_fd("Error: Textures doesn't exist\n", 2);
 	if (flag == 6)
 		ft_putstr_fd("Error: Map has empty line\n", 2);
+	if (flag == 7)
+		ft_putstr_fd("Error: Map bad\n", 2);
 	free_map(cube);
 	exit(1);
 }
