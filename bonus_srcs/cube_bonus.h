@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/12 15:40:43 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:46:21 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,6 @@ bool	is_wall(t_cub3d *cube, t_point ray);
 
 // dda:
 void	dda(t_point x1, t_point x2, t_cub3d *cube, int color);
-void	texture_dda(t_point x1, t_point x2, t_cub3d *cube, int color);
 void	wall_text_h(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast);
 void	wall_text_v(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast);
 void	wall_text_d(t_point x1, t_point x2, t_cub3d *cube, t_cast *cast);
@@ -239,7 +238,6 @@ void	set_verticals(t_cub3d *cube, t_cast *cast);
 void	set_rayv(t_cub3d *cube, t_cast *cast);
 
 // map:
-int		get_hex_color(t_cub3d *cube, int x, int y);
 float	dist(t_point player, t_point ray, float angle);
 void	initialize_cast(t_cast *cast, t_cub3d *cube);
 void	cast_n_project(t_cub3d *cube, t_cast *cast);
