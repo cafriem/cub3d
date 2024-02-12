@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 16:49:00 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:16:35 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ void	nuggets(t_cub3d *cube)
 	bol.d = false;
 	while (cube->map.file_map[c] && c < 4)
 	{
-		bol.w = bol.w || (ft_strncmp(cube->map.file_map[c], "NO", 2) == 0);
-		bol.a = bol.a || (ft_strncmp(cube->map.file_map[c], "SO", 2) == 0);
-		bol.s = bol.s || (ft_strncmp(cube->map.file_map[c], "EA", 2) == 0);
-		bol.d = bol.d || (ft_strncmp(cube->map.file_map[c], "WE", 2) == 0);
+		bol.w = (bol.w || (ft_strncmp(cube->map.file_map[c], "NO", 2) == 0));
+		bol.a = (bol.a || (ft_strncmp(cube->map.file_map[c], "SO", 2) == 0));
+		bol.s = (bol.s || (ft_strncmp(cube->map.file_map[c], "EA", 2) == 0));
+		bol.d = (bol.d || (ft_strncmp(cube->map.file_map[c], "WE", 2) == 0));
 		c++;
 	}
 	if (!bol.w || !bol.a || !bol.s || !bol.d)

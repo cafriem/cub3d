@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/12 15:46:21 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:16:49 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,8 +204,8 @@ void	map_checker(t_cub3d *cub3d);
 void	map_size(t_cub3d *cub3d);
 char	*get_pl(t_cub3d *cub3d, int c, char *str);
 void	mapread(t_cub3d *cub3d, int start);
+void	check_player_exist(t_cub3d *cube);
 
-// more map items:
 void	draw_hud(t_cub3d *cube);
 void	player_info(t_cub3d *cub3d);
 void	texture_parse(t_cub3d *cub3d);
@@ -249,8 +249,12 @@ void	door_msg(t_cub3d *cube, char *str, int x, int y);
 void	open_door(t_cub3d *cube);
 int		keydown(int keycode, t_cub3d *cube);
 int		keyup(int keycode, t_cub3d *cube);
-//------------error.c------------//
+
+// error.c:
 void	error(t_cub3d *cube, int flag);
+void	valid_line(char *string, t_cub3d *cube, char *freeme);
+void	mapread(t_cub3d *cub3d, int start);
+
 //functions:
 void	create_map(t_cub3d *cube);
 int		close_x(t_cub3d *cube);
@@ -273,6 +277,5 @@ int		check_digit(char *string);
 
 double	deg2rad(double degrees);
 void	init(t_cub3d *cube);
-
 
 #endif

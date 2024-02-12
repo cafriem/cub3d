@@ -6,7 +6,7 @@
 /*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:15:53 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/12 13:17:09 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:10:01 by jadithya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ char	*readfile(int fd)
 			ntext = ft_strdup("00000");
 			continue ;
 		}
-		if (ntext && (ft_strncmp("NO", ntext, 2) && ft_strncmp("SO", ntext, 2)
+		if (ntext && ft_strncmp("NO", ntext, 2) && ft_strncmp("SO", ntext, 2)
 			&& ft_strncmp("EA", ntext, 2) && ft_strncmp("WE", ntext, 2)
-			&& ft_strncmp("F", ntext, 1) && ft_strncmp("C", ntext, 1))
+			&& ft_strncmp("F", ntext, 1) && ft_strncmp("C", ntext, 1)
 			&& ft_strlen(ntext) > 1)
 			flag = true;
 	}
@@ -93,8 +93,10 @@ int	get_color(char *line)
 		c++;
 	if (c != 3)
 		return (-1);
-	if ((spl[0] && spl[1] && spl[2]) && (check_digit(ft_strtrim(spl[0], " ")) == 1)
-		&& (check_digit(ft_strtrim(spl[1], " ")) == 1) && (check_digit(ft_strtrim(spl[2], " ")) == 1))
+	if ((spl[0] && spl[1] && spl[2])
+		&& (check_digit(ft_strtrim(spl[0], " ")) == 1)
+		&& (check_digit(ft_strtrim(spl[1], " ")) == 1)
+		&& (check_digit(ft_strtrim(spl[2], " ")) == 1))
 		ret = create_trgb(1, ft_atoi(spl[0]), ft_atoi(spl[1]), ft_atoi(spl[2]));
 	else
 	{
