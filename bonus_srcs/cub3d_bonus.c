@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/11 19:14:12 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:37:06 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,9 @@ int	main(int argc, char *argv[])
 	}
 	if (access(argv[1], F_OK) == -1 || access(argv[1], R_OK) == -1)
 		error(&cube, 0);
+	init(&cube);
 	cube.map.tnum = 0;
 	cube.map.torchnum = 0;
-	// cube.map.c = -2;
-	// cube.map.f = -2;
 	openmap(&cube, argv);
 	set_booleans(&cube);
 	create_map(&cube);

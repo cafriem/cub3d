@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   some_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 22:33:54 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/11 17:37:37 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:05:16 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube_bonus.h"
-
-void	print_filemap(t_cub3d *cube)
-{
-	int	i;
-
-	i = 0;
-	while (cube->map.file_map[i])
-	{
-		printf("%d: %s\n", i, cube->map.file_map[i]);
-		i++;
-	}
-}
 
 int	mouse(int x, int y, t_cub3d *cube)
 {
