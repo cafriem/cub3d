@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:27:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 16:41:02 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:50:23 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	check_updown(t_cub3d *cub3d, int row, int colom)
 	while (cub3d->map.points[vert][colom] != '1')
 	{
 		vert--;
-		if (vert < 0 || colom >= ft_strlen(cub3d->map.points[vert])
+		if (vert < 0 || colom >= (int)ft_strlen(cub3d->map.points[vert])
 			|| valid_letter(cub3d->map.points[vert][colom]) == 1)
 			error(cub3d, 2);
 	}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/02 22:13:13 by jadithya          #+#    #+#              #
-#    Updated: 2024/02/12 17:36:18 by jadithya         ###   ########.fr        #
+#    Updated: 2024/02/14 15:47:44 by cafriem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ BONUS = $(BONUSDIR)/cub3d_bonus.c \
 
 CC = cc
 
-CFLAGS = -g3
+CFLAGS = -Wall -Werror -Wextra -g3
 
 OS:= ${shell uname}
 ifeq (${OS},Darwin)

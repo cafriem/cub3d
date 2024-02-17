@@ -6,7 +6,7 @@
 /*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 22:33:54 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 14:05:16 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/02/14 16:00:12 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	mouse(int x, int y, t_cub3d *cube)
 {
 	(void) cube;
 	(void) y;
-	if (x < 400)
-		cube->player.p_angle += 1;
-	else if (x >= 400)
-		cube->player.p_angle -= 1;
+	if (x < 200 && x >= 0)
+		cube->player.p_angle += 0.5;
+	else if (x >= 600 && x <= 800)
+		cube->player.p_angle -= 0.5;
 	if (cube->player.p_angle <= 0)
 		cube->player.p_angle += 360;
 	else if (cube->player.p_angle >= 360)

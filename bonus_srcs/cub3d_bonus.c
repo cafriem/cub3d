@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 15:31:51 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:49:13 by cafriem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ unsigned int	**t_ext(t_cub3d *cube, char *map, int x, int y)
 	unsigned int	**num;
 
 	cube->img.img = mlx_xpm_file_to_image(cube->mlx, map, &width, &height);
+	if (cube->img.img == NULL)
+		error(cube, 5);
 	name = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
 			&cube->img.line_length, &cube->img.endian);
 	num = ft_calloc(65, sizeof(unsigned int *));
